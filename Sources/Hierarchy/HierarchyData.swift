@@ -92,7 +92,48 @@ extension HierarchyData {
 			hierarchy[$0.id] = []
 			parents[$0.id] = target.id
 		}
+	}
+}
 
+// MARK: - Remove items
+extension HierarchyData {
+
+	/// Remove items
+	///
+	/// - Parameters:
+	///    - items: Removing items
+	func remove(_ items: [Item]) {
+
+		let ids = items.map(\.id)
+
+		let grouped = Dictionary(grouping: ids) { id -> ObjectIdentifier? in
+			return parents[id]
+		}
+
+		for (parentId, ids) in grouped {
+			guard let parentId else {
+				root.removeAll { ids.contains($0) }
+				continue
+			}
+
+			var children = hierarchy[unsafe: parentId]
+			children.removeAll { ids.contains($0) }
+			hierarchy[parentId] = children
+		}
+
+		ids.forEach { remove($0) }
 	}
 
+	/// Recursive removing item
+	private func remove(_ id: ObjectIdentifier) {
+		let children = hierarchy[unsafe: id]
+
+		hierarchy.removeValue(forKey: id)
+		storage.removeValue(forKey: id)
+		parents.removeValue(forKey: id)
+
+		for child in children {
+			remove(child)
+		}
+	}
 }

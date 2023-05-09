@@ -17,6 +17,8 @@ final class HierarchyData<Item: ReferenceIdentifiable> {
 	private (set) var hierarchy: [ObjectIdentifier: [ObjectIdentifier]] = [:]
 
 	private (set) var parents: [ObjectIdentifier: ObjectIdentifier] = [:]
+
+	private (set) var oldSnapshot: Snapshot?
 }
 
 extension HierarchyData {
@@ -135,5 +137,24 @@ extension HierarchyData {
 		for child in children {
 			remove(child)
 		}
+	}
+}
+
+extension HierarchyData {
+
+	func startUpdating() {
+		self.oldSnapshot = Snapshot(root: root, storage: storage, hierarchy: hierarchy)
+	}
+
+	func endUpdating() -> [HierarchyData.Action] {
+		defer {
+			oldSnapshot = nil
+		}
+		guard let oldSnapshot else {
+			assertionFailure("Please, start updating before")
+			return []
+		}
+		let newSnapshot = Snapshot(root: root, storage: storage, hierarchy: hierarchy)
+		return newSnapshot.diff(from: oldSnapshot)
 	}
 }

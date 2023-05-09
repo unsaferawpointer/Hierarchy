@@ -185,6 +185,72 @@ extension HierarchyDataTests {
 	}
 }
 
+// MARK: Diff test-cases
+extension HierarchyDataTests {
+
+	func test_diff() {
+		// Arrange
+		/*
+		 Before:
+		 - 0
+		 - 1
+			- 10
+			- 11
+			- 12
+				- 120
+				- 121
+		 - 2
+
+		 After:
+		 - 0
+		 - 1
+			- 10
+				- insertingItem
+			- 12
+				- 120
+		 - insertingRoot
+		 - 2
+		 */
+		// Arrange
+		let root0 = ObjectMock(value: "0")
+		let root1 = ObjectMock(value: "1")
+		let root2 = ObjectMock(value: "2")
+
+		let item10 = ObjectMock(value: "1-0")
+		let item11 = ObjectMock(value: "1-1")
+		let item12 = ObjectMock(value: "1-2")
+
+		let item120 =  ObjectMock(value: "1-2-0")
+		let item121 =  ObjectMock(value: "1-2-1")
+
+		sut.insert([root0, root1, root2], at: nil)
+		sut.insert([item10, item11, item12], to: root1, at: nil)
+		sut.insert([item120, item121], to: item12, at: nil)
+
+		let insertingRoot = ObjectMock(value: "insertingRoot")
+		let insertingItem = ObjectMock(value: "insertingItem")
+
+		// Act
+		sut.startUpdating()
+		sut.remove([item11, item121])
+		sut.insert([insertingRoot], at: 2)
+		sut.insert([insertingItem], to: item10, at: nil)
+
+		let operations = sut.endUpdating()
+
+		// Assert
+		XCTAssertEqual(operations, [.updateItem(nil),
+									.insertItems(atIndexes: .init(integer: 2), inParent: nil),
+									.updateItem(root1.id),
+									.removeItems(atIndexes: .init(integer: 1), inParent: root1.id),
+									.updateItem(item10.id),
+									.insertItems(atIndexes: .init(integer: 0), inParent: item10.id),
+									.updateItem(item12.id),
+									.removeItems(atIndexes: .init(integer: 1), inParent: item12.id)])
+
+	}
+}
+
 // MARK: - Nested data structs
 extension HierarchyDataTests {
 

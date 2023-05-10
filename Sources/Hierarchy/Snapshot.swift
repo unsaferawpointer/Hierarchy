@@ -23,7 +23,7 @@ extension HierarchyData.Snapshot {
 
 	typealias Snapshot = HierarchyData.Snapshot
 
-	typealias Action = HierarchyData.Action
+	typealias Action = HierarchyDiffAction
 
 	func diff(from other: Snapshot) -> [Action] {
 		var result: [Action] = []
@@ -74,15 +74,5 @@ private extension HierarchyData.Snapshot {
 		oldBuffer.forEach {
 			calculate(other: other, in: $0, callback: callback)
 		}
-	}
-}
-
-// MARK: - Nested data structs
-extension HierarchyData {
-
-	enum Action: Equatable {
-		case updateItem(_ item: ObjectIdentifier?)
-		case removeItems(atIndexes: IndexSet, inParent: ObjectIdentifier?)
-		case insertItems(atIndexes: IndexSet, inParent: ObjectIdentifier?)
 	}
 }

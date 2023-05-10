@@ -8,7 +8,7 @@
 import Foundation
 
 /// Hierarchy data representation
-final class HierarchyData<Item: ReferenceIdentifiable> {
+public final class HierarchyData<Item: ReferenceIdentifiable> {
 
 	private (set) var root: [ObjectIdentifier] = []
 
@@ -19,9 +19,11 @@ final class HierarchyData<Item: ReferenceIdentifiable> {
 	private (set) var parents: [ObjectIdentifier: ObjectIdentifier] = [:]
 
 	private (set) var oldSnapshot: Snapshot?
+
+	public init() { }
 }
 
-extension HierarchyData {
+public extension HierarchyData {
 
 	func numberOfChildren(of item: Item?) -> Int {
 		guard let item else {
@@ -39,6 +41,10 @@ extension HierarchyData {
 		return storage[unsafe: id]
 	}
 
+	func item(for id: ObjectIdentifier) -> Item? {
+		return storage[id]
+	}
+
 	func isDescendant(_ itemId: ObjectIdentifier, of otherId: ObjectIdentifier) -> Bool {
 		guard let parentId = parents[itemId] else {
 			return false
@@ -47,8 +53,8 @@ extension HierarchyData {
 	}
 }
 
-// MARK: - Operations
-extension HierarchyData {
+// MARK: - Insert items
+public extension HierarchyData {
 
 	/// Insert items to root
 	///
@@ -105,7 +111,7 @@ extension HierarchyData {
 }
 
 // MARK: - Remove items
-extension HierarchyData {
+public extension HierarchyData {
 
 	/// Remove items
 	///
@@ -148,7 +154,7 @@ extension HierarchyData {
 }
 
 // MARK: - Move items
-extension HierarchyData {
+public extension HierarchyData {
 
 	/// Move items to target
 	///
@@ -198,13 +204,13 @@ extension HierarchyData {
 }
 
 // MARK: - Diffing
-extension HierarchyData {
+public extension HierarchyData {
 
 	func startUpdating() {
 		self.oldSnapshot = Snapshot(root: root, storage: storage, hierarchy: hierarchy)
 	}
 
-	func endUpdating() -> [HierarchyData.Action] {
+	func endUpdating() -> [HierarchyDiffAction] {
 		defer {
 			oldSnapshot = nil
 		}

@@ -5,7 +5,7 @@
 //  Created by Anton Cherkasov on 08.05.2023.
 //
 
-protocol ReferenceIdentifiable: AnyObject { }
+public protocol ReferenceIdentifiable: AnyObject { }
 
 // MARK: - Identifiable
 extension ReferenceIdentifiable {

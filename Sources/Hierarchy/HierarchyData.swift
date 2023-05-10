@@ -38,6 +38,13 @@ extension HierarchyData {
 		let id = hierarchy[unsafe: item.id][index]
 		return storage[unsafe: id]
 	}
+
+	func isDescendant(_ itemId: ObjectIdentifier, of otherId: ObjectIdentifier) -> Bool {
+		guard let parentId = parents[itemId] else {
+			return false
+		}
+		return parentId == otherId ? true : isDescendant(parentId, of: otherId)
+	}
 }
 
 // MARK: - Operations
@@ -140,6 +147,57 @@ extension HierarchyData {
 	}
 }
 
+// MARK: - Move items
+extension HierarchyData {
+
+	/// Move items to target
+	///
+	/// - Parameters:
+	///    - items: Moving items
+	///    - target: Target of the moving.
+	/// - Note: If target is `nil`, appends to root items
+	func move(_ items: [Item], to target: Item?) {
+		let ids = items.map(\.id)
+
+		let grouped = Dictionary(grouping: ids) { id -> ObjectIdentifier? in
+			return parents[id]
+		}
+
+		for (parentId, ids) in grouped {
+			guard let parentId else {
+				root.removeAll { ids.contains($0) }
+				continue
+			}
+
+			var children = hierarchy[unsafe: parentId]
+			children.removeAll { ids.contains($0) }
+
+			hierarchy[parentId] = children
+		}
+
+		parents.removeValues(forKeys: ids)
+
+		if let targetId = target?.id {
+			var children = hierarchy[unsafe: targetId]
+			children.append(contentsOf: ids)
+			hierarchy[targetId] = children
+			ids.forEach { parents[$0] = targetId }
+		} else {
+			root.append(contentsOf: ids)
+		}
+
+	}
+
+	/// Returns ability to move items to specific target
+	func canMove(_ items: [Item], to target: Item?) -> Bool {
+		guard let target else {
+			return true
+		}
+		return items.map(\.id).allSatisfy { !isDescendant(target.id, of: $0) && target.id != $0 }
+	}
+}
+
+// MARK: - Diffing
 extension HierarchyData {
 
 	func startUpdating() {

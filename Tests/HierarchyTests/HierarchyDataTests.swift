@@ -247,7 +247,212 @@ extension HierarchyDataTests {
 									.insertItems(atIndexes: .init(integer: 0), inParent: item10.id),
 									.updateItem(item12.id),
 									.removeItems(atIndexes: .init(integer: 1), inParent: item12.id)])
+		XCTAssertNil(sut.oldSnapshot)
 
+	}
+}
+
+// MARK: - Moving test-cases
+extension HierarchyDataTests {
+
+	func test_move_toRoot() {
+		// Arrange
+		/*
+		 Before:
+		 - 0
+		 - 1
+			- 10
+			- 11
+			- 12
+				- 120
+				- 121
+		 - 2
+
+		 After:
+		 - 1
+			- 11
+		 - 2
+		 - 0
+		 - 10
+		 - 12
+			- 120
+		 - 121
+		 */
+		// Arrange
+		let root0 = ObjectMock(value: "0")
+		let root1 = ObjectMock(value: "1")
+		let root2 = ObjectMock(value: "2")
+
+		let item10 = ObjectMock(value: "1-0")
+		let item11 = ObjectMock(value: "1-1")
+		let item12 = ObjectMock(value: "1-2")
+
+		let item120 =  ObjectMock(value: "1-2-0")
+		let item121 =  ObjectMock(value: "1-2-1")
+
+		sut.insert([root0, root1, root2], at: nil)
+		sut.insert([item10, item11, item12], to: root1, at: nil)
+		sut.insert([item120, item121], to: item12, at: nil)
+
+		// Act
+		sut.move([root0, item10, item12, item121], to: nil)
+
+		// Assert
+		XCTAssertEqual(sut.root, [root1.id, root2.id, root0.id, item10.id, item12.id, item121.id])
+
+		XCTAssertEqual(sut.hierarchy[root0.id], [])
+		XCTAssertEqual(sut.hierarchy[root1.id], [item11.id])
+		XCTAssertEqual(sut.hierarchy[root2.id], [])
+		XCTAssertEqual(sut.hierarchy[item10.id], [])
+		XCTAssertEqual(sut.hierarchy[item12.id], [item120.id])
+		XCTAssertEqual(sut.hierarchy[item121.id], [])
+		XCTAssertEqual(sut.hierarchy.count, 8)
+
+		XCTAssertEqual(sut.parents.count, 2)
+		XCTAssertEqual(sut.parents[item120.id], item12.id)
+		XCTAssertEqual(sut.parents[item11.id], root1.id)
+
+		XCTAssertEqual(sut.storage.count, 8)
+	}
+
+	func test_canMoveToRoot_whenResultIsPositive() {
+		// Arrange
+		/*
+		 - 0
+		 - 1
+			- 10
+			- 11
+			- 12
+				- 120
+				- 121
+		 - 2
+		 */
+		// Arrange
+		let root0 = ObjectMock(value: "0")
+		let root1 = ObjectMock(value: "1")
+		let root2 = ObjectMock(value: "2")
+
+		let item10 = ObjectMock(value: "1-0")
+		let item11 = ObjectMock(value: "1-1")
+		let item12 = ObjectMock(value: "1-2")
+
+		let item120 =  ObjectMock(value: "1-2-0")
+		let item121 =  ObjectMock(value: "1-2-1")
+
+		sut.insert([root0, root1, root2], at: nil)
+		sut.insert([item10, item11, item12], to: root1, at: nil)
+		sut.insert([item120, item121], to: item12, at: nil)
+
+		// Act
+		let result = sut.canMove([item10, item12], to: nil)
+
+		// Assert
+		XCTAssertTrue(result)
+	}
+
+	func test_canMoveToTarget_whenResultIsPositive() {
+		// Arrange
+		/*
+		 - 0
+		 - 1
+			- 10
+			- 11
+			- 12
+				- 120
+				- 121
+		 - 2
+		 */
+		// Arrange
+		let root0 = ObjectMock(value: "0")
+		let root1 = ObjectMock(value: "1")
+		let root2 = ObjectMock(value: "2")
+
+		let item10 = ObjectMock(value: "1-0")
+		let item11 = ObjectMock(value: "1-1")
+		let item12 = ObjectMock(value: "1-2")
+
+		let item120 =  ObjectMock(value: "1-2-0")
+		let item121 =  ObjectMock(value: "1-2-1")
+
+		sut.insert([root0, root1, root2], at: nil)
+		sut.insert([item10, item11, item12], to: root1, at: nil)
+		sut.insert([item120, item121], to: item12, at: nil)
+
+		// Act
+		let result = sut.canMove([root1, item10, item12], to: item120)
+
+		// Assert
+		XCTAssertFalse(result)
+	}
+
+	func test_canMoveToTarget_whenResultIsNegative() {
+		// Arrange
+		/*
+		 - 0
+		 - 1
+			- 10
+			- 11
+			- 12
+				- 120
+				- 121
+		 - 2
+		 */
+		// Arrange
+		let root0 = ObjectMock(value: "0")
+		let root1 = ObjectMock(value: "1")
+		let root2 = ObjectMock(value: "2")
+
+		let item10 = ObjectMock(value: "1-0")
+		let item11 = ObjectMock(value: "1-1")
+		let item12 = ObjectMock(value: "1-2")
+
+		let item120 =  ObjectMock(value: "1-2-0")
+		let item121 =  ObjectMock(value: "1-2-1")
+
+		sut.insert([root0, root1, root2], at: nil)
+		sut.insert([item10, item11, item12], to: root1, at: nil)
+		sut.insert([item120, item121], to: item12, at: nil)
+
+		// Act
+		let result = sut.canMove([root1, item11], to: item121)
+
+		// Assert
+		XCTAssertFalse(result)
+	}
+
+	func test_canMoveToItself() {
+		// Arrange
+		/*
+		 - 0
+		 - 1
+		 - 10
+		 - 11
+		 - 12
+		 - 120
+		 - 121
+		 - 2
+		 */
+		// Arrange
+		let root0 = ObjectMock(value: "0")
+		let root1 = ObjectMock(value: "1")
+		let root2 = ObjectMock(value: "2")
+
+		let item10 = ObjectMock(value: "1-0")
+		let item11 = ObjectMock(value: "1-1")
+		let item12 = ObjectMock(value: "1-2")
+
+		let item120 =  ObjectMock(value: "1-2-0")
+		let item121 =  ObjectMock(value: "1-2-1")
+
+		sut.insert([root0, root1, root2], at: nil)
+		sut.insert([item10, item11, item12], to: root1, at: nil)
+		sut.insert([item120, item121], to: item12, at: nil)
+
+		// Act
+		let result = sut.canMove([root1, item11], to: root1)
+
+		// Assert
+		XCTAssertFalse(result)
 	}
 }
 

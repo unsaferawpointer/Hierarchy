@@ -23,7 +23,7 @@ extension HierarchyData.Snapshot {
 
 	typealias Snapshot = HierarchyData.Snapshot
 
-	typealias Action = HierarchyDiffAction
+	typealias Action = HierarchyDiffAction<Item>
 
 	func diff(from other: Snapshot) -> [Action] {
 		var result: [Action] = []
@@ -56,7 +56,8 @@ private extension HierarchyData.Snapshot {
 		let difference = newBuffer.difference(from: oldBuffer)
 
 		if !difference.isEmpty {
-			callback(.updateItem(parent))
+			let item = other.storage[optional: parent]
+			callback(.updateItem(item))
 		}
 
 		for change in difference {
@@ -64,10 +65,12 @@ private extension HierarchyData.Snapshot {
 				case .remove(let offset, _, _):
 					oldBuffer.remove(at: offset)
 					let indexes = IndexSet(integer: offset)
-					callback(.removeItems(atIndexes: indexes, inParent: parent))
+					let item = other.storage[optional: parent]
+					callback(.removeItems(atIndexes: indexes, inParent: item))
 				case .insert(let offset, _, _):
 					let indexes = IndexSet(integer: offset)
-					callback(.insertItems(atIndexes: indexes, inParent: parent))
+					let item = other.storage[optional: parent]
+					callback(.insertItems(atIndexes: indexes, inParent: item))
 			}
 		}
 

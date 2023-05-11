@@ -241,12 +241,12 @@ extension HierarchyDataTests {
 		// Assert
 		XCTAssertEqual(operations, [.updateItem(nil),
 									.insertItems(atIndexes: .init(integer: 2), inParent: nil),
-									.updateItem(root1.id),
-									.removeItems(atIndexes: .init(integer: 1), inParent: root1.id),
-									.updateItem(item10.id),
-									.insertItems(atIndexes: .init(integer: 0), inParent: item10.id),
-									.updateItem(item12.id),
-									.removeItems(atIndexes: .init(integer: 1), inParent: item12.id)])
+									.updateItem(root1),
+									.removeItems(atIndexes: .init(integer: 1), inParent: root1),
+									.updateItem(item10),
+									.insertItems(atIndexes: .init(integer: 0), inParent: item10),
+									.updateItem(item12),
+									.removeItems(atIndexes: .init(integer: 1), inParent: item12)])
 		XCTAssertNil(sut.oldSnapshot)
 
 	}

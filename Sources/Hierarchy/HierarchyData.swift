@@ -210,7 +210,7 @@ public extension HierarchyData {
 		self.oldSnapshot = Snapshot(root: root, storage: storage, hierarchy: hierarchy)
 	}
 
-	func endUpdating() -> [HierarchyDiffAction] {
+	func endUpdating() -> [HierarchyDiffAction<Item>] {
 		defer {
 			oldSnapshot = nil
 		}

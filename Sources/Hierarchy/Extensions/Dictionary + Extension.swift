@@ -25,4 +25,11 @@ extension Dictionary {
 		}
 		return value
 	}
+
+	subscript(optional key: Key?) -> Value? {
+		guard let key else {
+			return nil
+		}
+		return self[key]
+	}
 }

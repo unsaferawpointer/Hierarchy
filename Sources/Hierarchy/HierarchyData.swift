@@ -217,14 +217,14 @@ public extension HierarchyData {
 
 			var children = hierarchy[unsafe: parentId]
 
+			let cache = Set(ids)
+
 			if parentId == target.id {
-				var shift = 0
-				for id in ids {
-					if let index = children.firstIndex(where: { $0 == id }) {
-						if index < targetIndex { shift -= 1 }
-					}
+				let indexes = children.enumerated().compactMap {
+					return cache.contains($0.element) ? $0.offset : nil
 				}
-				targetIndex += shift
+				let shift = indexes.filter { $0 < targetIndex }.count
+				targetIndex -= shift
 			}
 			children.removeAll { ids.contains($0) }
 
@@ -237,6 +237,44 @@ public extension HierarchyData {
 		children.insert(contentsOf: ids, at: targetIndex)
 		hierarchy[target.id] = children
 		ids.forEach { parents[$0] = target.id }
+	}
+
+	/// Move items to root at specific index
+	///
+	/// - Parameters:
+	///    - items: Moving items
+	///    - index: Index of the insertion
+	func moveToRoot(_ items: [Item], at index: Int) {
+		let ids = items.map(\.id)
+
+		let grouped = Dictionary(grouping: ids) { id -> ObjectIdentifier? in
+			return parents[id]
+		}
+
+		var targetIndex = index
+
+		for (parentId, ids) in grouped {
+			guard let parentId else {
+				let cache = Set(ids)
+				let indexes = root.enumerated().compactMap {
+					return cache.contains($0.element) ? $0.offset : nil
+				}
+				let shift = indexes.filter { $0 < targetIndex }.count
+				targetIndex -= shift
+				root.removeAll { ids.contains($0) }
+				continue
+			}
+
+			var children = hierarchy[unsafe: parentId]
+			children.removeAll { ids.contains($0) }
+
+			hierarchy[parentId] = children
+		}
+
+		parents.removeValues(forKeys: ids)
+
+		root.insert(contentsOf: ids, at: targetIndex)
+		ids.forEach { parents[$0] = nil }
 	}
 
 	/// Returns ability to move items to specific target

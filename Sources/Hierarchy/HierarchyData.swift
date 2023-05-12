@@ -194,6 +194,51 @@ public extension HierarchyData {
 
 	}
 
+	/// Move items to target
+	///
+	/// - Parameters:
+	///    - items: Moving items
+	///    - target: Target of the moving.
+	///    - index: Index of the insertion
+	func move(_ items: [Item], to target: Item, at index: Int) {
+		let ids = items.map(\.id)
+
+		let grouped = Dictionary(grouping: ids) { id -> ObjectIdentifier? in
+			return parents[id]
+		}
+
+		var targetIndex = index
+
+		for (parentId, ids) in grouped {
+			guard let parentId else {
+				root.removeAll { ids.contains($0) }
+				continue
+			}
+
+			var children = hierarchy[unsafe: parentId]
+
+			if parentId == target.id {
+				var shift = 0
+				for id in ids {
+					if let index = children.firstIndex(where: { $0 == id }) {
+						if index < targetIndex { shift -= 1 }
+					}
+				}
+				targetIndex += shift
+			}
+			children.removeAll { ids.contains($0) }
+
+			hierarchy[parentId] = children
+		}
+
+		parents.removeValues(forKeys: ids)
+
+		var children = hierarchy[unsafe: target.id]
+		children.insert(contentsOf: ids, at: targetIndex)
+		hierarchy[target.id] = children
+		ids.forEach { parents[$0] = target.id }
+	}
+
 	/// Returns ability to move items to specific target
 	func canMove(_ items: [Item], to target: Item?) -> Bool {
 		guard let target else {

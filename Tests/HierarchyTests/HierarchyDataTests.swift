@@ -315,6 +315,138 @@ extension HierarchyDataTests {
 		XCTAssertEqual(sut.storage.count, 8)
 	}
 
+	func test_move_toTarget() {
+		// Arrange
+		/*
+		 Before:
+		 - 0 x
+		 - 1
+			- 10 x
+			- 11
+			- 12 x
+				- 120
+				- 121 x
+		 - 2
+
+		 After:
+		 - 1
+			- 11
+				- 0
+				- 10
+				- 12
+					- 120
+				- 121
+		 - 2
+		 */
+		// Arrange
+		let root0 = ObjectMock(value: "0")
+		let root1 = ObjectMock(value: "1")
+		let root2 = ObjectMock(value: "2")
+
+		let item10 = ObjectMock(value: "1-0")
+		let item11 = ObjectMock(value: "1-1")
+		let item12 = ObjectMock(value: "1-2")
+
+		let item120 =  ObjectMock(value: "1-2-0")
+		let item121 =  ObjectMock(value: "1-2-1")
+
+		sut.insert([root0, root1, root2], at: nil)
+		sut.insert([item10, item11, item12], to: root1, at: nil)
+		sut.insert([item120, item121], to: item12, at: nil)
+
+		// Act
+		sut.move([root0, item10, item12, item121], to: item11)
+
+		// Assert
+		XCTAssertEqual(sut.root, [root1.id, root2.id])
+
+		XCTAssertEqual(sut.hierarchy[root1.id], [item11.id])
+		XCTAssertEqual(sut.hierarchy[root2.id], [])
+		XCTAssertEqual(sut.hierarchy[item11.id], [root0.id, item10.id, item12.id, item121.id])
+		XCTAssertEqual(sut.hierarchy[root0.id], [])
+		XCTAssertEqual(sut.hierarchy[item10.id], [])
+		XCTAssertEqual(sut.hierarchy[item12.id], [item120.id])
+		XCTAssertEqual(sut.hierarchy[item120.id], [])
+		XCTAssertEqual(sut.hierarchy[item121.id], [])
+		XCTAssertEqual(sut.hierarchy.count, 8)
+
+		XCTAssertEqual(sut.parents.count, 6)
+		XCTAssertEqual(sut.parents[item11.id], root1.id)
+		XCTAssertEqual(sut.parents[root0.id], item11.id)
+		XCTAssertEqual(sut.parents[item10.id], item11.id)
+		XCTAssertEqual(sut.parents[item12.id], item11.id)
+		XCTAssertEqual(sut.parents[item121.id], item11.id)
+		XCTAssertEqual(sut.parents[item120.id], item12.id)
+
+		XCTAssertEqual(sut.storage.count, 8)
+	}
+
+	func test_move_toTargetAtIndex() {
+		// Arrange
+		/*
+		 Before:
+		 - 0 x
+		 - 1
+			- 10 x
+			- 11
+			- 12 x
+				- 120
+				- 121 x
+		 - 2
+
+		 After:
+		 - 1
+			- 11
+			- 0 x
+			- 10 x
+			- 12 x
+				- 120
+			- 121 x
+		 - 2
+		 */
+		// Arrange
+		let root0 = ObjectMock(value: "0")
+		let root1 = ObjectMock(value: "1")
+		let root2 = ObjectMock(value: "2")
+
+		let item10 = ObjectMock(value: "1-0")
+		let item11 = ObjectMock(value: "1-1")
+		let item12 = ObjectMock(value: "1-2")
+
+		let item120 =  ObjectMock(value: "1-2-0")
+		let item121 =  ObjectMock(value: "1-2-1")
+
+		sut.insert([root0, root1, root2], at: nil)
+		sut.insert([item10, item11, item12], to: root1, at: nil)
+		sut.insert([item120, item121], to: item12, at: nil)
+
+		// Act
+		sut.move([root0, item10, item12, item121], to: root1, at: 2)
+
+		// Assert
+		XCTAssertEqual(sut.root, [root1.id, root2.id])
+
+		XCTAssertEqual(sut.hierarchy.count, 8)
+		XCTAssertEqual(sut.hierarchy[root1.id], [item11.id, root0.id, item10.id, item12.id, item121.id])
+		XCTAssertEqual(sut.hierarchy[item11.id], [])
+		XCTAssertEqual(sut.hierarchy[root0.id], [])
+		XCTAssertEqual(sut.hierarchy[item10.id], [])
+		XCTAssertEqual(sut.hierarchy[item12.id], [item120.id])
+		XCTAssertEqual(sut.hierarchy[item120.id], [])
+		XCTAssertEqual(sut.hierarchy[item121.id], [])
+		XCTAssertEqual(sut.hierarchy[root2.id], [])
+
+		XCTAssertEqual(sut.parents.count, 6)
+		XCTAssertEqual(sut.parents[item11.id], root1.id)
+		XCTAssertEqual(sut.parents[root0.id], root1.id)
+		XCTAssertEqual(sut.parents[item10.id], root1.id)
+		XCTAssertEqual(sut.parents[item12.id], root1.id)
+		XCTAssertEqual(sut.parents[item121.id], root1.id)
+		XCTAssertEqual(sut.parents[item120.id], item12.id)
+
+		XCTAssertEqual(sut.storage.count, 8)
+	}
+
 	func test_canMoveToRoot_whenResultIsPositive() {
 		// Arrange
 		/*

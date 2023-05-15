@@ -51,6 +51,19 @@ public extension HierarchyData {
 		}
 		return parentId == otherId ? true : isDescendant(parentId, of: otherId)
 	}
+
+	/// Returns children of item
+	///
+	/// - Parameters:
+	///    - parent: Parent item
+	/// - Warning: If there is no item in the store, causes a fatal error
+	func children(of parent: Item?) -> [Item] {
+		guard let parent else {
+			return root.map { storage[unsafe: $0] }
+		}
+		let children = hierarchy[unsafe: parent.id]
+		return children.map { storage[unsafe: $0] }
+	}
 }
 
 // MARK: - Insert items

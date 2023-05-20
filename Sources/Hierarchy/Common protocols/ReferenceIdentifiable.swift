@@ -8,7 +8,7 @@
 public protocol ReferenceIdentifiable: AnyObject { }
 
 // MARK: - Identifiable
-extension ReferenceIdentifiable {
+public extension ReferenceIdentifiable {
 
 	var id: ObjectIdentifier {
 		return ObjectIdentifier(self)

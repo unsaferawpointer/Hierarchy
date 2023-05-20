@@ -22,6 +22,78 @@ final class HierarchyDataTests: XCTestCase {
 
 }
 
+// MARK: - Common test-cases
+extension HierarchyDataTests {
+
+	func test_getLevel() {
+		/*
+		 - 0
+		 - 1
+			- 10
+			- 11
+			- 12
+				- 120
+				- 121
+		 - 2
+		 */
+		// Arrange
+		let root0 = ObjectMock(value: "0")
+		let root1 = ObjectMock(value: "1")
+		let root2 = ObjectMock(value: "2")
+
+		let item10 = ObjectMock(value: "1-0")
+		let item11 = ObjectMock(value: "1-1")
+		let item12 = ObjectMock(value: "1-2")
+
+		let item120 =  ObjectMock(value: "1-2-0")
+		let item121 =  ObjectMock(value: "1-2-1")
+
+		sut.insert([root0, root1, root2], at: nil)
+		sut.insert([item10, item11, item12], to: root1, at: nil)
+		sut.insert([item120, item121], to: item12, at: nil)
+
+		// Act
+		let result = sut.getLevel(of: item121)
+
+		// Assert
+		XCTAssertEqual(result, 2)
+	}
+
+	func test_getLevel_whenItemIsRoot() {
+		/*
+		 - 0
+		 - 1
+			- 10
+			- 11
+			- 12
+				- 120
+				- 121
+		 - 2
+		 */
+		// Arrange
+		let root0 = ObjectMock(value: "0")
+		let root1 = ObjectMock(value: "1")
+		let root2 = ObjectMock(value: "2")
+
+		let item10 = ObjectMock(value: "1-0")
+		let item11 = ObjectMock(value: "1-1")
+		let item12 = ObjectMock(value: "1-2")
+
+		let item120 =  ObjectMock(value: "1-2-0")
+		let item121 =  ObjectMock(value: "1-2-1")
+
+		sut.insert([root0, root1, root2], at: nil)
+		sut.insert([item10, item11, item12], to: root1, at: nil)
+		sut.insert([item120, item121], to: item12, at: nil)
+
+		// Act
+		let result = sut.getLevel(of: root1)
+
+		// Assert
+		XCTAssertEqual(result, 0)
+	}
+}
+
 // MARK: - Insertion test-cases
 extension HierarchyDataTests {
 

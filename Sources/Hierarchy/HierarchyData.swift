@@ -64,6 +64,17 @@ public extension HierarchyData {
 		let children = hierarchy[unsafe: parent.id]
 		return children.map { storage[unsafe: $0] }
 	}
+
+	/// Returns level of the item
+	func getLevel(of item: Item) -> Int {
+		var parent = parents[item.id]
+		var result = 0
+		while parent != nil {
+			parent = parents[parent!]
+			result += 1
+		}
+		return result
+	}
 }
 
 // MARK: - Insert items

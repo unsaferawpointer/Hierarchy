@@ -25,6 +25,28 @@ final class HierarchyDataTests: XCTestCase {
 // MARK: - Common test-cases
 extension HierarchyDataTests {
 
+	func test_clearStorage() {
+		/*
+		 - 0
+		 - 1
+		 */
+		// Arrange
+		let root0 = ObjectMock(value: "0")
+		let root1 = ObjectMock(value: "1")
+
+		sut.insert([root0, root1], at: nil)
+
+		// Act
+		sut.clearStorage()
+
+		// Assert
+		XCTAssertTrue(sut.parents.isEmpty)
+		XCTAssertTrue(sut.hierarchy.isEmpty)
+		XCTAssertTrue(sut.root.isEmpty)
+		XCTAssertTrue(sut.storage.isEmpty)
+		XCTAssertNil(sut.oldSnapshot)
+	}
+
 	func test_getLevel() {
 		/*
 		 - 0

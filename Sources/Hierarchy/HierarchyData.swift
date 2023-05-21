@@ -75,6 +75,14 @@ public extension HierarchyData {
 		}
 		return result
 	}
+
+	/// Clear all data
+	func clearStorage() {
+		root = []
+		storage = [:]
+		hierarchy = [:]
+		parents = [:]
+	}
 }
 
 // MARK: - Insert items

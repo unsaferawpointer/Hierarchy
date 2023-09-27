@@ -98,13 +98,11 @@
 		4C3A35DF2AC48EB500B00058 /* Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
-				4C3A35E02AC48EB500B00058 /* AppDelegate.swift */,
-				4C3A35E22AC48EB500B00058 /* ViewController.swift */,
-				4C3A35E42AC48EB500B00058 /* Document.swift */,
-				4C3A35E62AC48EB600B00058 /* Assets.xcassets */,
-				4C3A35E82AC48EB600B00058 /* Main.storyboard */,
-				4C3A35EB2AC48EB600B00058 /* Info.plist */,
 				4C3A35EC2AC48EB600B00058 /* Hierarchy.entitlements */,
+				4C3A35EB2AC48EB600B00058 /* Info.plist */,
+				4C3A35E02AC48EB500B00058 /* AppDelegate.swift */,
+				4C3A360E2AC4919900B00058 /* Docs */,
+				4C3A36102AC4926D00B00058 /* Resource */,
 			);
 			path = Hierarchy;
 			sourceTree = "<group>";
@@ -124,6 +122,32 @@
 				4C3A36012AC48EB600B00058 /* HierarchyUITestsLaunchTests.swift */,
 			);
 			path = HierarchyUITests;
+			sourceTree = "<group>";
+		};
+		4C3A360E2AC4919900B00058 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A360F2AC491B700B00058 /* Hierarchy */,
+			);
+			path = Docs;
+			sourceTree = "<group>";
+		};
+		4C3A360F2AC491B700B00058 /* Hierarchy */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A35E22AC48EB500B00058 /* ViewController.swift */,
+				4C3A35E42AC48EB500B00058 /* Document.swift */,
+			);
+			path = Hierarchy;
+			sourceTree = "<group>";
+		};
+		4C3A36102AC4926D00B00058 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A35E62AC48EB600B00058 /* Assets.xcassets */,
+				4C3A35E82AC48EB600B00058 /* Main.storyboard */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

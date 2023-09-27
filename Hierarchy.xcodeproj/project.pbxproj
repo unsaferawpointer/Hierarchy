@@ -9,12 +9,29 @@
 /* Begin PBXBuildFile section */
 		4C3A35E12AC48EB500B00058 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A35E02AC48EB500B00058 /* AppDelegate.swift */; };
 		4C3A35E32AC48EB500B00058 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A35E22AC48EB500B00058 /* ViewController.swift */; };
-		4C3A35E52AC48EB500B00058 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A35E42AC48EB500B00058 /* Document.swift */; };
+		4C3A35E52AC48EB500B00058 /* HierarchyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A35E42AC48EB500B00058 /* HierarchyDocument.swift */; };
 		4C3A35E72AC48EB600B00058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A35E62AC48EB600B00058 /* Assets.xcassets */; };
 		4C3A35EA2AC48EB600B00058 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A35E82AC48EB600B00058 /* Main.storyboard */; };
-		4C3A35F62AC48EB600B00058 /* HierarchyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A35F52AC48EB600B00058 /* HierarchyTests.swift */; };
 		4C3A36002AC48EB600B00058 /* HierarchyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A35FF2AC48EB600B00058 /* HierarchyUITests.swift */; };
 		4C3A36022AC48EB600B00058 /* HierarchyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36012AC48EB600B00058 /* HierarchyUITestsLaunchTests.swift */; };
+		4C3A36122AC4956500B00058 /* HierarchyContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36112AC4956500B00058 /* HierarchyContent.swift */; };
+		4C3A36152AC495D100B00058 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36142AC495D100B00058 /* Container.swift */; };
+		4C3A36172AC495DE00B00058 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36162AC495DE00B00058 /* Todo.swift */; };
+		4C3A361F2AC497F800B00058 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A361E2AC497F800B00058 /* DocumentFile.swift */; };
+		4C3A36212AC4981D00B00058 /* VersionedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36202AC4981D00B00058 /* VersionedFile.swift */; };
+		4C3A36242AC4AB6D00B00058 /* HierarchyDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36232AC4AB6D00B00058 /* HierarchyDataProvider.swift */; };
+		4C3A36262AC4ABD800B00058 /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36252AC4ABD800B00058 /* ContentProvider.swift */; };
+		4C3A36282AC4AC1500B00058 /* DocumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36272AC4AC1500B00058 /* DocumentError.swift */; };
+		4C3A362A2AC4AC3C00B00058 /* DocumentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36292AC4AC3C00B00058 /* DocumentStorage.swift */; };
+		4C3A362C2AC4AC5E00B00058 /* DocumentDataPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A362B2AC4AC5E00B00058 /* DocumentDataPublisher.swift */; };
+		4C3A362E2AC4AC8200B00058 /* DocumentDataRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A362D2AC4AC8200B00058 /* DocumentDataRepresentation.swift */; };
+		4C3A36332AC4B5CC00B00058 /* Versioned.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36322AC4B5CC00B00058 /* Versioned.swift */; };
+		4C3A36382AC4B73B00B00058 /* HierarchyDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36372AC4B73B00B00058 /* HierarchyDataProviderTests.swift */; };
+		4C3A363B2AC4B91200B00058 /* List_v1.hierarchy in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A363A2AC4B91200B00058 /* List_v1.hierarchy */; };
+		4C3A363D2AC4BF7A00B00058 /* List_v1_minimum.hierarchy in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A363C2AC4BF7A00B00058 /* List_v1_minimum.hierarchy */; };
+		4C3A363F2AC4BFF700B00058 /* List_v1_broken.hierarchy in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A363E2AC4BFF700B00058 /* List_v1_broken.hierarchy */; };
+		4C3A36412AC4C04000B00058 /* List_v1_no_version.hierarchy in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A36402AC4C04000B00058 /* List_v1_no_version.hierarchy */; };
+		4C3A36432AC4C08300B00058 /* List_v1_invalid_version.hierarchy in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A36422AC4C08300B00058 /* List_v1_invalid_version.hierarchy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,16 +55,33 @@
 		4C3A35DD2AC48EB500B00058 /* Hierarchy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hierarchy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3A35E02AC48EB500B00058 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C3A35E22AC48EB500B00058 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4C3A35E42AC48EB500B00058 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		4C3A35E42AC48EB500B00058 /* HierarchyDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyDocument.swift; sourceTree = "<group>"; };
 		4C3A35E62AC48EB600B00058 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C3A35E92AC48EB600B00058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4C3A35EB2AC48EB600B00058 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C3A35EC2AC48EB600B00058 /* Hierarchy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hierarchy.entitlements; sourceTree = "<group>"; };
 		4C3A35F12AC48EB600B00058 /* HierarchyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HierarchyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C3A35F52AC48EB600B00058 /* HierarchyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyTests.swift; sourceTree = "<group>"; };
 		4C3A35FB2AC48EB600B00058 /* HierarchyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HierarchyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3A35FF2AC48EB600B00058 /* HierarchyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyUITests.swift; sourceTree = "<group>"; };
 		4C3A36012AC48EB600B00058 /* HierarchyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4C3A36112AC4956500B00058 /* HierarchyContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyContent.swift; sourceTree = "<group>"; };
+		4C3A36142AC495D100B00058 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		4C3A36162AC495DE00B00058 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		4C3A361E2AC497F800B00058 /* DocumentFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFile.swift; sourceTree = "<group>"; };
+		4C3A36202AC4981D00B00058 /* VersionedFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionedFile.swift; sourceTree = "<group>"; };
+		4C3A36232AC4AB6D00B00058 /* HierarchyDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyDataProvider.swift; sourceTree = "<group>"; };
+		4C3A36252AC4ABD800B00058 /* ContentProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
+		4C3A36272AC4AC1500B00058 /* DocumentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentError.swift; sourceTree = "<group>"; };
+		4C3A36292AC4AC3C00B00058 /* DocumentStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentStorage.swift; sourceTree = "<group>"; };
+		4C3A362B2AC4AC5E00B00058 /* DocumentDataPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDataPublisher.swift; sourceTree = "<group>"; };
+		4C3A362D2AC4AC8200B00058 /* DocumentDataRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDataRepresentation.swift; sourceTree = "<group>"; };
+		4C3A36322AC4B5CC00B00058 /* Versioned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Versioned.swift; sourceTree = "<group>"; };
+		4C3A36372AC4B73B00B00058 /* HierarchyDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyDataProviderTests.swift; sourceTree = "<group>"; };
+		4C3A363A2AC4B91200B00058 /* List_v1.hierarchy */ = {isa = PBXFileReference; lastKnownFileType = text; path = List_v1.hierarchy; sourceTree = "<group>"; };
+		4C3A363C2AC4BF7A00B00058 /* List_v1_minimum.hierarchy */ = {isa = PBXFileReference; lastKnownFileType = text; path = List_v1_minimum.hierarchy; sourceTree = "<group>"; };
+		4C3A363E2AC4BFF700B00058 /* List_v1_broken.hierarchy */ = {isa = PBXFileReference; lastKnownFileType = text; path = List_v1_broken.hierarchy; sourceTree = "<group>"; };
+		4C3A36402AC4C04000B00058 /* List_v1_no_version.hierarchy */ = {isa = PBXFileReference; lastKnownFileType = text; path = List_v1_no_version.hierarchy; sourceTree = "<group>"; };
+		4C3A36422AC4C08300B00058 /* List_v1_invalid_version.hierarchy */ = {isa = PBXFileReference; lastKnownFileType = text; path = List_v1_invalid_version.hierarchy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +135,8 @@
 				4C3A35EC2AC48EB600B00058 /* Hierarchy.entitlements */,
 				4C3A35EB2AC48EB600B00058 /* Info.plist */,
 				4C3A35E02AC48EB500B00058 /* AppDelegate.swift */,
+				4C3A362F2AC4B29A00B00058 /* Services */,
+				4C3A36132AC495BA00B00058 /* Data */,
 				4C3A360E2AC4919900B00058 /* Docs */,
 				4C3A36102AC4926D00B00058 /* Resource */,
 			);
@@ -110,7 +146,7 @@
 		4C3A35F42AC48EB600B00058 /* HierarchyTests */ = {
 			isa = PBXGroup;
 			children = (
-				4C3A35F52AC48EB600B00058 /* HierarchyTests.swift */,
+				4C3A36342AC4B6D000B00058 /* Docs */,
 			);
 			path = HierarchyTests;
 			sourceTree = "<group>";
@@ -135,8 +171,10 @@
 		4C3A360F2AC491B700B00058 /* Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
-				4C3A35E22AC48EB500B00058 /* ViewController.swift */,
-				4C3A35E42AC48EB500B00058 /* Document.swift */,
+				4C3A35E42AC48EB500B00058 /* HierarchyDocument.swift */,
+				4C3A36112AC4956500B00058 /* HierarchyContent.swift */,
+				4C3A36232AC4AB6D00B00058 /* HierarchyDataProvider.swift */,
+				4C3A36312AC4B3C500B00058 /* Unit */,
 			);
 			path = Hierarchy;
 			sourceTree = "<group>";
@@ -148,6 +186,91 @@
 				4C3A35E82AC48EB600B00058 /* Main.storyboard */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		4C3A36132AC495BA00B00058 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A361E2AC497F800B00058 /* DocumentFile.swift */,
+				4C3A36252AC4ABD800B00058 /* ContentProvider.swift */,
+				4C3A36322AC4B5CC00B00058 /* Versioned.swift */,
+				4C3A36202AC4981D00B00058 /* VersionedFile.swift */,
+				4C3A36272AC4AC1500B00058 /* DocumentError.swift */,
+				4C3A36222AC4984100B00058 /* Models */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		4C3A36222AC4984100B00058 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A36162AC495DE00B00058 /* Todo.swift */,
+				4C3A36142AC495D100B00058 /* Container.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4C3A362F2AC4B29A00B00058 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A36302AC4B2A800B00058 /* Storage */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4C3A36302AC4B2A800B00058 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A362B2AC4AC5E00B00058 /* DocumentDataPublisher.swift */,
+				4C3A362D2AC4AC8200B00058 /* DocumentDataRepresentation.swift */,
+				4C3A36292AC4AC3C00B00058 /* DocumentStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		4C3A36312AC4B3C500B00058 /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A35E22AC48EB500B00058 /* ViewController.swift */,
+			);
+			path = Unit;
+			sourceTree = "<group>";
+		};
+		4C3A36342AC4B6D000B00058 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A36352AC4B6E300B00058 /* Files */,
+				4C3A36362AC4B6F700B00058 /* Tests */,
+			);
+			path = Docs;
+			sourceTree = "<group>";
+		};
+		4C3A36352AC4B6E300B00058 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A36392AC4B8AF00B00058 /* V1 */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		4C3A36362AC4B6F700B00058 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A36372AC4B73B00B00058 /* HierarchyDataProviderTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		4C3A36392AC4B8AF00B00058 /* V1 */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A363A2AC4B91200B00058 /* List_v1.hierarchy */,
+				4C3A363C2AC4BF7A00B00058 /* List_v1_minimum.hierarchy */,
+				4C3A363E2AC4BFF700B00058 /* List_v1_broken.hierarchy */,
+				4C3A36402AC4C04000B00058 /* List_v1_no_version.hierarchy */,
+				4C3A36422AC4C08300B00058 /* List_v1_invalid_version.hierarchy */,
+			);
+			path = V1;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +344,7 @@
 					};
 					4C3A35F02AC48EB600B00058 = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 						TestTargetID = 4C3A35DC2AC48EB500B00058;
 					};
 					4C3A35FA2AC48EB600B00058 = {
@@ -263,6 +387,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C3A36432AC4C08300B00058 /* List_v1_invalid_version.hierarchy in Resources */,
+				4C3A36412AC4C04000B00058 /* List_v1_no_version.hierarchy in Resources */,
+				4C3A363B2AC4B91200B00058 /* List_v1.hierarchy in Resources */,
+				4C3A363D2AC4BF7A00B00058 /* List_v1_minimum.hierarchy in Resources */,
+				4C3A363F2AC4BFF700B00058 /* List_v1_broken.hierarchy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,9 +409,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C3A362E2AC4AC8200B00058 /* DocumentDataRepresentation.swift in Sources */,
 				4C3A35E32AC48EB500B00058 /* ViewController.swift in Sources */,
+				4C3A36242AC4AB6D00B00058 /* HierarchyDataProvider.swift in Sources */,
+				4C3A36332AC4B5CC00B00058 /* Versioned.swift in Sources */,
+				4C3A36172AC495DE00B00058 /* Todo.swift in Sources */,
 				4C3A35E12AC48EB500B00058 /* AppDelegate.swift in Sources */,
-				4C3A35E52AC48EB500B00058 /* Document.swift in Sources */,
+				4C3A36152AC495D100B00058 /* Container.swift in Sources */,
+				4C3A362C2AC4AC5E00B00058 /* DocumentDataPublisher.swift in Sources */,
+				4C3A35E52AC48EB500B00058 /* HierarchyDocument.swift in Sources */,
+				4C3A36262AC4ABD800B00058 /* ContentProvider.swift in Sources */,
+				4C3A36212AC4981D00B00058 /* VersionedFile.swift in Sources */,
+				4C3A362A2AC4AC3C00B00058 /* DocumentStorage.swift in Sources */,
+				4C3A361F2AC497F800B00058 /* DocumentFile.swift in Sources */,
+				4C3A36122AC4956500B00058 /* HierarchyContent.swift in Sources */,
+				4C3A36282AC4AC1500B00058 /* DocumentError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C3A35F62AC48EB600B00058 /* HierarchyTests.swift in Sources */,
+				4C3A36382AC4B73B00B00058 /* HierarchyDataProviderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +650,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 48KV35Y6PN;
@@ -518,6 +660,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.paperwave.HierarchyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hierarchy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Hierarchy";
 			};
@@ -528,6 +671,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 48KV35Y6PN;

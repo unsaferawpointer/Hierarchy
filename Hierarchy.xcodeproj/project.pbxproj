@@ -37,6 +37,9 @@
 		4C3A36702AC728CD00B00058 /* HierarchySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A366F2AC728CD00B00058 /* HierarchySnapshotTests.swift */; };
 		4C3A36732AC72F3C00B00058 /* UUID+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36722AC72F3C00B00058 /* UUID+Extension.swift */; };
 		4C3A36772AC7318200B00058 /* HierarchyMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36762AC7318200B00058 /* HierarchyMocks.swift */; };
+		4C3A367A2AC7355F00B00058 /* HierarchyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36792AC7355F00B00058 /* HierarchyViewController.swift */; };
+		4C3A367E2AC735C800B00058 /* NSOutlineView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A367D2AC735C800B00058 /* NSOutlineView+Extension.swift */; };
+		4C3A36802AC735DF00B00058 /* NSScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A367F2AC735DF00B00058 /* NSScrollView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +95,9 @@
 		4C3A366F2AC728CD00B00058 /* HierarchySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchySnapshotTests.swift; sourceTree = "<group>"; };
 		4C3A36722AC72F3C00B00058 /* UUID+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Extension.swift"; sourceTree = "<group>"; };
 		4C3A36762AC7318200B00058 /* HierarchyMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyMocks.swift; sourceTree = "<group>"; };
+		4C3A36792AC7355F00B00058 /* HierarchyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyViewController.swift; sourceTree = "<group>"; };
+		4C3A367D2AC735C800B00058 /* NSOutlineView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSOutlineView+Extension.swift"; sourceTree = "<group>"; };
+		4C3A367F2AC735DF00B00058 /* NSScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSScrollView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,7 @@
 				4C3A362F2AC4B29A00B00058 /* Services */,
 				4C3A36132AC495BA00B00058 /* Data */,
 				4C3A360E2AC4919900B00058 /* Docs */,
+				4C3A367B2AC7359A00B00058 /* DesignSystem */,
 				4C3A36102AC4926D00B00058 /* Resource */,
 			);
 			path = Hierarchy;
@@ -244,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				4C3A35E22AC48EB500B00058 /* ViewController.swift */,
+				4C3A36792AC7355F00B00058 /* HierarchyViewController.swift */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -310,6 +318,23 @@
 				4C3A36352AC4B6E300B00058 /* Files */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		4C3A367B2AC7359A00B00058 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A367C2AC735AA00B00058 /* Extensions */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		4C3A367C2AC735AA00B00058 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A367D2AC735C800B00058 /* NSOutlineView+Extension.swift */,
+				4C3A367F2AC735DF00B00058 /* NSScrollView+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,7 +479,9 @@
 				4C3A35E32AC48EB500B00058 /* ViewController.swift in Sources */,
 				4C3A36242AC4AB6D00B00058 /* HierarchyDataProvider.swift in Sources */,
 				4C3A36332AC4B5CC00B00058 /* Versioned.swift in Sources */,
+				4C3A367A2AC7355F00B00058 /* HierarchyViewController.swift in Sources */,
 				4C3A36172AC495DE00B00058 /* Todo.swift in Sources */,
+				4C3A367E2AC735C800B00058 /* NSOutlineView+Extension.swift in Sources */,
 				4C3A35E12AC48EB500B00058 /* AppDelegate.swift in Sources */,
 				4C3A36152AC495D100B00058 /* Container.swift in Sources */,
 				4C3A362C2AC4AC5E00B00058 /* DocumentDataPublisher.swift in Sources */,
@@ -464,6 +491,7 @@
 				4C3A362A2AC4AC3C00B00058 /* DocumentStorage.swift in Sources */,
 				4C3A361F2AC497F800B00058 /* DocumentFile.swift in Sources */,
 				4C3A36122AC4956500B00058 /* HierarchyContent.swift in Sources */,
+				4C3A36802AC735DF00B00058 /* NSScrollView+Extension.swift in Sources */,
 				4C3A36282AC4AC1500B00058 /* DocumentError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

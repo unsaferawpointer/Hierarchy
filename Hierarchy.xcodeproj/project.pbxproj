@@ -32,6 +32,11 @@
 		4C3A363F2AC4BFF700B00058 /* List_v1_broken.hierarchy in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A363E2AC4BFF700B00058 /* List_v1_broken.hierarchy */; };
 		4C3A36412AC4C04000B00058 /* List_v1_no_version.hierarchy in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A36402AC4C04000B00058 /* List_v1_no_version.hierarchy */; };
 		4C3A36432AC4C08300B00058 /* List_v1_invalid_version.hierarchy in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A36422AC4C08300B00058 /* List_v1_invalid_version.hierarchy */; };
+		4C3A366C2AC7215700B00058 /* HierarchySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A366B2AC7215700B00058 /* HierarchySnapshot.swift */; };
+		4C3A366E2AC7218100B00058 /* HierarchyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A366D2AC7218100B00058 /* HierarchyItem.swift */; };
+		4C3A36702AC728CD00B00058 /* HierarchySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A366F2AC728CD00B00058 /* HierarchySnapshotTests.swift */; };
+		4C3A36732AC72F3C00B00058 /* UUID+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36722AC72F3C00B00058 /* UUID+Extension.swift */; };
+		4C3A36772AC7318200B00058 /* HierarchyMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36762AC7318200B00058 /* HierarchyMocks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +87,11 @@
 		4C3A363E2AC4BFF700B00058 /* List_v1_broken.hierarchy */ = {isa = PBXFileReference; lastKnownFileType = text; path = List_v1_broken.hierarchy; sourceTree = "<group>"; };
 		4C3A36402AC4C04000B00058 /* List_v1_no_version.hierarchy */ = {isa = PBXFileReference; lastKnownFileType = text; path = List_v1_no_version.hierarchy; sourceTree = "<group>"; };
 		4C3A36422AC4C08300B00058 /* List_v1_invalid_version.hierarchy */ = {isa = PBXFileReference; lastKnownFileType = text; path = List_v1_invalid_version.hierarchy; sourceTree = "<group>"; };
+		4C3A366B2AC7215700B00058 /* HierarchySnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchySnapshot.swift; sourceTree = "<group>"; };
+		4C3A366D2AC7218100B00058 /* HierarchyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyItem.swift; sourceTree = "<group>"; };
+		4C3A366F2AC728CD00B00058 /* HierarchySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchySnapshotTests.swift; sourceTree = "<group>"; };
+		4C3A36722AC72F3C00B00058 /* UUID+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Extension.swift"; sourceTree = "<group>"; };
+		4C3A36762AC7318200B00058 /* HierarchyMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyMocks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +156,7 @@
 		4C3A35F42AC48EB600B00058 /* HierarchyTests */ = {
 			isa = PBXGroup;
 			children = (
+				4C3A36712AC72F2C00B00058 /* Extensions */,
 				4C3A36342AC4B6D000B00058 /* Docs */,
 			);
 			path = HierarchyTests;
@@ -171,6 +182,7 @@
 		4C3A360F2AC491B700B00058 /* Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
+				4C3A366A2AC7213600B00058 /* Data */,
 				4C3A35E42AC48EB500B00058 /* HierarchyDocument.swift */,
 				4C3A36112AC4956500B00058 /* HierarchyContent.swift */,
 				4C3A36232AC4AB6D00B00058 /* HierarchyDataProvider.swift */,
@@ -239,7 +251,7 @@
 		4C3A36342AC4B6D000B00058 /* Docs */ = {
 			isa = PBXGroup;
 			children = (
-				4C3A36352AC4B6E300B00058 /* Files */,
+				4C3A36782AC734C100B00058 /* Mocks */,
 				4C3A36362AC4B6F700B00058 /* Tests */,
 			);
 			path = Docs;
@@ -257,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				4C3A36372AC4B73B00B00058 /* HierarchyDataProviderTests.swift */,
+				4C3A366F2AC728CD00B00058 /* HierarchySnapshotTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -271,6 +284,32 @@
 				4C3A36422AC4C08300B00058 /* List_v1_invalid_version.hierarchy */,
 			);
 			path = V1;
+			sourceTree = "<group>";
+		};
+		4C3A366A2AC7213600B00058 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A366B2AC7215700B00058 /* HierarchySnapshot.swift */,
+				4C3A366D2AC7218100B00058 /* HierarchyItem.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		4C3A36712AC72F2C00B00058 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A36722AC72F3C00B00058 /* UUID+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4C3A36782AC734C100B00058 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4C3A36762AC7318200B00058 /* HierarchyMocks.swift */,
+				4C3A36352AC4B6E300B00058 /* Files */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,7 +448,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C3A366E2AC7218100B00058 /* HierarchyItem.swift in Sources */,
 				4C3A362E2AC4AC8200B00058 /* DocumentDataRepresentation.swift in Sources */,
+				4C3A366C2AC7215700B00058 /* HierarchySnapshot.swift in Sources */,
 				4C3A35E32AC48EB500B00058 /* ViewController.swift in Sources */,
 				4C3A36242AC4AB6D00B00058 /* HierarchyDataProvider.swift in Sources */,
 				4C3A36332AC4B5CC00B00058 /* Versioned.swift in Sources */,
@@ -432,6 +473,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C3A36382AC4B73B00B00058 /* HierarchyDataProviderTests.swift in Sources */,
+				4C3A36702AC728CD00B00058 /* HierarchySnapshotTests.swift in Sources */,
+				4C3A36732AC72F3C00B00058 /* UUID+Extension.swift in Sources */,
+				4C3A36772AC7318200B00058 /* HierarchyMocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

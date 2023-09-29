@@ -105,25 +105,6 @@ private extension HierarchyDataProviderTests {
 private extension HierarchyDataProviderTests {
 
 	var expected: HierarchyContent {
-		return .init(id: UUID(uuidString: "B93C2453-D274-48B3-A4CB-B4634E9FB41E")!, hierarchy:
-					[
-						.section(uuid: UUID(uuidString: "DD937754-3463-4B0B-B6DB-9AF14B18B8C0")!, icon: "folder", text: "It is section", items:
-									[
-										.list(uuid: UUID(uuidString: "BAF077D9-BDD8-40A8-8348-B3BA50145992")!, icon: "doc", text: "It is list", todos:
-												[
-													.init(uuid: UUID(uuidString: "9A7EB176-7FF3-4C99-B1D0-F25D4125B0CF")!, text: "Todo 0"),
-													.init(uuid: UUID(uuidString: "F7BED912-2237-412B-B470-B72DC3703FDC")!, text: "Todo 1")
-												]
-											 )
-									]
-								),
-						.list(uuid: UUID(uuidString: "4BF8637E-7B35-45B5-9111-E5E259535A4C")!, icon: "doc", text: "It is list", todos:
-								[
-									.init(uuid: UUID(uuidString: "BAE4F11F-5B60-4F10-90AE-741067F81DD7")!, text: "Todo 0"),
-									.init(uuid: UUID(uuidString: "A106B353-937E-4CA4-9B36-B73FC96266D5")!, text: "Todo 1")
-								]
-							 )
-					]
-		)
+		return .init(id: .uuid0, hierarchy: HierarchyMocks.containers)
 	}
 }

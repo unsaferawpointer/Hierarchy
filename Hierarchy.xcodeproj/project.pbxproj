@@ -40,6 +40,8 @@
 		4CAA30382AC861350007EBA2 /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30372AC861350007EBA2 /* ItemEntity.swift */; };
 		4CAA303A2AC861440007EBA2 /* EntityOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30392AC861440007EBA2 /* EntityOptions.swift */; };
 		4CAA303C2AC865850007EBA2 /* ItemContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA303B2AC865850007EBA2 /* ItemContent.swift */; };
+		4CAA30482AC8B3860007EBA2 /* HierarchyTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30472AC8B3860007EBA2 /* HierarchyTableAdapter.swift */; };
+		4CAA304B2AC8C6750007EBA2 /* HierarchyItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA304A2AC8C6750007EBA2 /* HierarchyItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,8 @@
 		4CAA30372AC861350007EBA2 /* ItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
 		4CAA30392AC861440007EBA2 /* EntityOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityOptions.swift; sourceTree = "<group>"; };
 		4CAA303B2AC865850007EBA2 /* ItemContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContent.swift; sourceTree = "<group>"; };
+		4CAA30472AC8B3860007EBA2 /* HierarchyTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyTableAdapter.swift; sourceTree = "<group>"; };
+		4CAA304A2AC8C6750007EBA2 /* HierarchyItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,7 +255,9 @@
 		4C3A36312AC4B3C500B00058 /* Unit */ = {
 			isa = PBXGroup;
 			children = (
+				4CAA30492AC8C62F0007EBA2 /* Views */,
 				4C3A36792AC7355F00B00058 /* HierarchyViewController.swift */,
+				4CAA30472AC8B3860007EBA2 /* HierarchyTableAdapter.swift */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -335,6 +341,14 @@
 				4C3A367F2AC735DF00B00058 /* NSScrollView+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4CAA30492AC8C62F0007EBA2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CAA304A2AC8C6750007EBA2 /* HierarchyItemView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C3A366E2AC7218100B00058 /* HierarchyItem.swift in Sources */,
+				4CAA30482AC8B3860007EBA2 /* HierarchyTableAdapter.swift in Sources */,
 				4C3A362E2AC4AC8200B00058 /* DocumentDataRepresentation.swift in Sources */,
 				4C3A366C2AC7215700B00058 /* HierarchySnapshot.swift in Sources */,
 				4C3A36242AC4AB6D00B00058 /* HierarchyDataProvider.swift in Sources */,
@@ -485,6 +500,7 @@
 				4C3A362C2AC4AC5E00B00058 /* DocumentDataPublisher.swift in Sources */,
 				4C3A35E52AC48EB500B00058 /* HierarchyDocument.swift in Sources */,
 				4C3A36262AC4ABD800B00058 /* ContentProvider.swift in Sources */,
+				4CAA304B2AC8C6750007EBA2 /* HierarchyItemView.swift in Sources */,
 				4C3A36212AC4981D00B00058 /* VersionedFile.swift in Sources */,
 				4CAA303C2AC865850007EBA2 /* ItemContent.swift in Sources */,
 				4CAA30382AC861350007EBA2 /* ItemEntity.swift in Sources */,

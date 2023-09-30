@@ -7,17 +7,13 @@
 
 import Foundation
 
-final class DocumentStorage<State> {
+final class DocumentStorage<State: AnyObject> {
 
 	private(set) var provider: any ContentProvider<State>
 
 	private var observations = [(State) -> Bool]()
 
-	private(set) var state: State {
-		didSet {
-			observations = observations.filter { $0(state) }
-		}
-	}
+	private(set) var state: State
 
 	// MARK: - Initialization
 
@@ -35,8 +31,9 @@ final class DocumentStorage<State> {
 // MARK: - DocumentDataPublisher
 extension DocumentStorage: DocumentDataPublisher {
 
-	func modificate(_ block: (inout State) -> Void) {
-		block(&state)
+	func modificate(_ block: (State) -> Void) {
+		block(state)
+		observations = observations.filter { $0(state) }
 	}
 
 	func addObservation<O: AnyObject>(
@@ -69,5 +66,6 @@ extension DocumentStorage: DocumentDataRepresentation {
 
 	func read(from data: Data, ofType typeName: String) throws {
 		self.state = try provider.read(from: data, ofType: typeName)
+		observations = observations.filter { $0(state) }
 	}
 }

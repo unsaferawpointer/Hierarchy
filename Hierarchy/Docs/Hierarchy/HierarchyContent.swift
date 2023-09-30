@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HierarchyContent {
+final class HierarchyContent {
 
 	private (set) var id: UUID
 
@@ -25,4 +25,9 @@ struct HierarchyContent {
 extension HierarchyContent: Codable { }
 
 // MARK: - Equatable
-extension HierarchyContent: Equatable { }
+extension HierarchyContent: Equatable {
+
+	static func == (lhs: HierarchyContent, rhs: HierarchyContent) -> Bool {
+		return lhs.id == rhs.id && lhs.hierarchy == rhs.hierarchy
+	}
+}

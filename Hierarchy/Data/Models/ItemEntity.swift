@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ItemEntity {
+final class ItemEntity {
 
 	var uuid: UUID
 
@@ -16,6 +16,18 @@ struct ItemEntity {
 	var options: EntityOptions
 
 	var items: [ItemEntity]?
+
+	init(
+		uuid: UUID = UUID(),
+		content: ItemContent,
+		options: EntityOptions = [],
+		items: [ItemEntity]? = nil
+	) {
+		self.uuid = uuid
+		self.content = content
+		self.options = options
+		self.items = items
+	}
 }
 
 // MARK: - Equatable

@@ -11,11 +11,11 @@ struct HierarchyContent {
 
 	private (set) var id: UUID
 
-	private (set) var hierarchy: [Container]
+	private (set) var hierarchy: [ItemEntity]
 
 	// MARK: - Initialization
 
-	init(id: UUID, hierarchy: [Container]) {
+	init(id: UUID, hierarchy: [ItemEntity]) {
 		self.id = id
 		self.hierarchy = hierarchy
 	}

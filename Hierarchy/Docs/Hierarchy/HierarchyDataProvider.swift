@@ -24,7 +24,7 @@ extension HierarchyDataProvider: ContentProvider {
 		case "com.paperwave.hierarchy":
 			let file = DocumentFile(version: lastVersion.rawValue, content: content)
 			let encoder = JSONEncoder()
-			encoder.outputFormatting = .prettyPrinted
+			encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
 			encoder.dateEncodingStrategy = .secondsSince1970
 			return try encoder.encode(file)
 		default:

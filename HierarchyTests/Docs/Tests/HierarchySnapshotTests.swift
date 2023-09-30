@@ -32,17 +32,15 @@ extension HierarchySnapshotTests {
 		XCTAssertEqual(
 			sut.root,
 			[
-				.init(uuid: .uuid1, text: "It is section", icon: "folder"),
-				.init(uuid: .uuid5, text: "It is list", icon: "doc")
+				.init(uuid: .uuid1, text: "item 0", icon: "doc"),
+				.init(uuid: .uuid3, text: "item 1", icon: "doc")
 			]
 		)
 
 		XCTAssertEqual(
 			sut.storage,
 			[
-				.uuid1: [.init(uuid: .uuid2, text: "It is list", icon: "doc")],
-				.uuid2: [.init(uuid: .uuid3, text: "Todo 0", icon: "app"), .init(uuid: .uuid4, text: "Todo 1", icon: "app")],
-				.uuid5: [.init(uuid: .uuid6, text: "Todo 0", icon: "app"), .init(uuid: .uuid7, text: "Todo 1", icon: "app")]
+				.uuid1: [.init(uuid: .uuid2, text: "item 00", icon: "doc")]
 			]
 		)
 	}
@@ -52,13 +50,13 @@ extension HierarchySnapshotTests {
 		sut = HierarchySnapshot(HierarchyMocks.containers)
 
 		// Act
-		let result = sut.numberOfChildren(ofItem: .uuid2)
+		let result = sut.numberOfChildren(ofItem: .uuid1)
 
 		// Assert
-		XCTAssertEqual(result, 2)
+		XCTAssertEqual(result, 1)
 	}
 
-	func text_numberOfRootItems() {
+	func test_numberOfRootItems() {
 		// Arrange
 		sut = HierarchySnapshot(HierarchyMocks.containers)
 
@@ -77,7 +75,7 @@ extension HierarchySnapshotTests {
 		let result = sut.rootItem(at: 1)
 
 		//Assert
-		XCTAssertEqual(result, .init(uuid: .uuid5, text: "It is list", icon: "doc"))
+		XCTAssertEqual(result, .init(uuid: .uuid3, text: "item 1", icon: "doc"))
 	}
 
 	func test_childOfItem() {
@@ -85,9 +83,9 @@ extension HierarchySnapshotTests {
 		sut = HierarchySnapshot(HierarchyMocks.containers)
 
 		// Act
-		let result = sut.childOfItem(.uuid2, at: 1)
+		let result = sut.childOfItem(.uuid1, at: 0)
 
 		// Assert
-		XCTAssertEqual(result, .init(uuid: .uuid4, text: "Todo 1", icon: "app"))
+		XCTAssertEqual(result, .init(uuid: .uuid2, text: "item 00", icon: "doc"))
 	}
 }

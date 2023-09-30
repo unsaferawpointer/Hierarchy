@@ -17,9 +17,9 @@ struct HierarchySnapshot {
 
 	// MARK: - Initialization
 
-	init(_ base: [Container]) {
+	init(_ base: [ItemEntity]) {
 		self.root = base.map { container in
-			makeItem(container)
+			makeItem(base: container)
 		}
 	}
 }
@@ -53,24 +53,11 @@ extension HierarchySnapshot {
 // MARK: - Helpers
 private extension HierarchySnapshot {
 
-	mutating func makeItem(_ base: Container) -> HierarchyItem {
-		switch base {
-		case .list(let uuid, let icon, let text, let todos):
-			let item = HierarchyItem(uuid: uuid, text: text, icon: icon)
-			storage[uuid] = todos.map { todo in
-				makeItem(todo)
-			}
-			return item
-		case .section(let uuid, let icon, let text, let items):
-			let item = HierarchyItem(uuid: uuid, text: text, icon: icon)
-			storage[uuid] = items.map { container in
-				makeItem(container)
-			}
-			return item
+	mutating func makeItem(base: ItemEntity) -> HierarchyItem {
+		let item = HierarchyItem(uuid: base.uuid, text: base.content.text, icon: base.content.iconName)
+		storage[base.uuid] = base.items?.map { entity in
+			makeItem(base: entity)
 		}
-	}
-
-	func makeItem(_ base: Todo) -> HierarchyItem {
-		return .init(uuid: base.uuid, text: base.text, icon: "app")
+		return item
 	}
 }

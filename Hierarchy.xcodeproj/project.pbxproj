@@ -8,15 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4C3A35E12AC48EB500B00058 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A35E02AC48EB500B00058 /* AppDelegate.swift */; };
-		4C3A35E32AC48EB500B00058 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A35E22AC48EB500B00058 /* ViewController.swift */; };
 		4C3A35E52AC48EB500B00058 /* HierarchyDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A35E42AC48EB500B00058 /* HierarchyDocument.swift */; };
 		4C3A35E72AC48EB600B00058 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A35E62AC48EB600B00058 /* Assets.xcassets */; };
 		4C3A35EA2AC48EB600B00058 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A35E82AC48EB600B00058 /* Main.storyboard */; };
 		4C3A36002AC48EB600B00058 /* HierarchyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A35FF2AC48EB600B00058 /* HierarchyUITests.swift */; };
 		4C3A36022AC48EB600B00058 /* HierarchyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36012AC48EB600B00058 /* HierarchyUITestsLaunchTests.swift */; };
 		4C3A36122AC4956500B00058 /* HierarchyContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36112AC4956500B00058 /* HierarchyContent.swift */; };
-		4C3A36152AC495D100B00058 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36142AC495D100B00058 /* Container.swift */; };
-		4C3A36172AC495DE00B00058 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36162AC495DE00B00058 /* Todo.swift */; };
 		4C3A361F2AC497F800B00058 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A361E2AC497F800B00058 /* DocumentFile.swift */; };
 		4C3A36212AC4981D00B00058 /* VersionedFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36202AC4981D00B00058 /* VersionedFile.swift */; };
 		4C3A36242AC4AB6D00B00058 /* HierarchyDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36232AC4AB6D00B00058 /* HierarchyDataProvider.swift */; };
@@ -40,6 +37,9 @@
 		4C3A367A2AC7355F00B00058 /* HierarchyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36792AC7355F00B00058 /* HierarchyViewController.swift */; };
 		4C3A367E2AC735C800B00058 /* NSOutlineView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A367D2AC735C800B00058 /* NSOutlineView+Extension.swift */; };
 		4C3A36802AC735DF00B00058 /* NSScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A367F2AC735DF00B00058 /* NSScrollView+Extension.swift */; };
+		4CAA30382AC861350007EBA2 /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30372AC861350007EBA2 /* ItemEntity.swift */; };
+		4CAA303A2AC861440007EBA2 /* EntityOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30392AC861440007EBA2 /* EntityOptions.swift */; };
+		4CAA303C2AC865850007EBA2 /* ItemContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA303B2AC865850007EBA2 /* ItemContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,6 @@
 /* Begin PBXFileReference section */
 		4C3A35DD2AC48EB500B00058 /* Hierarchy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hierarchy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3A35E02AC48EB500B00058 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4C3A35E22AC48EB500B00058 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4C3A35E42AC48EB500B00058 /* HierarchyDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyDocument.swift; sourceTree = "<group>"; };
 		4C3A35E62AC48EB600B00058 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C3A35E92AC48EB600B00058 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,8 +72,6 @@
 		4C3A35FF2AC48EB600B00058 /* HierarchyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyUITests.swift; sourceTree = "<group>"; };
 		4C3A36012AC48EB600B00058 /* HierarchyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4C3A36112AC4956500B00058 /* HierarchyContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyContent.swift; sourceTree = "<group>"; };
-		4C3A36142AC495D100B00058 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
-		4C3A36162AC495DE00B00058 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		4C3A361E2AC497F800B00058 /* DocumentFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFile.swift; sourceTree = "<group>"; };
 		4C3A36202AC4981D00B00058 /* VersionedFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionedFile.swift; sourceTree = "<group>"; };
 		4C3A36232AC4AB6D00B00058 /* HierarchyDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyDataProvider.swift; sourceTree = "<group>"; };
@@ -98,6 +95,9 @@
 		4C3A36792AC7355F00B00058 /* HierarchyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyViewController.swift; sourceTree = "<group>"; };
 		4C3A367D2AC735C800B00058 /* NSOutlineView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSOutlineView+Extension.swift"; sourceTree = "<group>"; };
 		4C3A367F2AC735DF00B00058 /* NSScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSScrollView+Extension.swift"; sourceTree = "<group>"; };
+		4CAA30372AC861350007EBA2 /* ItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
+		4CAA30392AC861440007EBA2 /* EntityOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityOptions.swift; sourceTree = "<group>"; };
+		4CAA303B2AC865850007EBA2 /* ItemContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,8 +223,9 @@
 		4C3A36222AC4984100B00058 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4C3A36162AC495DE00B00058 /* Todo.swift */,
-				4C3A36142AC495D100B00058 /* Container.swift */,
+				4CAA30372AC861350007EBA2 /* ItemEntity.swift */,
+				4CAA30392AC861440007EBA2 /* EntityOptions.swift */,
+				4CAA303B2AC865850007EBA2 /* ItemContent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,7 +251,6 @@
 		4C3A36312AC4B3C500B00058 /* Unit */ = {
 			isa = PBXGroup;
 			children = (
-				4C3A35E22AC48EB500B00058 /* ViewController.swift */,
 				4C3A36792AC7355F00B00058 /* HierarchyViewController.swift */,
 			);
 			path = Unit;
@@ -476,18 +476,18 @@
 				4C3A366E2AC7218100B00058 /* HierarchyItem.swift in Sources */,
 				4C3A362E2AC4AC8200B00058 /* DocumentDataRepresentation.swift in Sources */,
 				4C3A366C2AC7215700B00058 /* HierarchySnapshot.swift in Sources */,
-				4C3A35E32AC48EB500B00058 /* ViewController.swift in Sources */,
 				4C3A36242AC4AB6D00B00058 /* HierarchyDataProvider.swift in Sources */,
 				4C3A36332AC4B5CC00B00058 /* Versioned.swift in Sources */,
 				4C3A367A2AC7355F00B00058 /* HierarchyViewController.swift in Sources */,
-				4C3A36172AC495DE00B00058 /* Todo.swift in Sources */,
 				4C3A367E2AC735C800B00058 /* NSOutlineView+Extension.swift in Sources */,
+				4CAA303A2AC861440007EBA2 /* EntityOptions.swift in Sources */,
 				4C3A35E12AC48EB500B00058 /* AppDelegate.swift in Sources */,
-				4C3A36152AC495D100B00058 /* Container.swift in Sources */,
 				4C3A362C2AC4AC5E00B00058 /* DocumentDataPublisher.swift in Sources */,
 				4C3A35E52AC48EB500B00058 /* HierarchyDocument.swift in Sources */,
 				4C3A36262AC4ABD800B00058 /* ContentProvider.swift in Sources */,
 				4C3A36212AC4981D00B00058 /* VersionedFile.swift in Sources */,
+				4CAA303C2AC865850007EBA2 /* ItemContent.swift in Sources */,
+				4CAA30382AC861350007EBA2 /* ItemEntity.swift in Sources */,
 				4C3A362A2AC4AC3C00B00058 /* DocumentStorage.swift in Sources */,
 				4C3A361F2AC497F800B00058 /* DocumentFile.swift in Sources */,
 				4C3A36122AC4956500B00058 /* HierarchyContent.swift in Sources */,

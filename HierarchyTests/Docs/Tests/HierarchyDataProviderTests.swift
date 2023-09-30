@@ -38,7 +38,7 @@ extension HierarchyDataProviderTests {
 	func test_read_whenFileContainsMinimumRequiredProperties() throws {
 		// Arrange
 		let data = try loadFile(withName: "List_v1_minimum")
-		let expected = HierarchyContent(id: try XCTUnwrap(UUID(uuidString: "B93C2453-D274-48B3-A4CB-B4634E9FB41E")), hierarchy: [])
+		let expected = HierarchyContent(id: try XCTUnwrap(.uuid0), hierarchy: [])
 
 		// Act
 		let result = try sut.read(from: data, ofType: "com.paperwave.hierarchy")
@@ -83,7 +83,7 @@ extension HierarchyDataProviderTests {
 
 		// Assert
 		let encoder = JSONEncoder()
-		encoder.outputFormatting = .prettyPrinted
+		encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
 		encoder.dateEncodingStrategy = .secondsSince1970
 
 		let file = DocumentFile(version: "v1", content: expected)

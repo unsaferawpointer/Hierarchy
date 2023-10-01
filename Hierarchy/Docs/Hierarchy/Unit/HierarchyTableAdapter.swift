@@ -70,13 +70,15 @@ extension HierarchyTableAdapter: NSOutlineViewDelegate {
 		}
 		view?.text = item.content.text
 		view?.iconName = item.content.iconName
+		view?.status = item.effectiveStatus
+		view?.options = item.options
+
+		view?.statusDidChange = { newValue in
+			// TODO: - Handle action
+		}
+		view?.textDidChange = { newValue in
+			// TODO: - Handle action
+		}
 		return view
-	}
-}
-
-extension HierarchyTableAdapter {
-
-	func reload() {
-//		table?.reloadData()
 	}
 }

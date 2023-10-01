@@ -43,3 +43,16 @@ extension ItemEntity: Equatable {
 
 // MARK: - Codable
 extension ItemEntity: Codable { }
+
+// MARK: - Calculated properties
+extension ItemEntity {
+
+	var effectiveStatus: Bool {
+		guard let items else {
+			return content.isDone
+		}
+		return items.allSatisfy { entity in
+			return entity.effectiveStatus
+		}
+	}
+}

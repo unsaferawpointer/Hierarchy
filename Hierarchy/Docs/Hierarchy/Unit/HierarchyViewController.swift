@@ -38,7 +38,6 @@ class HierarchyViewController: NSViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		adapter?.reload()
 	}
 
 	override func viewWillAppear() {

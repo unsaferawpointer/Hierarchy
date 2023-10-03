@@ -22,3 +22,13 @@ extension NSOutlineView {
 		return view
 	}
 }
+
+extension NSOutlineView {
+
+	func selectedIdentifiers() -> [UUID] {
+		return effectiveSelection().compactMap {
+			item(atRow: $0) as? ListItem
+		}
+		.map(\.uuid)
+	}
+}

@@ -13,7 +13,7 @@ final class HierarchySnapshotTests: XCTestCase {
 	var sut: HierarchySnapshot!
 
 	override func setUpWithError() throws {
-		sut = HierarchySnapshot([])
+		sut = HierarchySnapshot()
 	}
 
 	override func tearDownWithError() throws {
@@ -40,7 +40,9 @@ extension HierarchySnapshotTests {
 		XCTAssertEqual(
 			sut.storage,
 			[
-				.uuid1: [.init(uuid: .uuid2, text: "item 00", icon: "doc")]
+				.uuid1: [.init(uuid: .uuid2, text: "item 00", icon: "doc")],
+				.uuid2: [],
+				.uuid3: []
 			]
 		)
 	}

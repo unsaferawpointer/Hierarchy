@@ -7,13 +7,11 @@
 
 import Foundation
 
-protocol DocumentDataPublisher<State> where State: AnyObject {
+protocol DocumentDataPublisher<State> {
 
 	associatedtype State
 
-	var state: State { get }
-
-	func modificate(_ block: (State) -> Void)
+	func modificate(_ block: (inout State) -> Void)
 
 	func addObservation<O: AnyObject>(
 		for object: O,

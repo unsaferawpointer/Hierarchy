@@ -30,7 +30,7 @@
 		4C3A36412AC4C04000B00058 /* List_v1_no_version.hierarchy in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A36402AC4C04000B00058 /* List_v1_no_version.hierarchy */; };
 		4C3A36432AC4C08300B00058 /* List_v1_invalid_version.hierarchy in Resources */ = {isa = PBXBuildFile; fileRef = 4C3A36422AC4C08300B00058 /* List_v1_invalid_version.hierarchy */; };
 		4C3A366C2AC7215700B00058 /* HierarchySnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A366B2AC7215700B00058 /* HierarchySnapshot.swift */; };
-		4C3A366E2AC7218100B00058 /* HierarchyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A366D2AC7218100B00058 /* HierarchyItem.swift */; };
+		4C3A366E2AC7218100B00058 /* HierarchyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A366D2AC7218100B00058 /* HierarchyModel.swift */; };
 		4C3A36702AC728CD00B00058 /* HierarchySnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A366F2AC728CD00B00058 /* HierarchySnapshotTests.swift */; };
 		4C3A36732AC72F3C00B00058 /* UUID+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36722AC72F3C00B00058 /* UUID+Extension.swift */; };
 		4C3A36772AC7318200B00058 /* HierarchyMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36762AC7318200B00058 /* HierarchyMocks.swift */; };
@@ -42,6 +42,14 @@
 		4CAA303C2AC865850007EBA2 /* ItemContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA303B2AC865850007EBA2 /* ItemContent.swift */; };
 		4CAA30482AC8B3860007EBA2 /* HierarchyTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30472AC8B3860007EBA2 /* HierarchyTableAdapter.swift */; };
 		4CAA304B2AC8C6750007EBA2 /* HierarchyItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA304A2AC8C6750007EBA2 /* HierarchyItemView.swift */; };
+		4CAA30502AC9CED90007EBA2 /* MenuSupportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA304F2AC9CED90007EBA2 /* MenuSupportable.swift */; };
+		4CAA30522AC9D0240007EBA2 /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30512AC9D0240007EBA2 /* MenuBuilder.swift */; };
+		4CAA30542AC9D0450007EBA2 /* MenuBuilder+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30532AC9D0450007EBA2 /* MenuBuilder+Item.swift */; };
+		4CAA30562AC9D25C0007EBA2 /* NSTableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30552AC9D25C0007EBA2 /* NSTableView+Extension.swift */; };
+		4CAD27752ACAA0B600C03A91 /* HierarchyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27742ACAA0B600C03A91 /* HierarchyPresenter.swift */; };
+		4CAD27782ACC35B100C03A91 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27772ACC35B100C03A91 /* Dictionary+Extension.swift */; };
+		4CAD277A2ACC71CB00C03A91 /* HierarchyTableAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27792ACC71CB00C03A91 /* HierarchyTableAnimator.swift */; };
+		4CAD277C2ACC81E300C03A91 /* HierarchyAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD277B2ACC81E300C03A91 /* HierarchyAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +98,7 @@
 		4C3A36402AC4C04000B00058 /* List_v1_no_version.hierarchy */ = {isa = PBXFileReference; lastKnownFileType = text; path = List_v1_no_version.hierarchy; sourceTree = "<group>"; };
 		4C3A36422AC4C08300B00058 /* List_v1_invalid_version.hierarchy */ = {isa = PBXFileReference; lastKnownFileType = text; path = List_v1_invalid_version.hierarchy; sourceTree = "<group>"; };
 		4C3A366B2AC7215700B00058 /* HierarchySnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchySnapshot.swift; sourceTree = "<group>"; };
-		4C3A366D2AC7218100B00058 /* HierarchyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyItem.swift; sourceTree = "<group>"; };
+		4C3A366D2AC7218100B00058 /* HierarchyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyModel.swift; sourceTree = "<group>"; };
 		4C3A366F2AC728CD00B00058 /* HierarchySnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchySnapshotTests.swift; sourceTree = "<group>"; };
 		4C3A36722AC72F3C00B00058 /* UUID+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+Extension.swift"; sourceTree = "<group>"; };
 		4C3A36762AC7318200B00058 /* HierarchyMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyMocks.swift; sourceTree = "<group>"; };
@@ -102,6 +110,14 @@
 		4CAA303B2AC865850007EBA2 /* ItemContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContent.swift; sourceTree = "<group>"; };
 		4CAA30472AC8B3860007EBA2 /* HierarchyTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyTableAdapter.swift; sourceTree = "<group>"; };
 		4CAA304A2AC8C6750007EBA2 /* HierarchyItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyItemView.swift; sourceTree = "<group>"; };
+		4CAA304F2AC9CED90007EBA2 /* MenuSupportable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSupportable.swift; sourceTree = "<group>"; };
+		4CAA30512AC9D0240007EBA2 /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
+		4CAA30532AC9D0450007EBA2 /* MenuBuilder+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MenuBuilder+Item.swift"; sourceTree = "<group>"; };
+		4CAA30552AC9D25C0007EBA2 /* NSTableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTableView+Extension.swift"; sourceTree = "<group>"; };
+		4CAD27742ACAA0B600C03A91 /* HierarchyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyPresenter.swift; sourceTree = "<group>"; };
+		4CAD27772ACC35B100C03A91 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		4CAD27792ACC71CB00C03A91 /* HierarchyTableAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyTableAnimator.swift; sourceTree = "<group>"; };
+		4CAD277B2ACC81E300C03A91 /* HierarchyAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +171,7 @@
 				4C3A35EC2AC48EB600B00058 /* Hierarchy.entitlements */,
 				4C3A35EB2AC48EB600B00058 /* Info.plist */,
 				4C3A35E02AC48EB500B00058 /* AppDelegate.swift */,
+				4CAD27762ACC359A00C03A91 /* Common */,
 				4C3A362F2AC4B29A00B00058 /* Services */,
 				4C3A36132AC495BA00B00058 /* Data */,
 				4C3A360E2AC4919900B00058 /* Docs */,
@@ -193,10 +210,10 @@
 		4C3A360F2AC491B700B00058 /* Hierarchy */ = {
 			isa = PBXGroup;
 			children = (
-				4C3A366A2AC7213600B00058 /* Data */,
 				4C3A35E42AC48EB500B00058 /* HierarchyDocument.swift */,
 				4C3A36112AC4956500B00058 /* HierarchyContent.swift */,
 				4C3A36232AC4AB6D00B00058 /* HierarchyDataProvider.swift */,
+				4CAD277D2ACC954800C03A91 /* TableAdapter */,
 				4C3A36312AC4B3C500B00058 /* Unit */,
 			);
 			path = Hierarchy;
@@ -255,9 +272,10 @@
 		4C3A36312AC4B3C500B00058 /* Unit */ = {
 			isa = PBXGroup;
 			children = (
-				4CAA30492AC8C62F0007EBA2 /* Views */,
+				4CAD277B2ACC81E300C03A91 /* HierarchyAssembly.swift */,
+				4CAD27742ACAA0B600C03A91 /* HierarchyPresenter.swift */,
 				4C3A36792AC7355F00B00058 /* HierarchyViewController.swift */,
-				4CAA30472AC8B3860007EBA2 /* HierarchyTableAdapter.swift */,
+				4CAA304A2AC8C6750007EBA2 /* HierarchyItemView.swift */,
 			);
 			path = Unit;
 			sourceTree = "<group>";
@@ -300,15 +318,6 @@
 			path = V1;
 			sourceTree = "<group>";
 		};
-		4C3A366A2AC7213600B00058 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				4C3A366B2AC7215700B00058 /* HierarchySnapshot.swift */,
-				4C3A366D2AC7218100B00058 /* HierarchyItem.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		4C3A36712AC72F2C00B00058 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +338,7 @@
 		4C3A367B2AC7359A00B00058 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				4CAA304E2AC9CEC70007EBA2 /* Menu */,
 				4C3A367C2AC735AA00B00058 /* Extensions */,
 			);
 			path = DesignSystem;
@@ -339,16 +349,38 @@
 			children = (
 				4C3A367D2AC735C800B00058 /* NSOutlineView+Extension.swift */,
 				4C3A367F2AC735DF00B00058 /* NSScrollView+Extension.swift */,
+				4CAA30552AC9D25C0007EBA2 /* NSTableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		4CAA30492AC8C62F0007EBA2 /* Views */ = {
+		4CAA304E2AC9CEC70007EBA2 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				4CAA304A2AC8C6750007EBA2 /* HierarchyItemView.swift */,
+				4CAA30512AC9D0240007EBA2 /* MenuBuilder.swift */,
+				4CAA30532AC9D0450007EBA2 /* MenuBuilder+Item.swift */,
+				4CAA304F2AC9CED90007EBA2 /* MenuSupportable.swift */,
 			);
-			path = Views;
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		4CAD27762ACC359A00C03A91 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4CAD27772ACC35B100C03A91 /* Dictionary+Extension.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4CAD277D2ACC954800C03A91 /* TableAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				4CAA30472AC8B3860007EBA2 /* HierarchyTableAdapter.swift */,
+				4C3A366B2AC7215700B00058 /* HierarchySnapshot.swift */,
+				4C3A366D2AC7218100B00058 /* HierarchyModel.swift */,
+				4CAD27792ACC71CB00C03A91 /* HierarchyTableAnimator.swift */,
+			);
+			path = TableAdapter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,22 +519,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C3A366E2AC7218100B00058 /* HierarchyItem.swift in Sources */,
+				4C3A366E2AC7218100B00058 /* HierarchyModel.swift in Sources */,
 				4CAA30482AC8B3860007EBA2 /* HierarchyTableAdapter.swift in Sources */,
+				4CAA30562AC9D25C0007EBA2 /* NSTableView+Extension.swift in Sources */,
 				4C3A362E2AC4AC8200B00058 /* DocumentDataRepresentation.swift in Sources */,
+				4CAD277A2ACC71CB00C03A91 /* HierarchyTableAnimator.swift in Sources */,
 				4C3A366C2AC7215700B00058 /* HierarchySnapshot.swift in Sources */,
 				4C3A36242AC4AB6D00B00058 /* HierarchyDataProvider.swift in Sources */,
+				4CAA30502AC9CED90007EBA2 /* MenuSupportable.swift in Sources */,
 				4C3A36332AC4B5CC00B00058 /* Versioned.swift in Sources */,
 				4C3A367A2AC7355F00B00058 /* HierarchyViewController.swift in Sources */,
+				4CAA30522AC9D0240007EBA2 /* MenuBuilder.swift in Sources */,
 				4C3A367E2AC735C800B00058 /* NSOutlineView+Extension.swift in Sources */,
 				4CAA303A2AC861440007EBA2 /* EntityOptions.swift in Sources */,
 				4C3A35E12AC48EB500B00058 /* AppDelegate.swift in Sources */,
 				4C3A362C2AC4AC5E00B00058 /* DocumentDataPublisher.swift in Sources */,
 				4C3A35E52AC48EB500B00058 /* HierarchyDocument.swift in Sources */,
+				4CAD27782ACC35B100C03A91 /* Dictionary+Extension.swift in Sources */,
 				4C3A36262AC4ABD800B00058 /* ContentProvider.swift in Sources */,
+				4CAD27752ACAA0B600C03A91 /* HierarchyPresenter.swift in Sources */,
 				4CAA304B2AC8C6750007EBA2 /* HierarchyItemView.swift in Sources */,
 				4C3A36212AC4981D00B00058 /* VersionedFile.swift in Sources */,
 				4CAA303C2AC865850007EBA2 /* ItemContent.swift in Sources */,
+				4CAA30542AC9D0450007EBA2 /* MenuBuilder+Item.swift in Sources */,
+				4CAD277C2ACC81E300C03A91 /* HierarchyAssembly.swift in Sources */,
 				4CAA30382AC861350007EBA2 /* ItemEntity.swift in Sources */,
 				4C3A362A2AC4AC3C00B00058 /* DocumentStorage.swift in Sources */,
 				4C3A361F2AC497F800B00058 /* DocumentFile.swift in Sources */,

@@ -32,7 +32,7 @@ class HierarchyDocument: NSDocument {
 		let windowController = storyboard.instantiateController(
 			withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")
 		) as! NSWindowController
-		windowController.window?.contentViewController = HierarchyViewController(storage: storage)
+		windowController.window?.contentViewController = HierarchyAssembly.build(storage: storage)
 		self.addWindowController(windowController)
 	}
 

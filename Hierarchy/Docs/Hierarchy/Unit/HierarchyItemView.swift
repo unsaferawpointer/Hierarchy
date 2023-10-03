@@ -79,7 +79,7 @@ final class HierarchyItemView: NSView {
 	}()
 
 	lazy var container: NSStackView = {
-		let view = NSStackView(views: [checkbox, imageView, textfield, badge])
+		let view = NSStackView(views: [imageView, checkbox, textfield, badge])
 		view.orientation = .horizontal
 		view.distribution = .fill
 		view.alignment = .firstBaseline
@@ -115,7 +115,7 @@ private extension HierarchyItemView {
 		checkbox.isHidden = !options.contains(.checkbox)
 		checkbox.state = status ? .on : .off
 		badge.isHidden = !options.contains(.badge)
-		imageView.contentTintColor = .secondaryLabelColor
+		imageView.contentTintColor = options.contains(.checkbox) ? .secondaryLabelColor : .systemOrange
 		imageView.isHidden = options.contains(.checkbox)
 		imageView.image = NSImage(
 			systemSymbolName: iconName,

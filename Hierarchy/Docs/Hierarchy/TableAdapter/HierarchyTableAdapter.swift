@@ -20,7 +20,14 @@ final class HierarchyTableAdapter: NSObject {
 
 	weak var table: NSOutlineView?
 
-	var animator = HierarchyAnimator()
+	private var animator = HierarchyAnimator()
+
+	var dropConfiguration: DropConfiguration? {
+		didSet {
+			table?.unregisterDraggedTypes()
+			table?.registerForDraggedTypes(dropConfiguration?.types ?? [])
+		}
+	}
 
 	// MARK: - Data
 
@@ -169,4 +176,81 @@ extension HierarchyTableAdapter: NSOutlineViewDelegate {
 
 		return view
 	}
+}
+
+// MARK: - Drag & Drop
+extension HierarchyTableAdapter {
+
+	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
+		guard let item = item as? ListItem else {
+			return nil
+		}
+		let pasteboardItem = NSPasteboardItem()
+		pasteboardItem.setString(item.uuid.uuidString, forType: .id)
+		return pasteboardItem
+	}
+
+	func outlineView(
+		_ outlineView: NSOutlineView,
+		validateDrop info: NSDraggingInfo,
+		proposedItem item: Any?,
+		proposedChildIndex index: Int
+	) -> NSDragOperation {
+		guard let dropConfiguration else {
+			return []
+		}
+		let destination = getDestination(proposedItem: item, proposedChildIndex: index)
+		let identifiers = getIdentifiers(from: info)
+		print(#function)
+		return dropConfiguration.invalidate?(identifiers, destination) ?? true ? .move : []
+	}
+
+	func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
+		let destination = getDestination(proposedItem: item, proposedChildIndex: index)
+		let identifiers = getIdentifiers(from: info)
+		dropConfiguration?.onDrop?(identifiers, destination)
+		return true
+	}
+}
+
+extension HierarchyTableAdapter {
+
+	func getDestination(proposedItem item: Any?, proposedChildIndex index: Int) -> HierarchyDestination {
+		switch (item, index) {
+		case (.none, -1):
+			return .toRoot
+		case (.none, let index):
+			return .inRoot(atIndex: index)
+		case (let item as ListItem, -1):
+			return .onItem(with: item.uuid)
+		case (let item as ListItem, let index):
+			return .inItem(with: item.uuid, atIndex: index)
+		default:
+			fatalError()
+		}
+	}
+
+	func getIdentifiers(from info: NSDraggingInfo) -> [UUID] {
+		guard let pasteboardItems = info.draggingPasteboard.pasteboardItems else {
+			return []
+		}
+		return pasteboardItems.compactMap { item in
+			item.string(forType: .id)
+		}.compactMap { string in
+			UUID(uuidString: string)
+		}
+	}
+}
+
+enum HierarchyDropDestination {
+	case root
+	case toRoot(index: Int)
+	case dropOn(_ id: UUID)
+	case dropIn(_ id: UUID, index: Int)
+	case none
+}
+
+extension NSPasteboard.PasteboardType {
+
+	static let id = NSPasteboard.PasteboardType("com.paperwave.hierarchy.item-id")
 }

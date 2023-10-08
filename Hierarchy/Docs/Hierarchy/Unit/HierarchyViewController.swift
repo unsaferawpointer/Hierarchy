@@ -17,7 +17,10 @@ protocol HierarchyViewOutput {
 }
 
 protocol HierarchyView: AnyObject {
+
 	func display(_ snapshot: HierarchySnapshot)
+
+	func setConfiguration(_ configuration: DropConfiguration)
 }
 
 class HierarchyViewController: NSViewController {
@@ -68,6 +71,10 @@ extension HierarchyViewController: HierarchyView {
 
 	func display(_ snapshot: HierarchySnapshot) {
 		adapter?.apply(snapshot)
+	}
+
+	func setConfiguration(_ configuration: DropConfiguration) {
+		adapter?.dropConfiguration = configuration
 	}
 }
 

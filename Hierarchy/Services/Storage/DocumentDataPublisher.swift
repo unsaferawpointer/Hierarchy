@@ -9,9 +9,9 @@ import Foundation
 
 protocol DocumentDataPublisher<State> {
 
-	associatedtype State
+	associatedtype State: AnyObject
 
-	func modificate(_ block: (inout State) -> Void)
+	func modificate(_ block: (State) -> Void)
 
 	func addObservation<O: AnyObject>(
 		for object: O,

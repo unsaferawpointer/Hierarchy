@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ItemEntity {
+final class ItemEntity {
 
 	var uuid: UUID
 
@@ -15,7 +15,13 @@ struct ItemEntity {
 
 	var options: EntityOptions
 
-	private (set) var items: [ItemEntity]
+	var items: [ItemEntity]
+
+	// MARK: - Transient properties
+
+	weak var parent: ItemEntity?
+
+	// MARK: - Initialization
 
 	init(
 		uuid: UUID = UUID(),
@@ -27,6 +33,9 @@ struct ItemEntity {
 		self.content = content
 		self.options = options
 		self.items = items
+		items.forEach { item in
+			item.parent = self
+		}
 	}
 }
 
@@ -41,6 +50,14 @@ extension ItemEntity: Equatable {
 	}
 }
 
+// MARK: - Hashable
+extension ItemEntity: Hashable {
+
+	func hash(into hasher: inout Hasher) {
+		hasher.combine(uuid)
+	}
+}
+
 // MARK: - Codable
 extension ItemEntity: Codable { 
 
@@ -51,7 +68,7 @@ extension ItemEntity: Codable {
 		case items
 	}
 
-	init(from decoder: Decoder) throws {
+	convenience init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		let uuid = try container.decode(UUID.self, forKey: .uuid)
 		let content = try container.decode(ItemContent.self, forKey: .content)
@@ -77,53 +94,56 @@ extension ItemEntity {
 // MARK: - Public interface
 extension ItemEntity {
 
-	var numberOfChildren: Int {
-		return items.count
+	func insertItems(with items: [ItemEntity], to index: Int) {
+		self.items.insert(contentsOf: items, at: index)
+		items.forEach { item in
+			item.parent = self
+		}
 	}
 
-	func child(at index: Int) -> ItemEntity {
-		return items[index]
+	func appendItems(with items: [ItemEntity]) {
+		self.items.append(contentsOf: items)
+		items.forEach { item in
+			item.parent = self
+		}
 	}
 
-	mutating func setStatus(_ value: Bool, for id: UUID, downstream: Bool) {
-		guard uuid == id || downstream else {
-			for index in items.indices {
-				items[index].setStatus(value, for: id, downstream: false)
+	@discardableResult
+	func deleteChild(_ id: UUID) -> Int? {
+		guard let index = items.firstIndex(where: \.uuid, equalsTo: id) else {
+			return nil
+		}
+		items.remove(at: index)
+		return index
+	}
+
+	func setProperty<T>(_ keyPath: ReferenceWritableKeyPath<ItemEntity, T>, to value: T, downstream: Bool) {
+		self[keyPath: keyPath] = value
+		if downstream {
+			items.forEach { item in
+				item.setProperty(
+					keyPath,
+					to: value,
+					downstream: downstream
+				)
 			}
-			return
-		}
-		content.isDone = value
-		for index in items.indices {
-			items[index].setStatus(value, for: id, downstream: true)
 		}
 	}
 
-	mutating func setText(_ value: String, for id: UUID) {
-		guard id == self.uuid else {
-			for index in items.indices {
-				items[index].setText(value, for: id)
-			}
-			return
-		}
-		content.text = value
+}
+
+// MARK: - Helpers
+extension ItemEntity {
+
+	func enumerateBackwards(_ block: (ItemEntity) -> Void) {
+		block(self)
+		parent?.enumerateBackwards(block)
 	}
 
-	mutating func deleteItems(_ ids: Set<UUID>) {
-		for index in items.indices {
-			items[index].deleteItems(ids)
+	func enumerate(_ block: (ItemEntity) -> Void) {
+		block(self)
+		for item in items {
+			item.enumerate(block)
 		}
-		items.removeAll { entity in
-			ids.contains(entity.uuid)
-		}
-	}
-
-	mutating func appendItems(_ inserted: [ItemEntity], to id: UUID) {
-		guard id == self.uuid else {
-			for index in items.indices {
-				items[index].appendItems(inserted, to: id)
-			}
-			return
-		}
-		items.append(contentsOf: inserted)
 	}
 }

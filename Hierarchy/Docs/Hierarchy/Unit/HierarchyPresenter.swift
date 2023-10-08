@@ -34,26 +34,51 @@ final class HierarchyPresenter {
 extension HierarchyPresenter: HierarchyViewOutput {
 
 	func viewDidLoad() {
-		let snapshot = makeSnapshot()
-		view?.display(snapshot)
+		view?.display(makeSnapshot())
+		view?.setConfiguration(makeDropConfiguration())
 	}
 
 	func deleteItems(_ ids: [UUID]) {
 		storage.modificate { content in
-			content.deleteItems(with: .init(ids))
+			content.deleteItems(ids)
 		}
 	}
 
 	func createNew(with selection: [UUID]) {
 		let first = selection.first
 		let itemContent = ItemContent(text: "New item", isDone: false, iconName: "app")
+		let destination: HierarchyDestination = if let first {
+			.onItem(with: first)
+		} else {
+			.toRoot
+		}
 		storage.modificate { content in
-			content.appendItems(with: [itemContent], to: first)
+			content.insertItems(with: [itemContent], to: destination)
 		}
 	}
 }
 
 extension HierarchyPresenter {
+
+	func makeDropConfiguration() -> DropConfiguration {
+		var configuration = DropConfiguration()
+		configuration.types = [.id]
+		configuration.onDrop = { [weak self] ids, destination in
+			guard let self else {
+				return
+			}
+			storage.modificate { content in
+				content.moveItems(with: ids, to: destination)
+			}
+		}
+		configuration.invalidate = { [weak self] ids, destination in
+			guard let self else {
+				return false
+			}
+			return self.storage.state.validateMoving(ids, to: destination)
+		}
+		return configuration
+	}
 
 	func makeSnapshot() -> HierarchySnapshot {
 		let items = storage.state.hierarchy

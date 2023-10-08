@@ -29,7 +29,7 @@ final class HierarchyItemView: NSView {
 		}
 	}
 
-	var options: EntityOptions = [] {
+	var style: HierarchyModel.Style = .checkbox {
 		didSet {
 			updateUserInterface()
 		}
@@ -75,11 +75,12 @@ final class HierarchyItemView: NSView {
 		let view = NSButton()
 		view.setButtonType(.momentaryChange)
 		view.bezelStyle = .badge
+		view.isHidden = true
 		return view
 	}()
 
 	lazy var container: NSStackView = {
-		let view = NSStackView(views: [imageView, checkbox, textfield, badge])
+		let view = NSStackView(views: [checkbox, imageView, textfield, badge])
 		view.orientation = .horizontal
 		view.distribution = .fill
 		view.alignment = .firstBaseline
@@ -112,15 +113,29 @@ private extension HierarchyItemView {
 
 		textfield.stringValue = text
 		textfield.textColor = status ? .secondaryLabelColor : .labelColor
-		checkbox.isHidden = !options.contains(.checkbox)
-		checkbox.state = status ? .on : .off
-		badge.isHidden = !options.contains(.badge)
-		imageView.contentTintColor = options.contains(.checkbox) ? .secondaryLabelColor : .systemOrange
-		imageView.isHidden = options.contains(.checkbox)
-		imageView.image = NSImage(
-			systemSymbolName: iconName,
-			accessibilityDescription: nil
-		)
+
+		switch style {
+		case .checkbox:
+			checkbox.isHidden = false
+			checkbox.state = status ? .on : .off
+			imageView.isHidden = true
+		case .list:
+			checkbox.isHidden = true
+			imageView.isHidden = false
+			imageView.image = NSImage(
+				systemSymbolName: "doc.text",
+				accessibilityDescription: nil
+			)
+			imageView.contentTintColor = .secondaryLabelColor
+		case .icon(let name):
+			checkbox.isHidden = true
+			imageView.isHidden = false
+			imageView.image = NSImage(
+				systemSymbolName: name,
+				accessibilityDescription: nil
+			)
+			imageView.contentTintColor = .secondaryLabelColor
+		}
 	}
 
 	func configureConstraints() {

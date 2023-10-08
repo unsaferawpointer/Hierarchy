@@ -104,18 +104,6 @@ extension HierarchyTableAdapter {
 		}
 		table?.endUpdates()
 	}
-
-	func configureRow(with model: HierarchyModel, at row: Int) {
-		let view = table?.view(atColumn: 0, row: row, makeIfNecessary: false) as? HierarchyItemView
-
-		view?.text = model.text
-		view?.iconName = model.icon
-		view?.options = model.options
-		view?.status = model.status
-
-		view?.statusDidChange = model.statusDidChange
-		view?.textDidChange = model.textDidChange
-	}
 }
 
 // MARK: - NSOutlineViewDataSource
@@ -166,13 +154,7 @@ extension HierarchyTableAdapter: NSOutlineViewDelegate {
 			view?.identifier = id
 		}
 
-		view?.text = model.text
-		view?.iconName = model.icon
-		view?.options = model.options
-		view?.status = model.status
-
-		view?.statusDidChange = model.statusDidChange
-		view?.textDidChange = model.textDidChange
+		configureView(view, with: model)
 
 		return view
 	}
@@ -213,6 +195,7 @@ extension HierarchyTableAdapter {
 	}
 }
 
+// MARK: - Helpers
 extension HierarchyTableAdapter {
 
 	func getDestination(proposedItem item: Any?, proposedChildIndex index: Int) -> HierarchyDestination {
@@ -240,14 +223,21 @@ extension HierarchyTableAdapter {
 			UUID(uuidString: string)
 		}
 	}
-}
 
-enum HierarchyDropDestination {
-	case root
-	case toRoot(index: Int)
-	case dropOn(_ id: UUID)
-	case dropIn(_ id: UUID, index: Int)
-	case none
+	func configureRow(with model: HierarchyModel, at row: Int) {
+		let view = table?.view(atColumn: 0, row: row, makeIfNecessary: false) as? HierarchyItemView
+		configureView(view, with: model)
+	}
+
+	func configureView(_ view: HierarchyItemView?, with model: HierarchyModel) {
+		view?.text = model.text
+		view?.iconName = model.icon
+		view?.style = model.style
+		view?.status = model.status
+
+		view?.statusDidChange = model.statusDidChange
+		view?.textDidChange = model.textDidChange
+	}
 }
 
 extension NSPasteboard.PasteboardType {

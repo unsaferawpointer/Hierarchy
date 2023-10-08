@@ -88,7 +88,7 @@ extension HierarchyPresenter {
 				status: entity.effectiveStatus,
 				text: entity.content.text,
 				icon: entity.content.iconName,
-				options: entity.options) { [weak self] newText in
+				style: entity.items.count > 0 ? .list : .checkbox) { [weak self] newText in
 					guard let self else {
 						return
 					}

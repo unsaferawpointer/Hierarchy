@@ -17,7 +17,7 @@ struct HierarchyModel {
 
 	var icon: String
 
-	var options: EntityOptions
+	var style: Style
 
 	var textDidChange: (String) -> ()
 
@@ -30,7 +30,7 @@ struct HierarchyModel {
 		status: Bool,
 		text: String,
 		icon: String,
-		options: EntityOptions,
+		style: Style = .checkbox,
 		textDidChange: @escaping (String) -> (),
 		statusDidChange: @escaping (Bool) -> ()
 	) {
@@ -38,7 +38,7 @@ struct HierarchyModel {
 		self.status = status
 		self.text = text
 		self.icon = icon
-		self.options = options
+		self.style = style
 		self.textDidChange = textDidChange
 		self.statusDidChange = statusDidChange
 	}
@@ -61,5 +61,14 @@ extension HierarchyModel: Hashable {
 
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(uuid)
+	}
+}
+
+extension HierarchyModel {
+
+	enum Style: Equatable {
+		case checkbox
+		case list
+		case icon(_ name: String)
 	}
 }

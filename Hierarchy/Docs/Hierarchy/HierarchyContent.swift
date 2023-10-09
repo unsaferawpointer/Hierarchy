@@ -118,7 +118,6 @@ extension HierarchyContent {
 
 		var chain = Set<UUID>()
 		item.enumerateBackwards {
-			print($0.content.text)
 			chain.insert($0.uuid)
 		}
 
@@ -136,7 +135,7 @@ extension HierarchyContent {
 		case .toRoot:
 			move(moved, to: nil)
 		case let .inRoot(index):
-			move(moved, toOther: nil, at: index)
+			moveToRoot(moved, at: index)
 		case let .onItem(id):
 			guard let target = cache[id] else {
 				return
@@ -154,7 +153,45 @@ extension HierarchyContent {
 // MARK: - Support moving
 private extension HierarchyContent {
 
-	func move(_ moved: [ItemEntity], toOther target: ItemEntity?, at index: Int) {
+	func moveToRoot(_ moved: [ItemEntity], at index: Int) {
+
+		let grouped = Dictionary<ItemEntity?, [ItemEntity]>(grouping: moved) { item in
+			return item.parent
+		}
+
+		var offset = 0
+
+		for (container, items) in grouped {
+
+			let cache = Set(items.map(\.uuid))
+
+			guard let container else {
+
+				offset = self.offset(
+					moved: cache,
+					in: hierarchy,
+					to: index
+				)
+
+				hierarchy.removeAll { item in
+					cache.contains(item.uuid)
+				}
+				continue
+			}
+
+			container.items.removeAll { item in
+				cache.contains(item.uuid)
+			}
+
+		}
+
+		hierarchy.insert(contentsOf: moved, at: index + offset)
+		moved.forEach { item in
+			item.parent = nil
+		}
+	}
+
+	func move(_ moved: [ItemEntity], toOther target: ItemEntity, at index: Int) {
 
 		let grouped = Dictionary<ItemEntity?, [ItemEntity]>(grouping: moved) { item in
 			return item.parent
@@ -172,25 +209,16 @@ private extension HierarchyContent {
 				continue
 			}
 
-			if container.uuid == target?.uuid {
-				let indexes = cache.compactMap { _ in
-					container.items.firstIndex {
-						cache.contains($0.uuid)
-					}
-				}
-				offset -= indexes.filter { $0 < index }.count
+			if container.uuid == target.uuid {
+				offset = self.offset(
+					moved: cache,
+					in: container.items,
+					to: index
+				)
 			}
 			container.items.removeAll { item in
 				cache.contains(item.uuid)
 			}
-		}
-
-		guard let target else {
-			hierarchy.insert(contentsOf: moved, at: index + offset)
-			moved.forEach { item in
-				item.parent = nil
-			}
-			return
 		}
 
 		target.insertItems(with: moved, to: index + offset)
@@ -227,6 +255,17 @@ private extension HierarchyContent {
 		}
 
 		target.appendItems(with: moved)
+	}
+
+	func offset(moved: Set<UUID>, in items: [ItemEntity], to index: Int) -> Int {
+		var indexes = [Int]()
+		for id in moved {
+			guard let firstIndex = items.firstIndex(where: \.uuid, equalsTo: id) else {
+				continue
+			}
+			indexes.append(firstIndex)
+		}
+		return -indexes.filter { $0 < index }.count
 	}
 }
 

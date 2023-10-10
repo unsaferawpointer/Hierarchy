@@ -12,8 +12,12 @@ protocol HierarchyViewOutput {
 	func viewDidLoad()
 
 	func deleteItems(_ ids: [UUID])
+
 	func createNew(with selection: [UUID])
 
+	func markAsCompleted(with selection: [UUID])
+
+	func markAsIncomplete(with selection: [UUID])
 }
 
 protocol HierarchyView: AnyObject {
@@ -137,10 +141,12 @@ extension HierarchyViewController: MenuSupportable {
 	}
 
 	func markAsCompleted() {
-		// TODO: - Handle action
+		let selection = table.selectedIdentifiers()
+		output?.markAsCompleted(with: selection)
 	}
 
 	func markAsIncomplete() {
-		// TODO: - Handle action
+		let selection = table.selectedIdentifiers()
+		output?.markAsIncomplete(with: selection)
 	}
 }

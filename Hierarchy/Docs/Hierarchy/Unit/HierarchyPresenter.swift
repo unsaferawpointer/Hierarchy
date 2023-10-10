@@ -56,6 +56,18 @@ extension HierarchyPresenter: HierarchyViewOutput {
 			content.insertItems(with: [itemContent], to: destination)
 		}
 	}
+
+	func markAsCompleted(with selection: [UUID]) {
+		storage.modificate { content in
+			content.setStatus(true, for: selection)
+		}
+	}
+
+	func markAsIncomplete(with selection: [UUID]) {
+		storage.modificate { content in
+			content.setStatus(false, for: selection)
+		}
+	}
 }
 
 extension HierarchyPresenter {
@@ -100,7 +112,7 @@ extension HierarchyPresenter {
 						return
 					}
 					storage.modificate { content in
-						content.setStatus(newStatus, for: entity.uuid)
+						content.setStatus(newStatus, for: [entity.uuid])
 					}
 				}
 		}

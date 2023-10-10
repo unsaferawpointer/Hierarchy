@@ -70,11 +70,17 @@ extension HierarchyContent {
 		item.setProperty(\.content.text, to: value, downstream: false)
 	}
 
-	func setStatus(_ value: Bool, for id: UUID) {
-		guard let item = cache[id] else {
-			return
+	func setStatus(_ value: Bool, for ids: [UUID]) {
+		for id in ids {
+			guard let item = cache[id] else {
+				continue
+			}
+			item.setProperty(
+				\.content.isDone,
+				 to: value,
+				 downstream: true
+			)
 		}
-		item.setProperty(\.content.isDone, to: value, downstream: true)
 	}
 
 }

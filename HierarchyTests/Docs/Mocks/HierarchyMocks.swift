@@ -15,20 +15,20 @@ struct HierarchyMocks {
 		.init(
 			uuid: .uuid1,
 			content: .init(text: "item 0", isDone: false, iconName: "doc"),
-			options: .badge,
+			options: .favorite,
 			items:
 				[
 					.init(
 						uuid: .uuid2,
 						content: .init(text: "item 00", isDone: true, iconName: "doc"),
-						options: .checkbox
+						options: .empty
 					)
 				]
 		),
 		.init(
 			uuid: .uuid3,
 			content: .init(text: "item 1", isDone: false, iconName: "doc"),
-			options: .badge
+			options: .favorite
 		)
 	]
 }

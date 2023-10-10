@@ -11,9 +11,12 @@ struct EntityOptions: OptionSet {
 
 	var rawValue: Int16
 
-	static let checkbox = EntityOptions(rawValue: 1 << 0)
-	static let badge = EntityOptions(rawValue: 1 << 2)
+	static let empty = EntityOptions(rawValue: 1 << 0)
+	static let favorite = EntityOptions(rawValue: 1 << 1)
 }
 
 // MARK: - Codable
 extension EntityOptions: Codable { }
+
+// MARK: - Hashable
+extension EntityOptions: Hashable { }

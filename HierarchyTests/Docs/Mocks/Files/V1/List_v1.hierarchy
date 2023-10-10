@@ -18,7 +18,7 @@
 						"uuid" : "BAF077D9-BDD8-40A8-8348-B3BA50145992"
 					}
 				],
-				"options" : 4,
+				"options" : 2,
 				"uuid" : "DD937754-3463-4B0B-B6DB-9AF14B18B8C0"
 			},
 			{
@@ -27,7 +27,7 @@
 					"isDone" : false,
 					"text" : "item 1"
 				},
-				"options" : 4,
+				"options" : 2,
 				"uuid" : "9A7EB176-7FF3-4C99-B1D0-F25D4125B0CF"
 			}
 		],

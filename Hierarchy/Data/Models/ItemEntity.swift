@@ -55,6 +55,9 @@ extension ItemEntity: Hashable {
 
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(uuid)
+		hasher.combine(content)
+		hasher.combine(options)
+		hasher.combine(items)
 	}
 }
 

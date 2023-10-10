@@ -19,5 +19,8 @@ struct ItemContent {
 // MARK: - Equatable
 extension ItemContent: Equatable { }
 
+// MARK: - Hashable
+extension ItemContent: Hashable { }
+
 // MARK: - Codable
 extension ItemContent: Codable { }

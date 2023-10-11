@@ -17,10 +17,10 @@ protocol MenuSupportable {
 	optional func delete()
 
 	@objc
-	optional func showCheckbox()
+	optional func markAsFavorite()
 
 	@objc
-	optional func hideCheckbox()
+	optional func unmarkAsFavorite()
 
 	@objc
 	optional func markAsCompleted()

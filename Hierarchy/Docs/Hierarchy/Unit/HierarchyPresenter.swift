@@ -68,6 +68,18 @@ extension HierarchyPresenter: HierarchyViewOutput {
 			content.setStatus(false, for: selection)
 		}
 	}
+
+	func markAsFavorite(with selection: [UUID]) {
+		storage.modificate { content in
+			content.setFavoriteFlag(true, for: selection)
+		}
+	}
+
+	func unmarkAsFavorite(with selection: [UUID]) {
+		storage.modificate { content in
+			content.setFavoriteFlag(false, for: selection)
+		}
+	}
 }
 
 extension HierarchyPresenter {
@@ -100,7 +112,8 @@ extension HierarchyPresenter {
 				status: entity.effectiveStatus,
 				text: entity.content.text,
 				icon: entity.content.iconName,
-				style: entity.items.count > 0 ? .list : .checkbox) { [weak self] newText in
+				style: entity.items.count > 0 ? .list : .checkbox,
+				isFavorite: entity.options.contains(.favorite)) { [weak self] newText in
 					guard let self else {
 						return
 					}

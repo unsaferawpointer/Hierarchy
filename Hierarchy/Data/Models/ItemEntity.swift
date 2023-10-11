@@ -39,6 +39,22 @@ final class ItemEntity {
 	}
 }
 
+extension ItemEntity {
+
+	var isFavorite: Bool {
+		get {
+			options.contains(.favorite)
+		}
+		set {
+			if newValue {
+				options.insert(.favorite)
+			} else {
+				options.remove(.favorite)
+			}
+		}
+	}
+}
+
 // MARK: - Equatable
 extension ItemEntity: Equatable {
 

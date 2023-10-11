@@ -35,6 +35,12 @@ final class HierarchyItemView: NSView {
 		}
 	}
 
+	var isFavorite: Bool = false {
+		didSet {
+			updateUserInterface()
+		}
+	}
+
 	var textDidChange: ((String) -> Void)?
 
 	var statusDidChange: ((Bool) -> Void)?
@@ -118,23 +124,23 @@ private extension HierarchyItemView {
 		case .checkbox:
 			checkbox.isHidden = false
 			checkbox.state = status ? .on : .off
-			imageView.isHidden = true
+			imageView.isHidden = true && !isFavorite
+			imageView.image = NSImage(systemSymbolName: "star.fill", accessibilityDescription: nil)
+			imageView.contentTintColor = isFavorite ? .systemYellow : .secondaryLabelColor
 		case .list:
 			checkbox.isHidden = true
 			imageView.isHidden = false
-			imageView.image = NSImage(
-				systemSymbolName: "doc.text",
-				accessibilityDescription: nil
-			)
-			imageView.contentTintColor = .secondaryLabelColor
+			imageView.image = isFavorite
+								? NSImage(systemSymbolName: "star.fill", accessibilityDescription: nil)
+								: NSImage(systemSymbolName: "doc.text", accessibilityDescription: nil)
+			imageView.contentTintColor = isFavorite ? .systemYellow : .secondaryLabelColor
 		case .icon(let name):
 			checkbox.isHidden = true
 			imageView.isHidden = false
-			imageView.image = NSImage(
-				systemSymbolName: name,
-				accessibilityDescription: nil
-			)
-			imageView.contentTintColor = .secondaryLabelColor
+			imageView.image = isFavorite
+								? NSImage(systemSymbolName: "star.fill", accessibilityDescription: nil)
+								: NSImage(systemSymbolName: name, accessibilityDescription: nil)
+			imageView.contentTintColor = isFavorite ? .systemYellow : .secondaryLabelColor
 		}
 	}
 

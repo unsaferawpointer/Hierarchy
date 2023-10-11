@@ -13,8 +13,8 @@ extension MenuBuilder {
 		case new
 		case delete
 
-		case showCheckbox
-		case hideCheckbox
+		case markAsFavorite
+		case unmarkAsFavorite
 
 		case markAsCompleted
 		case markAsIncomplete
@@ -51,16 +51,16 @@ extension MenuBuilder.Item {
 				action: #selector(MenuSupportable.markAsIncomplete),
 				keyEquivalent: ""
 			)
-		case .showCheckbox:
+		case .markAsFavorite:
 			return NSMenuItem(
-				title: "Show checkbox",
-				action: #selector(MenuSupportable.showCheckbox),
+				title: "Mark as favorite",
+				action: #selector(MenuSupportable.markAsFavorite),
 				keyEquivalent: ""
 			)
-		case .hideCheckbox:
+		case .unmarkAsFavorite:
 			return NSMenuItem(
-				title: "Hide checkbox",
-				action: #selector(MenuSupportable.hideCheckbox),
+				title: "Unmark as favorite",
+				action: #selector(MenuSupportable.unmarkAsFavorite),
 				keyEquivalent: ""
 			)
 		case .separator:

@@ -83,6 +83,15 @@ extension HierarchyContent {
 		}
 	}
 
+	func setFavoriteFlag(_ flag: Bool, for ids: [UUID]) {
+		for id in ids {
+			guard let item = cache[id] else {
+				continue
+			}
+			item.setProperty(\.isFavorite, to: flag, downstream: false)
+		}
+	}
+
 }
 
 // MARK: - Public interface

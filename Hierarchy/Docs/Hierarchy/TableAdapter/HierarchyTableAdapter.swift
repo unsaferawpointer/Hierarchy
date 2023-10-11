@@ -183,7 +183,6 @@ extension HierarchyTableAdapter {
 		}
 		let destination = getDestination(proposedItem: item, proposedChildIndex: index)
 		let identifiers = getIdentifiers(from: info)
-		print(#function)
 		return dropConfiguration.invalidate?(identifiers, destination) ?? true ? .move : []
 	}
 
@@ -234,6 +233,7 @@ extension HierarchyTableAdapter {
 		view?.iconName = model.icon
 		view?.style = model.style
 		view?.status = model.status
+		view?.isFavorite = model.isFavorite
 
 		view?.statusDidChange = model.statusDidChange
 		view?.textDidChange = model.textDidChange

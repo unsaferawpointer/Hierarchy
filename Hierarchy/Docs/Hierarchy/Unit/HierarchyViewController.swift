@@ -18,6 +18,10 @@ protocol HierarchyViewOutput {
 	func markAsCompleted(with selection: [UUID])
 
 	func markAsIncomplete(with selection: [UUID])
+
+	func markAsFavorite(with selection: [UUID])
+
+	func unmarkAsFavorite(with selection: [UUID])
 }
 
 protocol HierarchyView: AnyObject {
@@ -110,8 +114,8 @@ extension HierarchyViewController {
 					.markAsCompleted,
 					.markAsIncomplete,
 					.separator,
-					.showCheckbox,
-					.hideCheckbox,
+					.markAsFavorite,
+					.unmarkAsFavorite,
 					.separator,
 					.delete
 				]
@@ -132,12 +136,14 @@ extension HierarchyViewController: MenuSupportable {
 		output?.deleteItems(selection)
 	}
 
-	func showCheckbox() {
-		// TODO: - Handle action
+	func markAsFavorite() {
+		let selection = table.selectedIdentifiers()
+		output?.markAsFavorite(with: selection)
 	}
 
-	func hideCheckbox() {
-		// TODO: - Handle action
+	func unmarkAsFavorite() {
+		let selection = table.selectedIdentifiers()
+		output?.unmarkAsFavorite(with: selection)
 	}
 
 	func markAsCompleted() {

@@ -11,7 +11,7 @@ import Cocoa
 protocol MenuSupportable {
 
 	@objc
-	optional func createNew()
+	optional func createNew(_ sender: Any?)
 
 	@objc
 	optional func delete()

@@ -697,12 +697,15 @@
                                 <toolbarItem implicitItemIdentifier="93043354-7483-4449-B135-BDD2389F9959" label="Custom View" paletteLabel="Custom View" image="plus" catalog="system" title="Textured Rounded" sizingBehavior="auto" id="9c9-Lc-k4H">
                                     <nil key="toolTip"/>
                                     <button key="view" verticalHuggingPriority="750" id="zoD-VZ-L22">
-                                        <rect key="frame" x="0.0" y="14" width="127" height="25"/>
+                                        <rect key="frame" x="25" y="14" width="26" height="23"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <buttonCell key="cell" type="roundTextured" title="Textured Rounded" bezelStyle="texturedRounded" image="plus" catalog="system" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FQP-kK-zTY">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="createNew:" target="6f7-a7-6o1" id="QVT-LG-JDd"/>
+                                        </connections>
                                     </button>
                                 </toolbarItem>
                             </allowedToolbarItems>

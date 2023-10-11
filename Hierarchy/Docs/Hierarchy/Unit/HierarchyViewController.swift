@@ -127,7 +127,8 @@ extension HierarchyViewController {
 // MARK: - MenuSupportable
 extension HierarchyViewController: MenuSupportable {
 
-	func createNew() {
+	@IBAction
+	func createNew(_ sender: Any?) {
 		let selection = table.selectedIdentifiers()
 		output?.createNew(with: selection)
 	}

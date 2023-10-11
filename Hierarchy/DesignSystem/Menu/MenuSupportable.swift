@@ -14,7 +14,7 @@ protocol MenuSupportable {
 	optional func createNew(_ sender: Any?)
 
 	@objc
-	optional func delete()
+	optional func delete(_ sender: Any?)
 
 	@objc
 	optional func markAsFavorite()

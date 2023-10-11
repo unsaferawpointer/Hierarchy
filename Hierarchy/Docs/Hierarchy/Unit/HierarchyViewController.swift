@@ -133,7 +133,8 @@ extension HierarchyViewController: MenuSupportable {
 		output?.createNew(with: selection)
 	}
 
-	func delete() {
+	@IBAction
+	func delete(_ sender: Any?) {
 		let selection = table.selectedIdentifiers()
 		output?.deleteItems(selection)
 	}

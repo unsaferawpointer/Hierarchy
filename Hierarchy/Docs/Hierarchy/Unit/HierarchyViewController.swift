@@ -96,6 +96,7 @@ extension HierarchyViewController {
 		table.allowsMultipleSelection = true
 
 		scrollview.documentView = table
+		scrollview.hasVerticalScroller = false
 
 		let identifier = NSUserInterfaceItemIdentifier("main")
 		let column = NSTableColumn(identifier: identifier)

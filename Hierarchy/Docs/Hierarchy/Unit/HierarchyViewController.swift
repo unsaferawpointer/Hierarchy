@@ -128,34 +128,48 @@ extension HierarchyViewController {
 extension HierarchyViewController: MenuSupportable {
 
 	@IBAction
-	func createNew(_ sender: Any?) {
+	func createNew(_ sender: NSMenuItem) {
 		let selection = table.selectedIdentifiers()
 		output?.createNew(with: selection)
 	}
 
 	@IBAction
-	func delete(_ sender: Any?) {
+	func delete(_ sender: NSMenuItem) {
 		let selection = table.selectedIdentifiers()
 		output?.deleteItems(selection)
 	}
 
-	func markAsFavorite() {
+	@IBAction
+	func markAsFavorite(_ sender: NSMenuItem) {
 		let selection = table.selectedIdentifiers()
 		output?.markAsFavorite(with: selection)
 	}
 
-	func unmarkAsFavorite() {
+	@IBAction
+	func unmarkAsFavorite(_ sender: NSMenuItem) {
 		let selection = table.selectedIdentifiers()
 		output?.unmarkAsFavorite(with: selection)
 	}
 
-	func markAsCompleted() {
+	@IBAction
+	func markAsCompleted(_ sender: NSMenuItem) {
 		let selection = table.selectedIdentifiers()
 		output?.markAsCompleted(with: selection)
 	}
 
-	func markAsIncomplete() {
+	@IBAction
+	func markAsIncomplete(_ sender: NSMenuItem) {
 		let selection = table.selectedIdentifiers()
 		output?.markAsIncomplete(with: selection)
+	}
+
+	@IBAction
+	func fold(_ sender: NSMenuItem) {
+		// TODO: Handle action
+	}
+
+	@IBAction
+	func unfold(_ sender: NSMenuItem) {
+		// TODO: Handle action
 	}
 }

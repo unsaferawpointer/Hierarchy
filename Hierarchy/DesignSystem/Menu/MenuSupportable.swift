@@ -11,21 +11,27 @@ import Cocoa
 protocol MenuSupportable {
 
 	@objc
-	optional func createNew(_ sender: Any?)
+	optional func createNew(_ sender: NSMenuItem)
 
 	@objc
-	optional func delete(_ sender: Any?)
+	optional func delete(_ sender: NSMenuItem)
 
 	@objc
-	optional func markAsFavorite()
+	optional func markAsFavorite(_ sender: NSMenuItem)
 
 	@objc
-	optional func unmarkAsFavorite()
+	optional func unmarkAsFavorite(_ sender: NSMenuItem)
 
 	@objc
-	optional func markAsCompleted()
+	optional func markAsCompleted(_ sender: NSMenuItem)
 
 	@objc
-	optional func markAsIncomplete()
+	optional func markAsIncomplete(_ sender: NSMenuItem)
+
+	@objc
+	optional func fold(_ sender: NSMenuItem)
+
+	@objc
+	optional func unfold(_ sender: NSMenuItem)
 
 }

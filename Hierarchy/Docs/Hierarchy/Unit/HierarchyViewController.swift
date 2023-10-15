@@ -25,6 +25,14 @@ protocol HierarchyView: AnyObject {
 	func display(_ snapshot: HierarchySnapshot)
 
 	func setConfiguration(_ configuration: DropConfiguration)
+
+	func scroll(to id: UUID)
+
+	func select(_ id: UUID)
+
+	func expand(_ id: UUID?)
+
+	func focus(on id: UUID)
 }
 
 class HierarchyViewController: NSViewController {
@@ -79,6 +87,22 @@ extension HierarchyViewController: HierarchyView {
 
 	func setConfiguration(_ configuration: DropConfiguration) {
 		adapter?.dropConfiguration = configuration
+	}
+
+	func scroll(to id: UUID) {
+		adapter?.scroll(to: id)
+	}
+
+	func select(_ id: UUID) {
+		adapter?.select(id)
+	}
+
+	func expand(_ id: UUID?) {
+		adapter?.expand(id)
+	}
+
+	func focus(on id: UUID) {
+		adapter?.focus(on: id)
 	}
 }
 

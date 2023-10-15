@@ -97,8 +97,8 @@ extension HierarchyContent {
 // MARK: - Public interface
 extension HierarchyContent {
 
-	func insertItems(with contents: [ItemContent], to destination: HierarchyDestination) {
-		let items = contents.map { ItemEntity(content: $0) }
+	func insertItems(with contents: [ItemContent], with id: UUID, to destination: HierarchyDestination) {
+		let items = contents.map { ItemEntity(uuid: id, content: $0) }
 		switch destination {
 		case .toRoot:
 			hierarchy.append(contentsOf: items)

@@ -110,6 +110,11 @@ final class HierarchyItemView: NSView {
 	override func prepareForReuse() {
 		super.prepareForReuse()
 	}
+
+	override func becomeFirstResponder() -> Bool {
+		super.becomeFirstResponder()
+		return textfield.becomeFirstResponder()
+	}
 }
 
 // MARK: - Helpers

@@ -52,9 +52,17 @@ extension HierarchyPresenter: HierarchyViewOutput {
 		} else {
 			.toRoot
 		}
+		let id = UUID()
+
 		storage.modificate { content in
-			content.insertItems(with: [itemContent], to: destination)
+			content.insertItems(with: [itemContent], with: id, to: destination)
 		}
+		view?.scroll(to: id)
+		if let first {
+			view?.expand(first)
+		}
+		view?.focus(on: id)
+
 	}
 
 	func setState(_ flag: Bool, withSelection selection: [UUID]) {

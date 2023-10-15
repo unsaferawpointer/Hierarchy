@@ -104,8 +104,54 @@ extension HierarchyTableAdapter {
 		}
 		table?.endUpdates()
 	}
+
+	func scroll(to id: UUID) {
+		guard let table, let item = cache[id] else {
+			return
+		}
+		let row = table.row(forItem: item)
+		guard row >= 0 else {
+			return
+		}
+
+		NSAnimationContext.runAnimationGroup { context in
+			context.allowsImplicitAnimation = true
+			table.scrollRowToVisible(row)
+		}
+	}
+
+	func select(_ id: UUID) {
+		guard let table, let item = cache[id] else {
+			return
+		}
+		let row = table.row(forItem: item)
+		guard row >= 0 else {
+			return
+		}
+
+		table.selectRowIndexes(.init(integer: row), byExtendingSelection: false)
+	}
+
+	func expand(_ id: UUID?) {
+		guard let table, let id, let item = cache[id] else {
+			return
+		}
+
+		NSAnimationContext.runAnimationGroup { context in
+			table.animator().expandItem(item)
+		}
+	}
+
+	func focus(on id: UUID) {
+		guard let item = cache[id], let row = table?.row(forItem: item), row != -1 else {
+			return
+		}
+		let view = table?.view(atColumn: 0, row: row, makeIfNecessary: false) as? HierarchyItemView
+		_ = view?.becomeFirstResponder()
+	}
 }
 
+// MARK: - Menu support
 extension HierarchyTableAdapter {
 
 	func validateMenuItem(_ itemIdentifier: String) -> Bool {

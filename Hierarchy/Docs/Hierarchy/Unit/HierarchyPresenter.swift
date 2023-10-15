@@ -57,29 +57,18 @@ extension HierarchyPresenter: HierarchyViewOutput {
 		}
 	}
 
-	func markAsCompleted(with selection: [UUID]) {
+	func setState(_ flag: Bool, withSelection selection: [UUID]) {
 		storage.modificate { content in
-			content.setStatus(true, for: selection)
+			content.setStatus(flag, for: selection)
 		}
 	}
 
-	func markAsIncomplete(with selection: [UUID]) {
+	func setBookmark(_ flag: Bool, withSelection selection: [UUID]) {
 		storage.modificate { content in
-			content.setStatus(false, for: selection)
+			content.setFavoriteFlag(flag, for: selection)
 		}
 	}
 
-	func markAsFavorite(with selection: [UUID]) {
-		storage.modificate { content in
-			content.setFavoriteFlag(true, for: selection)
-		}
-	}
-
-	func unmarkAsFavorite(with selection: [UUID]) {
-		storage.modificate { content in
-			content.setFavoriteFlag(false, for: selection)
-		}
-	}
 }
 
 extension HierarchyPresenter {
@@ -107,13 +96,27 @@ extension HierarchyPresenter {
 	func makeSnapshot() -> HierarchySnapshot {
 		let items = storage.state.hierarchy
 		return HierarchySnapshot(items) { entity in
-			HierarchyModel(
+			let menu = MenuItem(
+				state:
+					[
+						"completed" : entity.content.isDone ? .on : .off,
+						"favorite" : entity.isFavorite ? .on : .off
+					],
+				validation:
+					[
+						"completed" : true,
+						"favorite": true,
+						"delete": true
+					]
+			)
+			return HierarchyModel(
 				uuid: entity.uuid,
 				status: entity.effectiveStatus,
 				text: entity.content.text,
 				icon: entity.content.iconName,
 				style: entity.items.count > 0 ? .list : .checkbox,
-				isFavorite: entity.options.contains(.favorite)) { [weak self] newText in
+				isFavorite: entity.options.contains(.favorite), 
+				menu: menu) { [weak self] newText in
 					guard let self else {
 						return
 					}

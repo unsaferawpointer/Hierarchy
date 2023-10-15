@@ -106,6 +106,50 @@ extension HierarchyTableAdapter {
 	}
 }
 
+extension HierarchyTableAdapter {
+
+	func validateMenuItem(_ itemIdentifier: String) -> Bool {
+		guard let ids = table?.selectedIdentifiers() else {
+			return false
+		}
+
+		for id in ids {
+			let model = snapshot.model(with: id)
+			if model.menu.isValid(itemIdentifier) {
+				return true
+			}
+		}
+
+		return false
+	}
+
+	func menuItemState(for itemIdentifier: String) -> NSControl.StateValue {
+		guard let ids = table?.selectedIdentifiers() else {
+			return .off
+		}
+
+		var hasEnabled = false
+		var hasDisabled = false
+
+		for id in ids {
+			let model = snapshot.model(with: id)
+			let state = model.menu.stateFor(itemIdentifier)
+			switch state {
+			case .off:	hasDisabled = true
+			case .on:	hasEnabled = true
+			}
+		}
+
+		if hasEnabled && hasDisabled {
+			return .mixed
+		} else if hasEnabled {
+			return .on
+		} else {
+			return .off
+		}
+	}
+}
+
 // MARK: - NSOutlineViewDataSource
 extension HierarchyTableAdapter: NSOutlineViewDataSource {
 

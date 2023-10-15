@@ -52,6 +52,7 @@
 		4CAD277F2ACDE78400C03A91 /* DropConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD277E2ACDE78400C03A91 /* DropConfiguration.swift */; };
 		4CAD278A2AD0008500C03A91 /* Sequence+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27892AD0008500C03A91 /* Sequence+Extension.swift */; };
 		4CAD278F2AD1BC3E00C03A91 /* HierarchyDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD278E2AD1BC3E00C03A91 /* HierarchyDestination.swift */; };
+		4CAD27932AD9AC8400C03A91 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27922AD9AC8400C03A91 /* MenuItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		4CAD277E2ACDE78400C03A91 /* DropConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropConfiguration.swift; sourceTree = "<group>"; };
 		4CAD27892AD0008500C03A91 /* Sequence+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extension.swift"; sourceTree = "<group>"; };
 		4CAD278E2AD1BC3E00C03A91 /* HierarchyDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyDestination.swift; sourceTree = "<group>"; };
+		4CAD27922AD9AC8400C03A91 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +363,7 @@
 		4CAA304E2AC9CEC70007EBA2 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				4CAD27922AD9AC8400C03A91 /* MenuItem.swift */,
 				4CAA30512AC9D0240007EBA2 /* MenuBuilder.swift */,
 				4CAA30532AC9D0450007EBA2 /* MenuBuilder+Item.swift */,
 				4CAA304F2AC9CED90007EBA2 /* MenuSupportable.swift */,
@@ -527,6 +530,7 @@
 			files = (
 				4C3A366E2AC7218100B00058 /* HierarchyModel.swift in Sources */,
 				4CAA30482AC8B3860007EBA2 /* HierarchyTableAdapter.swift in Sources */,
+				4CAD27932AD9AC8400C03A91 /* MenuItem.swift in Sources */,
 				4CAA30562AC9D25C0007EBA2 /* NSTableView+Extension.swift in Sources */,
 				4C3A362E2AC4AC8200B00058 /* DocumentDataRepresentation.swift in Sources */,
 				4CAD277A2ACC71CB00C03A91 /* HierarchyTableAnimator.swift in Sources */,

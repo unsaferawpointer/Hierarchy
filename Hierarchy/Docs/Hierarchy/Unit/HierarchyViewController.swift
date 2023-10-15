@@ -15,13 +15,9 @@ protocol HierarchyViewOutput {
 
 	func createNew(with selection: [UUID])
 
-	func markAsCompleted(with selection: [UUID])
+	func setState(_ flag: Bool, withSelection selection: [UUID])
 
-	func markAsIncomplete(with selection: [UUID])
-
-	func markAsFavorite(with selection: [UUID])
-
-	func unmarkAsFavorite(with selection: [UUID])
+	func setBookmark(_ flag: Bool, withSelection selection: [UUID])
 }
 
 protocol HierarchyView: AnyObject {
@@ -112,15 +108,33 @@ extension HierarchyViewController {
 				[
 					.new,
 					.separator,
-					.markAsCompleted,
-					.markAsIncomplete,
-					.separator,
-					.markAsFavorite,
-					.unmarkAsFavorite,
+					.favorite,
+					.completed,
 					.separator,
 					.delete
 				]
 		)
+	}
+}
+
+// MARK: - NSMenuItemValidation
+extension HierarchyViewController: NSMenuItemValidation {
+
+	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+		guard let identifier = menuItem.identifier?.rawValue, let adapter else {
+			return false
+		}
+
+		switch identifier {
+		case "new":
+			return true
+		default:
+			break
+		}
+		let state = adapter.menuItemState(for: identifier)
+		menuItem.state = state
+
+		return adapter.validateMenuItem(identifier)
 	}
 }
 
@@ -140,27 +154,17 @@ extension HierarchyViewController: MenuSupportable {
 	}
 
 	@IBAction
-	func markAsFavorite(_ sender: NSMenuItem) {
+	func toggleBookmark(_ sender: NSMenuItem) {
+		let enabled = sender.state == .on
 		let selection = table.selectedIdentifiers()
-		output?.markAsFavorite(with: selection)
+		output?.setBookmark(!enabled, withSelection: selection)
 	}
 
 	@IBAction
-	func unmarkAsFavorite(_ sender: NSMenuItem) {
+	func toggleCompleted(_ sender: NSMenuItem) {
+		let enabled = sender.state == .on
 		let selection = table.selectedIdentifiers()
-		output?.unmarkAsFavorite(with: selection)
-	}
-
-	@IBAction
-	func markAsCompleted(_ sender: NSMenuItem) {
-		let selection = table.selectedIdentifiers()
-		output?.markAsCompleted(with: selection)
-	}
-
-	@IBAction
-	func markAsIncomplete(_ sender: NSMenuItem) {
-		let selection = table.selectedIdentifiers()
-		output?.markAsIncomplete(with: selection)
+		output?.setState(!enabled, withSelection: selection)
 	}
 
 	@IBAction

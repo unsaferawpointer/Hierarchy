@@ -17,16 +17,10 @@ protocol MenuSupportable {
 	optional func delete(_ sender: NSMenuItem)
 
 	@objc
-	optional func markAsFavorite(_ sender: NSMenuItem)
+	optional func toggleCompleted(_ sender: NSMenuItem)
 
 	@objc
-	optional func unmarkAsFavorite(_ sender: NSMenuItem)
-
-	@objc
-	optional func markAsCompleted(_ sender: NSMenuItem)
-
-	@objc
-	optional func markAsIncomplete(_ sender: NSMenuItem)
+	optional func toggleBookmark(_ sender: NSMenuItem)
 
 	@objc
 	optional func fold(_ sender: NSMenuItem)

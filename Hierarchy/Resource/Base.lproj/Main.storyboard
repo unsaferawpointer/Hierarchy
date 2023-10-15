@@ -194,7 +194,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Editor" id="JPs-hL-Ql4">
                                     <items>
-                                        <menuItem title="New item" keyEquivalent="t" id="eX0-Dy-YjN">
+                                        <menuItem title="New item" keyEquivalent="t" identifier="new" id="eX0-Dy-YjN">
                                             <connections>
                                                 <action selector="createNew:" target="Ady-hI-5gd" id="iTi-VP-Rp1"/>
                                             </connections>
@@ -211,38 +211,21 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wxk-0q-rwu"/>
-                                        <menuItem title="Mark as favorite" id="ive-Jm-628" userLabel="Mark as favorite">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Favorite" keyEquivalent="b" identifier="favorite" id="ive-Jm-628">
                                             <connections>
-                                                <action selector="markAsFavorite:" target="Ady-hI-5gd" id="ZeQ-sG-WQa"/>
+                                                <action selector="toggleBookmark:" target="Ady-hI-5gd" id="Uf1-Bw-NfH"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Unmark as favorite" id="hv3-H0-qRW">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="unmarkAsFavorite:" target="Ady-hI-5gd" id="nhe-mE-XYV"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="waW-aU-cD6"/>
-                                        <menuItem title="Mark as completed" id="J55-CG-wEW">
+                                        <menuItem title="Completed" identifier="completed" id="J55-CG-wEW">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 DQ
 </string>
                                             <connections>
-                                                <action selector="markAsCompleted:" target="Ady-hI-5gd" id="ta5-qX-Xsn"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Mark as incomplete" id="9Fz-kg-3fk">
-                                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="markAsIncomplete:" target="Ady-hI-5gd" id="bRz-GA-Coh"/>
+                                                <action selector="toggleCompleted:" target="Ady-hI-5gd" id="LGh-Uf-Rcg"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="juN-NP-3eG"/>
-                                        <menuItem title="Delete" id="0YN-F1-qZV">
+                                        <menuItem title="Delete" identifier="delete" id="0YN-F1-qZV">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>

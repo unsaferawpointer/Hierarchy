@@ -29,6 +29,10 @@ final class HierarchyTableAdapter: NSObject {
 		}
 	}
 
+	// MARK: - UI-State
+
+	private(set) var selection = Set<UUID>()
+
 	// MARK: - Data
 
 	var snapshot: HierarchySnapshot = .init()
@@ -63,11 +67,11 @@ extension HierarchyTableAdapter {
 			configureRow(with: model, at: row)
 		}
 
-
 		table?.beginUpdates()
 		let (deleted, inserted) = animator.calculate(old: snapshot, new: new)
 		for id in deleted {
 			cache[id] = nil
+			selection.remove(id)
 		}
 		for id in inserted {
 			cache[id] = ListItem(uuid: id)
@@ -103,6 +107,7 @@ extension HierarchyTableAdapter {
 			}
 		}
 		table?.endUpdates()
+		validateSelection()
 	}
 
 	func scroll(to id: UUID) {
@@ -247,6 +252,39 @@ extension HierarchyTableAdapter: NSOutlineViewDelegate {
 		configureView(view, with: model)
 
 		return view
+	}
+
+}
+
+// MARK: - Support selection
+extension HierarchyTableAdapter {
+
+	func outlineView(
+		_ outlineView: NSOutlineView,
+		selectionIndexesForProposedSelection proposedSelectionIndexes: IndexSet
+	) -> IndexSet {
+		selection.removeAll()
+		for index in proposedSelectionIndexes {
+			guard let item = table?.item(atRow: index) as? ListItem else {
+				continue
+			}
+			selection.insert(item.uuid)
+		}
+		return proposedSelectionIndexes
+	}
+
+	func outlineViewItemDidExpand(_ notification: Notification) {
+		validateSelection()
+	}
+
+	func validateSelection() {
+		let rows = selection.compactMap { id -> Int? in
+			guard let item = cache[id], let row = table?.row(forItem: item), row != -1 else {
+				return nil
+			}
+			return row
+		}
+		table?.selectRowIndexes(.init(rows), byExtendingSelection: false)
 	}
 }
 

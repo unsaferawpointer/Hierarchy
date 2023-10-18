@@ -53,6 +53,7 @@
 		4CAD278A2AD0008500C03A91 /* Sequence+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27892AD0008500C03A91 /* Sequence+Extension.swift */; };
 		4CAD278F2AD1BC3E00C03A91 /* HierarchyDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD278E2AD1BC3E00C03A91 /* HierarchyDestination.swift */; };
 		4CAD27932AD9AC8400C03A91 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27922AD9AC8400C03A91 /* MenuItem.swift */; };
+		4CAD27962ADF113B00C03A91 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27952ADF113B00C03A91 /* PlaceholderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		4CAD27892AD0008500C03A91 /* Sequence+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extension.swift"; sourceTree = "<group>"; };
 		4CAD278E2AD1BC3E00C03A91 /* HierarchyDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyDestination.swift; sourceTree = "<group>"; };
 		4CAD27922AD9AC8400C03A91 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		4CAD27952ADF113B00C03A91 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +346,7 @@
 		4C3A367B2AC7359A00B00058 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				4CAD27942ADF108200C03A91 /* Views */,
 				4CAA304E2AC9CEC70007EBA2 /* Menu */,
 				4C3A367C2AC735AA00B00058 /* Extensions */,
 			);
@@ -390,6 +393,14 @@
 				4CAD277E2ACDE78400C03A91 /* DropConfiguration.swift */,
 			);
 			path = TableAdapter;
+			sourceTree = "<group>";
+		};
+		4CAD27942ADF108200C03A91 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CAD27952ADF113B00C03A91 /* PlaceholderView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,6 +572,7 @@
 				4C3A361F2AC497F800B00058 /* DocumentFile.swift in Sources */,
 				4C3A36122AC4956500B00058 /* HierarchyContent.swift in Sources */,
 				4C3A36802AC735DF00B00058 /* NSScrollView+Extension.swift in Sources */,
+				4CAD27962ADF113B00C03A91 /* PlaceholderView.swift in Sources */,
 				4C3A36282AC4AC1500B00058 /* DocumentError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

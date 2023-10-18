@@ -47,6 +47,8 @@ class HierarchyViewController: NSViewController {
 
 	lazy var table = NSOutlineView.inset
 
+	lazy var placeholderView = PlaceholderView(frame: .zero)
+
 	// MARK: - Initialization
 
 	init(configure: (HierarchyViewController) -> Void) {
@@ -63,8 +65,9 @@ class HierarchyViewController: NSViewController {
 	// MARK: - View life-cycle
 
 	override func loadView() {
-		self.view = scrollview
+		self.view = NSView()
 		configureUserInterface()
+		configureConstraints()
 	}
 
 	override func viewDidLoad() {
@@ -82,7 +85,12 @@ class HierarchyViewController: NSViewController {
 extension HierarchyViewController: HierarchyView {
 
 	func display(_ snapshot: HierarchySnapshot) {
+
 		adapter?.apply(snapshot)
+
+		placeholderView.isHidden = !snapshot.identifiers.isEmpty
+		placeholderView.title = "No Items, yet"
+		placeholderView.subtitle = "Add a new element using the plus."
 	}
 
 	func setConfiguration(_ configuration: DropConfiguration) {
@@ -107,7 +115,7 @@ extension HierarchyViewController: HierarchyView {
 }
 
 // MARK: - Helpers
-extension HierarchyViewController {
+private extension HierarchyViewController {
 
 	func configureUserInterface() {
 
@@ -123,6 +131,27 @@ extension HierarchyViewController {
 		table.addTableColumn(column)
 
 		table.menu = makeContextMenu()
+	}
+
+	func configureConstraints() {
+		[scrollview, placeholderView].forEach {
+			view.addSubview($0)
+			$0.translatesAutoresizingMaskIntoConstraints = false
+		}
+
+		NSLayoutConstraint.activate(
+			[
+				scrollview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+				scrollview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+				scrollview.topAnchor.constraint(equalTo: view.topAnchor),
+				scrollview.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+				placeholderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+				placeholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+				placeholderView.topAnchor.constraint(equalTo: view.topAnchor),
+				placeholderView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+			]
+		)
 	}
 
 	func makeContextMenu() -> NSMenu {

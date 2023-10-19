@@ -94,8 +94,8 @@ private extension PlaceholderView {
 				stack.centerYAnchor.constraint(equalTo: centerYAnchor),
 				stack.centerXAnchor.constraint(equalTo: centerXAnchor),
 
-				iconView.heightAnchor.constraint(equalToConstant: 72),
-				iconView.widthAnchor.constraint(equalToConstant: 72)
+				iconView.heightAnchor.constraint(equalToConstant: 86),
+				iconView.widthAnchor.constraint(equalToConstant: 86)
 			]
 		)
 	}

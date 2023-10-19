@@ -1,23 +1,25 @@
 {
   "images" : [
     {
-      "filename" : "ghost.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "filename" : "ghost_light.svg",
+      "idiom" : "universal"
     },
     {
-      "filename" : "ghost 1.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "ghost 2.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "ghost_dark.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
   }
 }

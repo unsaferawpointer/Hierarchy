@@ -131,22 +131,20 @@ private extension HierarchyItemView {
 			checkbox.state = status ? .on : .off
 			imageView.isHidden = true && !isFavorite
 			imageView.image = NSImage(systemSymbolName: "star.fill", accessibilityDescription: nil)
-			imageView.contentTintColor = isFavorite ? .systemYellow : .secondaryLabelColor
 		case .list:
 			checkbox.isHidden = true
 			imageView.isHidden = false
 			imageView.image = isFavorite
 								? NSImage(systemSymbolName: "star.fill", accessibilityDescription: nil)
 								: NSImage(systemSymbolName: "doc.text", accessibilityDescription: nil)
-			imageView.contentTintColor = isFavorite ? .systemYellow : .secondaryLabelColor
 		case .icon(let name):
 			checkbox.isHidden = true
 			imageView.isHidden = false
 			imageView.image = isFavorite
 								? NSImage(systemSymbolName: "star.fill", accessibilityDescription: nil)
 								: NSImage(systemSymbolName: name, accessibilityDescription: nil)
-			imageView.contentTintColor = isFavorite ? .systemYellow : .secondaryLabelColor
 		}
+		imageView.contentTintColor = isFavorite && !status ? .systemYellow : .secondaryLabelColor
 	}
 
 	func configureConstraints() {

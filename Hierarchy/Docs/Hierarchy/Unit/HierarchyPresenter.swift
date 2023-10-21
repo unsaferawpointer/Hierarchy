@@ -77,6 +77,12 @@ extension HierarchyPresenter: HierarchyViewOutput {
 		}
 	}
 
+	func setEstimation(_ value: Int, withSelection selection: [UUID]) {
+		storage.modificate { content in
+			content.setEstimation(value, for: selection)
+		}
+	}
+
 }
 
 extension HierarchyPresenter {
@@ -114,7 +120,8 @@ extension HierarchyPresenter {
 					[
 						"completed" : true,
 						"favorite": true,
-						"delete": true
+						"delete": true,
+						"estimation": entity.items.count == 0
 					]
 			)
 			return HierarchyModel(
@@ -124,6 +131,7 @@ extension HierarchyPresenter {
 				icon: entity.content.iconName,
 				style: entity.items.count > 0 ? .list : .checkbox,
 				isFavorite: entity.options.contains(.favorite), 
+				number: entity.totalCount,
 				menu: menu) { [weak self] newText in
 					guard let self else {
 						return

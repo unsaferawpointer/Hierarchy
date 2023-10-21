@@ -17,6 +17,8 @@ extension MenuBuilder {
 		case favorite
 		case completed
 
+		case setEstimation
+
 		case separator
 	}
 }
@@ -59,6 +61,37 @@ extension MenuBuilder.Item {
 			)
 			item.identifier = .init("completed")
 			return item
+		case .setEstimation:
+			let main = NSMenuItem(
+				title: "Set estimation",
+				action: #selector(MenuSupportable.toggleCompleted(_:)),
+				keyEquivalent: ""
+			)
+			main.identifier = .init("estimation")
+			main.submenu = NSMenu()
+
+			let none = NSMenuItem(
+				title: "None",
+				action: #selector(MenuSupportable.setEstimation(_:)),
+				keyEquivalent: ""
+			)
+			none.identifier = .init("estimation_number")
+			none.tag = 0
+			main.submenu?.addItem(none)
+
+			main.submenu?.addItem(.separator())
+
+			for number in [1, 2, 3, 5, 8, 13, 21, 34, 55] {
+				let item = NSMenuItem(
+					title: "\(number)",
+					action: #selector(MenuSupportable.setEstimation(_:)),
+					keyEquivalent: ""
+				)
+				item.identifier = .init("estimation_number")
+				item.tag = number
+				main.submenu?.addItem(item)
+			}
+			return main
 		}
 	}
 }

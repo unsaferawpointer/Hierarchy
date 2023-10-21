@@ -92,6 +92,15 @@ extension HierarchyContent {
 		}
 	}
 
+	func setEstimation(_ value: Int, for ids: [UUID]) {
+		for id in ids {
+			guard let item = cache[id] else {
+				continue
+			}
+			item.setProperty(\.content.value, to: value, downstream: false)
+		}
+	}
+
 }
 
 // MARK: - Public interface

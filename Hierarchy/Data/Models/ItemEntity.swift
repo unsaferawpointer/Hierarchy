@@ -108,6 +108,15 @@ extension ItemEntity {
 			return entity.effectiveStatus
 		}
 	}
+
+	var totalCount: Int {
+		guard !items.isEmpty else {
+			return content.value
+		}
+		return items.reduce(0) { partialResult, entity in
+			return partialResult + entity.totalCount
+		}
+	}
 }
 
 // MARK: - Public interface

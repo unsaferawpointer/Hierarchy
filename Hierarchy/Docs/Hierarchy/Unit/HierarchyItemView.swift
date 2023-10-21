@@ -41,6 +41,12 @@ final class HierarchyItemView: NSView {
 		}
 	}
 
+	var number: Int = 0 {
+		didSet {
+			updateUserInterface()
+		}
+	}
+
 	var textDidChange: ((String) -> Void)?
 
 	var statusDidChange: ((Bool) -> Void)?
@@ -124,6 +130,9 @@ private extension HierarchyItemView {
 
 		textfield.stringValue = text
 		textfield.textColor = status ? .secondaryLabelColor : .labelColor
+
+		badge.isHidden = number == 0
+		badge.title = "\(number)"
 
 		switch style {
 		case .checkbox:

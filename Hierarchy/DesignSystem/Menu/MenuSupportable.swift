@@ -23,9 +23,6 @@ protocol MenuSupportable {
 	optional func toggleBookmark(_ sender: NSMenuItem)
 
 	@objc
-	optional func fold(_ sender: NSMenuItem)
-
-	@objc
-	optional func unfold(_ sender: NSMenuItem)
+	optional func setEstimation(_ sender: NSMenuItem)
 
 }

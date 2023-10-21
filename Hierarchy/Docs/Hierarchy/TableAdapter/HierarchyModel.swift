@@ -21,6 +21,8 @@ struct HierarchyModel {
 
 	var isFavorite: Bool
 
+	var number: Int
+
 	var menu: MenuItem
 
 	var textDidChange: (String) -> ()
@@ -36,6 +38,7 @@ struct HierarchyModel {
 		icon: String,
 		style: Style = .checkbox,
 		isFavorite: Bool,
+		number: Int,
 		menu: MenuItem,
 		textDidChange: @escaping (String) -> (),
 		statusDidChange: @escaping (Bool) -> ()
@@ -46,6 +49,7 @@ struct HierarchyModel {
 		self.icon = icon
 		self.style = style
 		self.isFavorite = isFavorite
+		self.number = number
 		self.menu = menu
 		self.textDidChange = textDidChange
 		self.statusDidChange = statusDidChange

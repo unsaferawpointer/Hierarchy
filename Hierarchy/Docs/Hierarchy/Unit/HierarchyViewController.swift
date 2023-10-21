@@ -18,6 +18,8 @@ protocol HierarchyViewOutput {
 	func setState(_ flag: Bool, withSelection selection: [UUID])
 
 	func setBookmark(_ flag: Bool, withSelection selection: [UUID])
+
+	func setEstimation(_ value: Int, withSelection selection: [UUID])
 }
 
 protocol HierarchyView: AnyObject {
@@ -164,6 +166,8 @@ private extension HierarchyViewController {
 					.favorite,
 					.completed,
 					.separator,
+					.setEstimation,
+					.separator,
 					.delete
 				]
 		)
@@ -179,7 +183,7 @@ extension HierarchyViewController: NSMenuItemValidation {
 		}
 
 		switch identifier {
-		case "new":
+		case "new", "estimation_number":
 			return true
 		default:
 			break
@@ -221,12 +225,9 @@ extension HierarchyViewController: MenuSupportable {
 	}
 
 	@IBAction
-	func fold(_ sender: NSMenuItem) {
-		// TODO: Handle action
-	}
-
-	@IBAction
-	func unfold(_ sender: NSMenuItem) {
-		// TODO: Handle action
+	func setEstimation(_ sender: NSMenuItem) {
+		let number = sender.tag
+		let selection = table.selectedIdentifiers()
+		output?.setEstimation(number, withSelection: selection)
 	}
 }

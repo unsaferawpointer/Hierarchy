@@ -20,7 +20,7 @@ struct HierarchyMocks {
 				[
 					.init(
 						uuid: .uuid2,
-						content: .init(text: "item 00", isDone: true, iconName: "doc"),
+						content: .init(text: "item 00", isDone: true, iconName: "doc", value: 7),
 						options: .empty
 					)
 				]

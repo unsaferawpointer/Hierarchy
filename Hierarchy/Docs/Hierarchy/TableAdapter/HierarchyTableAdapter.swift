@@ -362,6 +362,7 @@ extension HierarchyTableAdapter {
 		view?.style = model.style
 		view?.status = model.status
 		view?.isFavorite = model.isFavorite
+		view?.number = model.number
 
 		view?.statusDidChange = model.statusDidChange
 		view?.textDidChange = model.textDidChange

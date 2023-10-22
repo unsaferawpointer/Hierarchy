@@ -23,12 +23,6 @@ final class HierarchyItemView: NSView {
 		}
 	}
 
-	var iconName: String = "doc" {
-		didSet {
-			updateUserInterface()
-		}
-	}
-
 	var style: HierarchyModel.Style = .checkbox {
 		didSet {
 			updateUserInterface()
@@ -145,7 +139,7 @@ private extension HierarchyItemView {
 			imageView.isHidden = false
 			imageView.image = isFavorite
 								? NSImage(systemSymbolName: "star.fill", accessibilityDescription: nil)
-								: NSImage(systemSymbolName: "doc.text", accessibilityDescription: nil)
+								: NSImage(systemSymbolName: "doc.text.fill", accessibilityDescription: nil)
 		case .icon(let name):
 			checkbox.isHidden = true
 			imageView.isHidden = false
@@ -153,7 +147,7 @@ private extension HierarchyItemView {
 								? NSImage(systemSymbolName: "star.fill", accessibilityDescription: nil)
 								: NSImage(systemSymbolName: name, accessibilityDescription: nil)
 		}
-		imageView.contentTintColor = isFavorite && !status ? .systemYellow : .secondaryLabelColor
+		imageView.contentTintColor = isFavorite && !status ? .systemYellow : .labelColor
 	}
 
 	func configureConstraints() {

@@ -19,6 +19,8 @@ extension MenuBuilder {
 
 		case setEstimation
 
+		case setIcon
+
 		case separator
 	}
 }
@@ -89,6 +91,46 @@ extension MenuBuilder.Item {
 				)
 				item.identifier = .init("estimation_number")
 				item.tag = number
+				main.submenu?.addItem(item)
+			}
+			return main
+		case .setIcon:
+			let main = NSMenuItem(
+				title: "Set icon",
+				action: #selector(MenuSupportable.toggleCompleted(_:)),
+				keyEquivalent: ""
+			)
+			main.identifier = .init("set_icon")
+			main.submenu = NSMenu()
+
+			let none = NSMenuItem(
+				title: "None",
+				action: #selector(MenuSupportable.setIcon(_:)),
+				keyEquivalent: ""
+			)
+			none.identifier = .init("icon_name")
+			main.submenu?.addItem(none)
+
+			main.submenu?.addItem(.separator())
+
+			for category in IconCategory.categories {
+
+				let item = NSMenuItem()
+				item.submenu = NSMenu()
+				item.title = category.title
+				item.identifier = .init("icon_category")
+
+				for icon in category.icons {
+
+					let iconItem = NSMenuItem()
+					iconItem.identifier = .init("icon_name")
+					iconItem.title = icon
+					iconItem.representedObject = icon
+					iconItem.action = #selector(MenuSupportable.setIcon(_:))
+					iconItem.image = NSImage(systemSymbolName: icon, accessibilityDescription: nil)
+
+					item.submenu?.addItem(iconItem)
+				}
 				main.submenu?.addItem(item)
 			}
 			return main

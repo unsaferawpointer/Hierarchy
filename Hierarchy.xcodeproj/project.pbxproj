@@ -54,6 +54,7 @@
 		4CAD278F2AD1BC3E00C03A91 /* HierarchyDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD278E2AD1BC3E00C03A91 /* HierarchyDestination.swift */; };
 		4CAD27932AD9AC8400C03A91 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27922AD9AC8400C03A91 /* MenuItem.swift */; };
 		4CAD27962ADF113B00C03A91 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27952ADF113B00C03A91 /* PlaceholderView.swift */; };
+		4CAD279A2AE5799500C03A91 /* IconCagetory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27992AE5799500C03A91 /* IconCagetory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		4CAD278E2AD1BC3E00C03A91 /* HierarchyDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyDestination.swift; sourceTree = "<group>"; };
 		4CAD27922AD9AC8400C03A91 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		4CAD27952ADF113B00C03A91 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		4CAD27992AE5799500C03A91 /* IconCagetory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCagetory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +348,7 @@
 		4C3A367B2AC7359A00B00058 /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
+				4CAD27992AE5799500C03A91 /* IconCagetory.swift */,
 				4CAD27942ADF108200C03A91 /* Views */,
 				4CAA304E2AC9CEC70007EBA2 /* Menu */,
 				4C3A367C2AC735AA00B00058 /* Extensions */,
@@ -567,6 +570,7 @@
 				4CAA303C2AC865850007EBA2 /* ItemContent.swift in Sources */,
 				4CAA30542AC9D0450007EBA2 /* MenuBuilder+Item.swift in Sources */,
 				4CAD277C2ACC81E300C03A91 /* HierarchyAssembly.swift in Sources */,
+				4CAD279A2AE5799500C03A91 /* IconCagetory.swift in Sources */,
 				4CAA30382AC861350007EBA2 /* ItemEntity.swift in Sources */,
 				4C3A362A2AC4AC3C00B00058 /* DocumentStorage.swift in Sources */,
 				4C3A361F2AC497F800B00058 /* DocumentFile.swift in Sources */,

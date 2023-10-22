@@ -20,6 +20,8 @@ protocol HierarchyViewOutput {
 	func setBookmark(_ flag: Bool, withSelection selection: [UUID])
 
 	func setEstimation(_ value: Int, withSelection selection: [UUID])
+
+	func setIcon(_ value: String?, withSelection selection: [UUID])
 }
 
 protocol HierarchyView: AnyObject {
@@ -167,6 +169,7 @@ private extension HierarchyViewController {
 					.completed,
 					.separator,
 					.setEstimation,
+					.setIcon,
 					.separator,
 					.delete
 				]
@@ -183,7 +186,10 @@ extension HierarchyViewController: NSMenuItemValidation {
 		}
 
 		switch identifier {
-		case "new", "estimation_number":
+		case "new",
+			 "estimation_number",
+			 "icon_name",
+			 "set_icon":
 			return true
 		default:
 			break
@@ -229,5 +235,12 @@ extension HierarchyViewController: MenuSupportable {
 		let number = sender.tag
 		let selection = table.selectedIdentifiers()
 		output?.setEstimation(number, withSelection: selection)
+	}
+
+	@IBAction
+	func setIcon(_ sender: NSMenuItem) {
+		let iconName = sender.representedObject as? String
+		let selection = table.selectedIdentifiers()
+		output?.setIcon(iconName, withSelection: selection)
 	}
 }

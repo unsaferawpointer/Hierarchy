@@ -13,7 +13,7 @@ struct ItemContent {
 
 	var isDone: Bool
 
-	var iconName: String
+	var iconName: String?
 
 	var value: Int = 0
 }
@@ -38,7 +38,7 @@ extension ItemContent: Decodable {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		let text = try container.decode(String.self, forKey: .text)
 		let isDone = try container.decode(Bool.self, forKey: .isDone)
-		let iconName = try container.decode(String.self, forKey: .iconName)
+		let iconName = try container.decodeIfPresent(String.self, forKey: .iconName)
 		let value = try container.decodeIfPresent(Int.self, forKey: .value) ?? 0
 		self.init(text: text, isDone: isDone, iconName: iconName, value: value)
 	}

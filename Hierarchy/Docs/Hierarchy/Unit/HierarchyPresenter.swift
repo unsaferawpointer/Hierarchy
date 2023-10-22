@@ -83,6 +83,12 @@ extension HierarchyPresenter: HierarchyViewOutput {
 		}
 	}
 
+	func setIcon(_ value: String?, withSelection selection: [UUID]) {
+		storage.modificate { content in
+			content.setIcon(value, for: selection)
+		}
+	}
+
 }
 
 extension HierarchyPresenter {
@@ -124,12 +130,24 @@ extension HierarchyPresenter {
 						"estimation": entity.items.count == 0
 					]
 			)
+
+			let style: HierarchyModel.Style = {
+				if entity.items.count > 0 {
+					if let name = entity.content.iconName {
+						return .icon(name)
+					} else {
+						return .list
+					}
+				} else {
+					return .checkbox
+				}
+			}()
+
 			return HierarchyModel(
 				uuid: entity.uuid,
 				status: entity.effectiveStatus,
 				text: entity.content.text,
-				icon: entity.content.iconName,
-				style: entity.items.count > 0 ? .list : .checkbox,
+				style: style,
 				isFavorite: entity.options.contains(.favorite), 
 				number: entity.totalCount,
 				menu: menu) { [weak self] newText in

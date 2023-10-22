@@ -101,6 +101,15 @@ extension HierarchyContent {
 		}
 	}
 
+	func setIcon(_ value: String?, for ids: [UUID]) {
+		for id in ids {
+			guard let item = cache[id] else {
+				continue
+			}
+			item.setProperty(\.content.iconName, to: value, downstream: false)
+		}
+	}
+
 }
 
 // MARK: - Public interface

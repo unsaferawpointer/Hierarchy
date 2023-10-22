@@ -25,4 +25,7 @@ protocol MenuSupportable {
 	@objc
 	optional func setEstimation(_ sender: NSMenuItem)
 
+	@objc
+	optional func setIcon(_ sender: NSMenuItem)
+
 }

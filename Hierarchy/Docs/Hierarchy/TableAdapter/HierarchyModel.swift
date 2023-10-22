@@ -15,8 +15,6 @@ struct HierarchyModel {
 
 	var text: String
 
-	var icon: String
-
 	var style: Style
 
 	var isFavorite: Bool
@@ -35,7 +33,6 @@ struct HierarchyModel {
 		uuid: UUID = UUID(),
 		status: Bool,
 		text: String,
-		icon: String,
 		style: Style = .checkbox,
 		isFavorite: Bool,
 		number: Int,
@@ -46,7 +43,6 @@ struct HierarchyModel {
 		self.uuid = uuid
 		self.status = status
 		self.text = text
-		self.icon = icon
 		self.style = style
 		self.isFavorite = isFavorite
 		self.number = number

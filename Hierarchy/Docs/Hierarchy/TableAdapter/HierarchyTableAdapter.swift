@@ -358,7 +358,6 @@ extension HierarchyTableAdapter {
 
 	func configureView(_ view: HierarchyItemView?, with model: HierarchyModel) {
 		view?.text = model.text
-		view?.iconName = model.icon
 		view?.style = model.style
 		view?.status = model.status
 		view?.isFavorite = model.isFavorite

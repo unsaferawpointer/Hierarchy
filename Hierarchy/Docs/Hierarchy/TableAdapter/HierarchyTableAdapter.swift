@@ -318,6 +318,10 @@ extension HierarchyTableAdapter {
 		let destination = getDestination(proposedItem: item, proposedChildIndex: index)
 		let identifiers = getIdentifiers(from: info)
 		dropConfiguration?.onDrop?(identifiers, destination)
+
+		NSAnimationContext.runAnimationGroup { context in
+			table?.animator().expandItem(item)
+		}
 		return true
 	}
 }

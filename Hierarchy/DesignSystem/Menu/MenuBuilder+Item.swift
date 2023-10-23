@@ -51,7 +51,7 @@ extension MenuBuilder.Item {
 			let item = NSMenuItem(
 				title: "Favorite",
 				action: #selector(MenuSupportable.toggleBookmark(_:)),
-				keyEquivalent: ""
+				keyEquivalent: "b"
 			)
 			item.identifier = .init("favorite")
 			return item
@@ -59,7 +59,7 @@ extension MenuBuilder.Item {
 			let item = NSMenuItem(
 				title: "Completed",
 				action: #selector(MenuSupportable.toggleCompleted(_:)),
-				keyEquivalent: ""
+				keyEquivalent: "\r"
 			)
 			item.identifier = .init("completed")
 			return item
@@ -75,7 +75,7 @@ extension MenuBuilder.Item {
 			let none = NSMenuItem(
 				title: "None",
 				action: #selector(MenuSupportable.setEstimation(_:)),
-				keyEquivalent: ""
+				keyEquivalent: "0"
 			)
 			none.identifier = .init("estimation_number")
 			none.tag = 0
@@ -83,11 +83,11 @@ extension MenuBuilder.Item {
 
 			main.submenu?.addItem(.separator())
 
-			for number in [1, 2, 3, 5, 8, 13, 21, 34, 55] {
+			for (index, number) in [1, 2, 3, 5, 8, 13, 21, 34, 55].enumerated() {
 				let item = NSMenuItem(
 					title: "\(number)",
 					action: #selector(MenuSupportable.setEstimation(_:)),
-					keyEquivalent: ""
+					keyEquivalent: "\(index + 1)"
 				)
 				item.identifier = .init("estimation_number")
 				item.tag = number

@@ -229,63 +229,53 @@ DQ
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" id="x2W-gf-wTn">
                                                 <items>
-                                                    <menuItem title="None" identifier="estimation_number" id="6U2-HD-Q2d" userLabel="None">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem title="None" keyEquivalent="0" identifier="estimation_number" id="6U2-HD-Q2d" userLabel="None">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="B6x-rq-BfX"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="0Ej-hD-O9k"/>
-                                                    <menuItem title="1" tag="1" identifier="estimation_number" id="dCB-JB-MKe" userLabel="1">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem title="1" tag="1" keyEquivalent="1" identifier="estimation_number" id="dCB-JB-MKe" userLabel="1">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="yjY-zx-KSO"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="2" tag="2" identifier="estimation_number" id="nOQ-X2-fql" userLabel="2">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem title="2" tag="2" keyEquivalent="2" identifier="estimation_number" id="nOQ-X2-fql" userLabel="2">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="dUA-Wc-Iau"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="3" tag="3" identifier="estimation_number" id="s0C-pK-fAq">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem title="3" tag="3" keyEquivalent="3" identifier="estimation_number" id="s0C-pK-fAq">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="JmJ-OH-f7b"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="5" tag="5" identifier="estimation_number" id="n7M-k8-uVM">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem title="5" tag="5" keyEquivalent="4" identifier="estimation_number" id="n7M-k8-uVM">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="No8-xH-cN0"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="8" tag="8" identifier="estimation_number" id="ZYy-qp-4I3">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem title="8" tag="8" keyEquivalent="5" identifier="estimation_number" id="ZYy-qp-4I3">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="I8a-cB-otk"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="13" tag="13" identifier="estimation_number" id="jnA-id-ZNG">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem title="13" tag="13" keyEquivalent="6" identifier="estimation_number" id="jnA-id-ZNG">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="1IS-kA-1PF"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="21" tag="21" identifier="estimation_number" id="0nE-yV-cma">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem title="21" tag="21" keyEquivalent="7" identifier="estimation_number" id="0nE-yV-cma">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="tS2-Og-SWH"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="34" tag="34" identifier="estimation_number" id="dMu-1h-hkS" userLabel="34">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem title="34" tag="34" keyEquivalent="8" identifier="estimation_number" id="dMu-1h-hkS" userLabel="34">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="STB-bN-c6C"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="55" tag="55" identifier="estimation_number" id="xwi-2H-H0F">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem title="55" tag="55" keyEquivalent="9" identifier="estimation_number" id="xwi-2H-H0F">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="YnC-0O-NjX"/>
                                                         </connections>

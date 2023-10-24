@@ -11,39 +11,11 @@ final class HierarchyItemView: NSView {
 
 	static var reuseIdentifier: String = "label"
 
-	var status: Bool = false {
+	var model: HierarchyModel {
 		didSet {
 			updateUserInterface()
 		}
 	}
-
-	var text: String = "" {
-		didSet {
-			updateUserInterface()
-		}
-	}
-
-	var style: HierarchyModel.Style = .checkbox {
-		didSet {
-			updateUserInterface()
-		}
-	}
-
-	var isFavorite: Bool = false {
-		didSet {
-			updateUserInterface()
-		}
-	}
-
-	var number: Int = 0 {
-		didSet {
-			updateUserInterface()
-		}
-	}
-
-	var textDidChange: ((String) -> Void)?
-
-	var statusDidChange: ((Bool) -> Void)?
 
 	// MARK: - UI-Properties
 
@@ -95,7 +67,8 @@ final class HierarchyItemView: NSView {
 
 	// MARK: - Initialization
 
-	init() {
+	init(_ model: HierarchyModel) {
+		self.model = model
 		super.init(frame: .zero)
 		configureConstraints()
 	}
@@ -122,32 +95,18 @@ private extension HierarchyItemView {
 
 	func updateUserInterface() {
 
-		textfield.stringValue = text
-		textfield.textColor = status ? .secondaryLabelColor : .labelColor
+		textfield.text = model.text
+		textfield.textColor = model.status ? .secondaryLabelColor : .labelColor
 
-		badge.isHidden = number == 0
-		badge.title = "\(number)"
+		badge.isHidden = !model.hasBadge
+		badge.title = "\(model.number)"
 
-		switch style {
-		case .checkbox:
-			checkbox.isHidden = false
-			checkbox.state = status ? .on : .off
-			imageView.isHidden = true && !isFavorite
-			imageView.image = NSImage(systemSymbolName: "star.fill", accessibilityDescription: nil)
-		case .list:
-			checkbox.isHidden = true
-			imageView.isHidden = false
-			imageView.image = isFavorite
-								? NSImage(systemSymbolName: "star.fill", accessibilityDescription: nil)
-								: NSImage(systemSymbolName: "doc.text.fill", accessibilityDescription: nil)
-		case .icon(let name):
-			checkbox.isHidden = true
-			imageView.isHidden = false
-			imageView.image = isFavorite
-								? NSImage(systemSymbolName: "star.fill", accessibilityDescription: nil)
-								: NSImage(systemSymbolName: name, accessibilityDescription: nil)
-		}
-		imageView.contentTintColor = isFavorite && !status ? .systemYellow : .labelColor
+		checkbox.isHidden = !model.style.isCheckbox
+		checkbox.state = model.status ? .on : .off
+		imageView.isHidden = !(model.style.hasIcon || model.isFavorite)
+
+		imageView.image = NSImage(systemSymbolName: model.effectiveIcon)
+		imageView.contentTintColor = model.isFavorite && !model.status ? .systemYellow : .labelColor
 	}
 
 	func configureConstraints() {
@@ -175,7 +134,7 @@ extension HierarchyItemView {
 		guard sender === textfield else {
 			return
 		}
-		textDidChange?(sender.stringValue)
+		model.textDidChange(sender.stringValue)
 	}
 
 	@objc
@@ -183,6 +142,6 @@ extension HierarchyItemView {
 		guard sender === checkbox else {
 			return
 		}
-		statusDidChange?(sender.state == .on)
+		model.statusDidChange(sender.state == .on)
 	}
 }

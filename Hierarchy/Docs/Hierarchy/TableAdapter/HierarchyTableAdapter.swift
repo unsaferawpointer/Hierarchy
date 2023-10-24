@@ -245,11 +245,11 @@ extension HierarchyTableAdapter: NSOutlineViewDelegate {
 		let id = NSUserInterfaceItemIdentifier(HierarchyItemView.reuseIdentifier)
 		var view = table?.makeView(withIdentifier: id, owner: self) as? HierarchyItemView
 		if view == nil {
-			view = HierarchyItemView()
+			view = HierarchyItemView(model)
 			view?.identifier = id
 		}
 
-		configureView(view, with: model)
+		view?.model = model
 
 		return view
 	}
@@ -357,18 +357,7 @@ extension HierarchyTableAdapter {
 
 	func configureRow(with model: HierarchyModel, at row: Int) {
 		let view = table?.view(atColumn: 0, row: row, makeIfNecessary: false) as? HierarchyItemView
-		configureView(view, with: model)
-	}
-
-	func configureView(_ view: HierarchyItemView?, with model: HierarchyModel) {
-		view?.text = model.text
-		view?.style = model.style
-		view?.status = model.status
-		view?.isFavorite = model.isFavorite
-		view?.number = model.number
-
-		view?.statusDidChange = model.statusDidChange
-		view?.textDidChange = model.textDidChange
+		view?.model = model
 	}
 }
 

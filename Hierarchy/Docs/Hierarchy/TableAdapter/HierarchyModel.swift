@@ -74,9 +74,44 @@ extension HierarchyModel: Hashable {
 
 extension HierarchyModel {
 
+	var hasBadge: Bool {
+		return number > 0
+	}
+
+	var effectiveIcon: String? {
+		switch style {
+		case .checkbox:
+			return isFavorite ? "star.fill" : nil
+		case .list:
+			return isFavorite ? "star.fill" : "doc.text.fill"
+		case .icon(let name):
+			return isFavorite ? "star.fill" : name
+		}
+	}
+}
+
+extension HierarchyModel {
+
 	enum Style: Equatable {
 		case checkbox
 		case list
 		case icon(_ name: String)
+	}
+}
+
+// MARK: - Computed properties
+extension HierarchyModel.Style {
+
+	var hasIcon: Bool {
+		switch self {
+		case .checkbox:
+			return false
+		default:
+			return true
+		}
+	}
+
+	var isCheckbox: Bool {
+		return self == .checkbox
 	}
 }

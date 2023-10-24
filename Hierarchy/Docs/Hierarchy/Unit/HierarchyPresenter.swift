@@ -119,7 +119,7 @@ extension HierarchyPresenter {
 			let menu = MenuItem(
 				state:
 					[
-						"completed" : entity.content.isDone ? .on : .off,
+						"completed" : entity.effectiveStatus ? .on : .off,
 						"favorite" : entity.isFavorite ? .on : .off
 					],
 				validation:

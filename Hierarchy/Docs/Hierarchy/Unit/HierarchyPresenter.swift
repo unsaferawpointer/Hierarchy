@@ -46,7 +46,7 @@ extension HierarchyPresenter: HierarchyViewOutput {
 
 	func createNew(with selection: [UUID]) {
 		let first = selection.first
-		let itemContent = ItemContent(text: "New item", isDone: false, iconName: "app")
+		let itemContent = ItemContent(text: "New item", isDone: false, iconName: nil)
 		let destination: HierarchyDestination = if let first {
 			.onItem(with: first)
 		} else {

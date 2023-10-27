@@ -38,14 +38,17 @@ final class HierarchyItemView: NSView {
 	}()
 
 	lazy var checkbox: NSButton = {
-		let view = NSButton()
+		let view = NSButton(
+			checkboxWithTitle: "",
+			target: self,
+			action: #selector(checkboxDidChange(_:))
+		)
 		view.title = ""
 		view.allowsMixedState = false
-		view.setButtonType(.switch)
-		view.image = NSImage(systemSymbolName: "app", accessibilityDescription: nil)
-		view.alternateImage = NSImage(systemSymbolName: "checkmark", accessibilityDescription: nil)
-		view.target = self
-		view.action = #selector(checkboxDidChange(_:))
+		view.image = NSImage(symbolName: "checkbox", variableValue: 0.0)
+		view.alternateImage = NSImage(systemSymbolName: "checkmark")?
+			.withSymbolConfiguration(.init(textStyle: .headline))
+		view.contentTintColor = .tertiaryLabelColor
 		return view
 	}()
 
@@ -60,8 +63,8 @@ final class HierarchyItemView: NSView {
 	lazy var container: NSStackView = {
 		let view = NSStackView(views: [checkbox, imageView, textfield, badge])
 		view.orientation = .horizontal
-		view.distribution = .fill
-		view.alignment = .firstBaseline
+		view.distribution = .fillProportionally
+		view.alignment = .lastBaseline
 		return view
 	}()
 
@@ -106,7 +109,7 @@ private extension HierarchyItemView {
 		imageView.isHidden = !(model.style.hasIcon || model.isFavorite)
 
 		imageView.image = NSImage(systemSymbolName: model.effectiveIcon)
-		imageView.contentTintColor = model.isFavorite && !model.status ? .systemYellow : .labelColor
+		imageView.contentTintColor = model.isFavorite && !model.status ? .systemYellow : .textColor
 	}
 
 	func configureConstraints() {

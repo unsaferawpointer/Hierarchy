@@ -28,16 +28,16 @@ extension IconCategory {
 		title: "Objects & Tools",
 		icons:
 			[
-				"folder.fill",
-				"archivebox.fill",
-				"doc.fill",
-				"doc.text.fill",
+				"folder",
+				"archivebox",
+				"doc",
+				"doc.text",
 				"note.text",
-				"book.closed.fill",
-				"creditcard.fill",
-				"hammer.fill",
-				"flask.fill",
-				"cube.fill",
+				"book.closed",
+				"creditcard",
+				"hammer",
+				"flask",
+				"cube",
 				"slider.horizontal.2.square"
 			]
 	)
@@ -46,15 +46,15 @@ extension IconCategory {
 		title: "Sport",
 		icons:
 			[
-				"baseball.fill",
-				"basketball.fill",
-				"football.fill",
-				"tennisball.fill",
-				"volleyball.fill",
-				"skateboard.fill",
-				"skis.fill",
-				"snowboard.fill",
-				"surfboard.fill"
+				"baseball",
+				"basketball",
+				"football",
+				"tennisball",
+				"volleyball",
+				"skateboard",
+				"skis",
+				"snowboard",
+				"surfboard"
 			]
 	)
 
@@ -62,20 +62,20 @@ extension IconCategory {
 		title: "Devices",
 		icons:
 			[
-				"keyboard.fill",
-				"printer.fill",
-				"scanner.fill",
+				"keyboard",
+				"printer",
+				"scanner",
 				"display",
 				"laptopcomputer",
 				"headphones",
-				"av.remote.fill",
-				"tv.fill",
-				"gamecontroller.fill",
-				"camera.fill",
+				"av.remote",
+				"tv",
+				"gamecontroller",
+				"camera",
 				"candybarphone",
 				"smartphone",
-				"simcard.fill",
-				"sdcard.fill"
+				"simcard",
+				"sdcard"
 			]
 	)
 
@@ -83,16 +83,16 @@ extension IconCategory {
 		title: "Health",
 		icons:
 			[
-				"cross.case.fill",
-				"pills.fill",
-				"cross.fill",
-				"flask.fill",
-				"cross.vial.fill",
-				"heart.text.square.fill",
-				"syringe.fill",
-				"medical.thermometer.fill",
-				"microbe.fill",
-				"bandage.fill"
+				"cross.case",
+				"pills",
+				"cross",
+				"flask",
+				"cross.vial",
+				"heart.text.square",
+				"syringe",
+				"medical.thermometer",
+				"microbe",
+				"bandage"
 			]
 	)
 
@@ -100,15 +100,15 @@ extension IconCategory {
 		title: "Everyday life",
 		icons:
 			[
-				"tshirt.fill",
-				"shoe.fill",
-				"comb.fill",
-				"cup.and.saucer.fill",
-				"wineglass.fill",
+				"tshirt",
+				"shoe",
+				"comb",
+				"cup.and.saucer",
+				"wineglass",
 				"fork.knife",
-				"bag.fill",
-				"gym.bag.fill",
-				"suitcase.fill"
+				"bag",
+				"gym.bag",
+				"suitcase"
 			]
 	)
 }

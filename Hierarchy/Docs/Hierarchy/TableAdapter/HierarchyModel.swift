@@ -83,7 +83,7 @@ extension HierarchyModel {
 		case .checkbox:
 			return isFavorite ? "star.fill" : nil
 		case .list:
-			return isFavorite ? "star.fill" : "doc.text.fill"
+			return isFavorite ? "star.fill" : "doc.text"
 		case .icon(let name):
 			return isFavorite ? "star.fill" : name
 		}

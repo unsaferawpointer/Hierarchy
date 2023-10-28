@@ -23,6 +23,8 @@ struct HierarchyModel {
 
 	var menu: MenuItem
 
+	var animateIcon: Bool
+
 	var textDidChange: (String) -> ()
 
 	var statusDidChange: (Bool) -> ()
@@ -37,6 +39,7 @@ struct HierarchyModel {
 		isFavorite: Bool,
 		number: Int,
 		menu: MenuItem,
+		animateIcon: Bool,
 		textDidChange: @escaping (String) -> (),
 		statusDidChange: @escaping (Bool) -> ()
 	) {
@@ -47,6 +50,7 @@ struct HierarchyModel {
 		self.isFavorite = isFavorite
 		self.number = number
 		self.menu = menu
+		self.animateIcon = animateIcon
 		self.textDidChange = textDidChange
 		self.statusDidChange = statusDidChange
 	}

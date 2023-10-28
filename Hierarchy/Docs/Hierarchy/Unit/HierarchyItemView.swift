@@ -13,9 +13,14 @@ final class HierarchyItemView: NSView {
 
 	var model: HierarchyModel {
 		didSet {
-			updateUserInterface()
+			let iconChanged = oldValue.effectiveIcon != model.effectiveIcon
+			updateUserInterface(iconChanged: iconChanged)
 		}
 	}
+
+	// MARK: - Internal state
+
+	var isReady = false
 
 	// MARK: - UI-Properties
 
@@ -85,6 +90,7 @@ final class HierarchyItemView: NSView {
 
 	override func prepareForReuse() {
 		super.prepareForReuse()
+		self.isReady = false
 	}
 
 	override func becomeFirstResponder() -> Bool {
@@ -96,7 +102,7 @@ final class HierarchyItemView: NSView {
 // MARK: - Helpers
 private extension HierarchyItemView {
 
-	func updateUserInterface() {
+	func updateUserInterface(iconChanged: Bool) {
 
 		textfield.text = model.text
 		textfield.textColor = model.status ? .secondaryLabelColor : .labelColor
@@ -106,10 +112,19 @@ private extension HierarchyItemView {
 
 		checkbox.isHidden = !model.style.isCheckbox
 		checkbox.state = model.status ? .on : .off
-		imageView.isHidden = !(model.style.hasIcon || model.isFavorite)
 
+		let isHidden = !(model.style.hasIcon || model.isFavorite)
 		imageView.image = NSImage(systemSymbolName: model.effectiveIcon)
 		imageView.contentTintColor = model.isFavorite && !model.status ? .systemYellow : .textColor
+		imageView.isHidden = isHidden
+
+		if iconChanged && isReady {
+			if #available(macOS 14.0, *) {
+				imageView.addSymbolEffect(.bounce)
+			}
+		}
+
+		self.isReady = true
 	}
 
 	func configureConstraints() {

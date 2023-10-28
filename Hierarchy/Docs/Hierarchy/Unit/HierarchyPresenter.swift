@@ -150,7 +150,8 @@ extension HierarchyPresenter {
 				style: style,
 				isFavorite: entity.options.contains(.favorite), 
 				number: entity.totalCount,
-				menu: menu) { [weak self] newText in
+				menu: menu, 
+				animateIcon: false) { [weak self] newText in
 					guard let self else {
 						return
 					}

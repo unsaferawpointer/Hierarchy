@@ -36,7 +36,6 @@
 		4C3A367A2AC7355F00B00058 /* HierarchyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A36792AC7355F00B00058 /* HierarchyViewController.swift */; };
 		4C3A367E2AC735C800B00058 /* NSOutlineView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A367D2AC735C800B00058 /* NSOutlineView+Extension.swift */; };
 		4C3A36802AC735DF00B00058 /* NSScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A367F2AC735DF00B00058 /* NSScrollView+Extension.swift */; };
-		4CAA30382AC861350007EBA2 /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30372AC861350007EBA2 /* ItemEntity.swift */; };
 		4CAA303A2AC861440007EBA2 /* EntityOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30392AC861440007EBA2 /* EntityOptions.swift */; };
 		4CAA303C2AC865850007EBA2 /* ItemContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA303B2AC865850007EBA2 /* ItemContent.swift */; };
 		4CAA30482AC8B3860007EBA2 /* HierarchyTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAA30472AC8B3860007EBA2 /* HierarchyTableAdapter.swift */; };
@@ -57,6 +56,8 @@
 		4CAD279A2AE5799500C03A91 /* IconCagetory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD27992AE5799500C03A91 /* IconCagetory.swift */; };
 		4CAEF2942AE853D3009BF659 /* NSTextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2932AE853D3009BF659 /* NSTextField+Extension.swift */; };
 		4CAEF2962AE855A2009BF659 /* NSImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2952AE855A2009BF659 /* NSImage+Extension.swift */; };
+		4CAEF29C2AED1390009BF659 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF29B2AED1390009BF659 /* Node.swift */; };
+		4CAEF29E2AEE77B5009BF659 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF29D2AEE77B5009BF659 /* Root.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,7 +112,6 @@
 		4C3A36792AC7355F00B00058 /* HierarchyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyViewController.swift; sourceTree = "<group>"; };
 		4C3A367D2AC735C800B00058 /* NSOutlineView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSOutlineView+Extension.swift"; sourceTree = "<group>"; };
 		4C3A367F2AC735DF00B00058 /* NSScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSScrollView+Extension.swift"; sourceTree = "<group>"; };
-		4CAA30372AC861350007EBA2 /* ItemEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
 		4CAA30392AC861440007EBA2 /* EntityOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityOptions.swift; sourceTree = "<group>"; };
 		4CAA303B2AC865850007EBA2 /* ItemContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemContent.swift; sourceTree = "<group>"; };
 		4CAA30472AC8B3860007EBA2 /* HierarchyTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchyTableAdapter.swift; sourceTree = "<group>"; };
@@ -132,6 +132,8 @@
 		4CAD27992AE5799500C03A91 /* IconCagetory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCagetory.swift; sourceTree = "<group>"; };
 		4CAEF2932AE853D3009BF659 /* NSTextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextField+Extension.swift"; sourceTree = "<group>"; };
 		4CAEF2952AE855A2009BF659 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
+		4CAEF29B2AED1390009BF659 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		4CAEF29D2AEE77B5009BF659 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,7 +261,6 @@
 		4C3A36222AC4984100B00058 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4CAA30372AC861350007EBA2 /* ItemEntity.swift */,
 				4CAA30392AC861440007EBA2 /* EntityOptions.swift */,
 				4CAA303B2AC865850007EBA2 /* ItemContent.swift */,
 			);
@@ -386,6 +387,7 @@
 		4CAD27762ACC359A00C03A91 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4CAEF29A2AED1352009BF659 /* Tree */,
 				4CAD27772ACC35B100C03A91 /* Dictionary+Extension.swift */,
 				4CAD27892AD0008500C03A91 /* Sequence+Extension.swift */,
 			);
@@ -410,6 +412,15 @@
 				4CAD27952ADF113B00C03A91 /* PlaceholderView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		4CAEF29A2AED1352009BF659 /* Tree */ = {
+			isa = PBXGroup;
+			children = (
+				4CAEF29B2AED1390009BF659 /* Node.swift */,
+				4CAEF29D2AEE77B5009BF659 /* Root.swift */,
+			);
+			path = Tree;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -557,6 +568,7 @@
 				4CAEF2962AE855A2009BF659 /* NSImage+Extension.swift in Sources */,
 				4C3A366C2AC7215700B00058 /* HierarchySnapshot.swift in Sources */,
 				4C3A36242AC4AB6D00B00058 /* HierarchyDataProvider.swift in Sources */,
+				4CAEF29E2AEE77B5009BF659 /* Root.swift in Sources */,
 				4CAA30502AC9CED90007EBA2 /* MenuSupportable.swift in Sources */,
 				4C3A36332AC4B5CC00B00058 /* Versioned.swift in Sources */,
 				4C3A367A2AC7355F00B00058 /* HierarchyViewController.swift in Sources */,
@@ -566,6 +578,7 @@
 				4C3A35E12AC48EB500B00058 /* AppDelegate.swift in Sources */,
 				4C3A362C2AC4AC5E00B00058 /* DocumentDataPublisher.swift in Sources */,
 				4C3A35E52AC48EB500B00058 /* HierarchyDocument.swift in Sources */,
+				4CAEF29C2AED1390009BF659 /* Node.swift in Sources */,
 				4CAD278F2AD1BC3E00C03A91 /* HierarchyDestination.swift in Sources */,
 				4CAD278A2AD0008500C03A91 /* Sequence+Extension.swift in Sources */,
 				4CAD27782ACC35B100C03A91 /* Dictionary+Extension.swift in Sources */,
@@ -579,7 +592,6 @@
 				4CAA30542AC9D0450007EBA2 /* MenuBuilder+Item.swift in Sources */,
 				4CAD277C2ACC81E300C03A91 /* HierarchyAssembly.swift in Sources */,
 				4CAD279A2AE5799500C03A91 /* IconCagetory.swift in Sources */,
-				4CAA30382AC861350007EBA2 /* ItemEntity.swift in Sources */,
 				4C3A362A2AC4AC3C00B00058 /* DocumentStorage.swift in Sources */,
 				4C3A361F2AC497F800B00058 /* DocumentFile.swift in Sources */,
 				4C3A36122AC4956500B00058 /* HierarchyContent.swift in Sources */,

@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum HierarchyDestination {
+enum HierarchyDestination<ID> {
 
 	case toRoot
 	case inRoot(atIndex: Int)
-	case onItem(with: UUID)
-	case inItem(with: UUID, atIndex: Int)
+	case onItem(with: ID)
+	case inItem(with: ID, atIndex: Int)
 
-	var id: UUID? {
+	var id: ID? {
 		switch self {
 		case .toRoot, .inRoot:
 			return nil

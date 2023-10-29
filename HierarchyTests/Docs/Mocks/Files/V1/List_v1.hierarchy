@@ -2,37 +2,37 @@
 	"content" : {
 		"hierarchy" : [
 			{
-				"content" : {
+				"value" : {
 					"iconName" : "doc",
 					"isDone" : false,
-					"text" : "item 0"
+					"text" : "item 0",
+					"options" : 2,
+					"uuid" : "DD937754-3463-4B0B-B6DB-9AF14B18B8C0"
 				},
-				"items" : [
+				"children" : [
 					{
-						"content" : {
+						"value" : {
 							"iconName" : "doc",
 							"isDone" : true,
 							"text" : "item 00",
-							"value" : 7
-						},
-						"options" : 1,
-						"uuid" : "BAF077D9-BDD8-40A8-8348-B3BA50145992"
+							"value" : 7,
+							"options" : 1,
+							"uuid" : "BAF077D9-BDD8-40A8-8348-B3BA50145992"
+						}
 					}
-				],
-				"options" : 2,
-				"uuid" : "DD937754-3463-4B0B-B6DB-9AF14B18B8C0"
+				]
 			},
 			{
-				"content" : {
+				"value" : {
 					"iconName" : "doc",
 					"isDone" : false,
-					"text" : "item 1"
-				},
-				"options" : 2,
-				"uuid" : "9A7EB176-7FF3-4C99-B1D0-F25D4125B0CF"
+					"text" : "item 1",
+					"options" : 2,
+					"uuid" : "9A7EB176-7FF3-4C99-B1D0-F25D4125B0CF"
+				}
 			}
 		],
-		"id" : "B93C2453-D274-48B3-A4CB-B4634E9FB41E"
+		"uuid" : "B93C2453-D274-48B3-A4CB-B4634E9FB41E"
 	},
 	"version" : "v1"
 }

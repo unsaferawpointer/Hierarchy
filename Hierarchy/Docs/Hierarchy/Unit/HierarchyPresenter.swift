@@ -46,7 +46,7 @@ extension HierarchyPresenter: HierarchyViewOutput {
 
 	func createNew(with selection: [UUID]) {
 		let first = selection.first
-		let itemContent = ItemContent(text: "New item", isDone: false, iconName: nil)
+		let itemContent = ItemContent(uuid: .init(), text: "New item", isDone: false, iconName: nil, options: [])
 		let destination: HierarchyDestination = if let first {
 			.onItem(with: first)
 		} else {
@@ -114,26 +114,26 @@ extension HierarchyPresenter {
 	}
 
 	func makeSnapshot() -> HierarchySnapshot {
-		let items = storage.state.hierarchy
+		let items = storage.state.hierarchy.nodes
 		return HierarchySnapshot(items) { entity in
 			let menu = MenuItem(
 				state:
 					[
-						"completed" : entity.effectiveStatus ? .on : .off,
-						"favorite" : entity.isFavorite ? .on : .off
+						"completed" : entity.reduce(\.isDone) ? .on : .off,
+						"favorite" : entity.value.isFavorite ? .on : .off
 					],
 				validation:
 					[
 						"completed" : true,
 						"favorite": true,
 						"delete": true,
-						"estimation": entity.items.count == 0
+						"estimation": entity.children.count == 0
 					]
 			)
 
 			let style: HierarchyModel.Style = {
-				if entity.items.count > 0 {
-					if let name = entity.content.iconName {
+				if entity.children.count > 0 {
+					if let name = entity.value.iconName {
 						return .icon(name)
 					} else {
 						return .list
@@ -144,26 +144,26 @@ extension HierarchyPresenter {
 			}()
 
 			return HierarchyModel(
-				uuid: entity.uuid,
-				status: entity.effectiveStatus,
-				text: entity.content.text,
+				uuid: entity.value.uuid,
+				status: entity.reduce(\.isDone),
+				text: entity.value.text,
 				style: style,
-				isFavorite: entity.options.contains(.favorite), 
-				number: entity.totalCount,
-				menu: menu, 
+				isFavorite: entity.value.options.contains(.favorite),
+				number: entity.reduce(\.value),
+				menu: menu,
 				animateIcon: false) { [weak self] newText in
 					guard let self else {
 						return
 					}
 					storage.modificate { content in
-						content.setText(newText, for: entity.uuid)
+						content.setText(newText, for: entity.id)
 					}
 				} statusDidChange: { [weak self] newStatus in
 					guard let self else {
 						return
 					}
 					storage.modificate { content in
-						content.setStatus(newStatus, for: [entity.uuid])
+						content.setStatus(newStatus, for: [entity.id])
 					}
 				}
 		}

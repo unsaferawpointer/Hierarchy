@@ -9,6 +9,8 @@ import Foundation
 
 struct ItemContent {
 
+	var uuid: UUID
+
 	var text: String
 
 	var isDone: Bool
@@ -16,10 +18,9 @@ struct ItemContent {
 	var iconName: String?
 
 	var value: Int = 0
-}
 
-// MARK: - Equatable
-extension ItemContent: Equatable { }
+	var options: EntityOptions
+}
 
 // MARK: - Hashable
 extension ItemContent: Hashable { }
@@ -28,19 +29,23 @@ extension ItemContent: Hashable { }
 extension ItemContent: Decodable {
 
 	enum CodingKeys: CodingKey {
+		case uuid
 		case text
 		case isDone
 		case iconName
 		case value
+		case options
 	}
 
 	init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
+		let uuid = try container.decode(UUID.self, forKey: .uuid)
 		let text = try container.decode(String.self, forKey: .text)
 		let isDone = try container.decode(Bool.self, forKey: .isDone)
 		let iconName = try container.decodeIfPresent(String.self, forKey: .iconName)
 		let value = try container.decodeIfPresent(Int.self, forKey: .value) ?? 0
-		self.init(text: text, isDone: isDone, iconName: iconName, value: value)
+		let options = try container.decode(EntityOptions.self, forKey: .options)
+		self.init(uuid: uuid, text: text, isDone: isDone, iconName: iconName, value: value, options: options)
 	}
 }
 
@@ -49,9 +54,36 @@ extension ItemContent: Encodable {
 
 	func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(uuid, forKey: .uuid)
 		try container.encode(text, forKey: .text)
 		try container.encode(isDone, forKey: .isDone)
 		try container.encode(iconName, forKey: .iconName)
 		try container.encode(value, forKey: .value)
+		try container.encode(options, forKey: .options)
+	}
+}
+
+// MARK: - Identifiable
+extension ItemContent: Identifiable {
+
+	var id: UUID {
+		return uuid
+	}
+}
+
+// MARK: - Computed properties
+extension ItemContent {
+
+	var isFavorite: Bool {
+		get {
+			options.contains(.favorite)
+		}
+		set {
+			if newValue {
+				options.insert(.favorite)
+			} else {
+				options.remove(.favorite)
+			}
+		}
 	}
 }

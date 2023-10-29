@@ -13,7 +13,7 @@ class HierarchyDocument: NSDocument {
 
 	override init() {
 		self.storage = DocumentStorage<HierarchyContent>(
-			initialState: .init(id: .init(), hierarchy: []),
+			initialState: .init(uuid: .init(), hierarchy: .init([])),
 			provider: HierarchyDataProvider()
 		)
 		super.init()

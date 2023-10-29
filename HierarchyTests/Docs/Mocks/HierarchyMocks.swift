@@ -10,25 +10,34 @@ import Foundation
 
 struct HierarchyMocks {
 
-	static let containers: [ItemEntity] =
+	static let containers: [Node<ItemContent>] =
 	[
 		.init(
-			uuid: .uuid1,
-			content: .init(text: "item 0", isDone: false, iconName: "doc"),
-			options: .favorite,
-			items:
+			value: .init(uuid: .uuid1, text: "item 0", isDone: false, iconName: "doc", value: 0, options: .favorite),
+			children:
 				[
 					.init(
-						uuid: .uuid2,
-						content: .init(text: "item 00", isDone: true, iconName: "doc", value: 7),
-						options: .empty
+						value: .init(
+							uuid: .uuid2,
+							text: "item 00",
+							isDone: true, 
+							iconName: "doc",
+							value: 7,
+							options: .empty
+						),
+						children: []
 					)
 				]
 		),
 		.init(
-			uuid: .uuid3,
-			content: .init(text: "item 1", isDone: false, iconName: "doc"),
-			options: .favorite
+			value: .init(
+				uuid: .uuid3,
+				text: "item 1",
+				isDone: false,
+				iconName: "doc",
+				value: 0,
+				options: .favorite
+			)
 		)
 	]
 }

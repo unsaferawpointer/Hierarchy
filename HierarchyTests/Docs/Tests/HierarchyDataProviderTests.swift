@@ -38,7 +38,7 @@ extension HierarchyDataProviderTests {
 	func test_read_whenFileContainsMinimumRequiredProperties() throws {
 		// Arrange
 		let data = try loadFile(withName: "List_v1_minimum")
-		let expected = HierarchyContent(id: try XCTUnwrap(.uuid0), hierarchy: [])
+		let expected = HierarchyContent(uuid: try XCTUnwrap(.uuid0), hierarchy: [])
 
 		// Act
 		let result = try sut.read(from: data, ofType: "com.paperwave.hierarchy")
@@ -105,6 +105,6 @@ private extension HierarchyDataProviderTests {
 private extension HierarchyDataProviderTests {
 
 	var expected: HierarchyContent {
-		return .init(id: .uuid0, hierarchy: HierarchyMocks.containers)
+		return .init(uuid: .uuid0, hierarchy: HierarchyMocks.containers)
 	}
 }

@@ -329,7 +329,7 @@ extension HierarchyTableAdapter {
 // MARK: - Helpers
 extension HierarchyTableAdapter {
 
-	func getDestination(proposedItem item: Any?, proposedChildIndex index: Int) -> HierarchyDestination {
+	func getDestination(proposedItem item: Any?, proposedChildIndex index: Int) -> HierarchyDestination<UUID> {
 		switch (item, index) {
 		case (.none, -1):
 			return .toRoot

@@ -78,8 +78,8 @@ extension HierarchyContent {
 
 extension HierarchyContent {
 
-	func insertItems(with contents: [ItemContent], with id: UUID, to destination: HierarchyDestination<UUID>) {
-		hierarchy.insertItems(with: contents, with: id, to: destination)
+	func insertItems(with contents: [ItemContent], to destination: HierarchyDestination<UUID>) {
+		hierarchy.insertItems(with: contents, to: destination)
 	}
 
 	func deleteItems(_ ids: [UUID]) {

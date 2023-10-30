@@ -46,16 +46,16 @@ extension HierarchyPresenter: HierarchyViewOutput {
 
 	func createNew(with selection: [UUID]) {
 		let first = selection.first
-		let itemContent = ItemContent(uuid: .init(), text: "New item", isDone: false, iconName: nil, options: [])
+		let id = UUID()
+		let itemContent = ItemContent(uuid: id, text: "New item", isDone: false, iconName: nil, options: [])
 		let destination: HierarchyDestination = if let first {
 			.onItem(with: first)
 		} else {
 			.toRoot
 		}
-		let id = UUID()
 
 		storage.modificate { content in
-			content.insertItems(with: [itemContent], with: id, to: destination)
+			content.insertItems(with: [itemContent], to: destination)
 		}
 		view?.scroll(to: id)
 		if let first {

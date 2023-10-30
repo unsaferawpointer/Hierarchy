@@ -44,7 +44,7 @@ extension Root {
 // MARK: - Insertion
 extension Root {
 
-	func insertItems(with contents: [Value], with id: ID, to destination: HierarchyDestination<ID>) {
+	func insertItems(with contents: [Value], to destination: HierarchyDestination<ID>) {
 		let items = contents.map { Node(value: $0) }
 		switch destination {
 		case .toRoot:

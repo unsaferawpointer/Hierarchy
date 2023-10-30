@@ -123,7 +123,6 @@ private extension HierarchyItemView {
 				imageView.addSymbolEffect(.bounce)
 			}
 		}
-
 		self.isReady = true
 	}
 

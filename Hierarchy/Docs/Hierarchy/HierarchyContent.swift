@@ -67,7 +67,7 @@ extension HierarchyContent {
 	}
 
 	func setEstimation(_ value: Int, for ids: [UUID]) {
-		hierarchy.setProperty(\.value, to: value, for: ids, downstream: false)
+		hierarchy.setProperty(\.count, to: value, for: ids, downstream: false)
 	}
 
 	func setIcon(_ value: String?, for ids: [UUID]) {

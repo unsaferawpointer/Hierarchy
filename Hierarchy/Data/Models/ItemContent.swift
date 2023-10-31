@@ -17,7 +17,7 @@ struct ItemContent {
 
 	var iconName: String?
 
-	var value: Int = 0
+	var count: Int
 
 	var options: EntityOptions
 }
@@ -33,7 +33,7 @@ extension ItemContent: Decodable {
 		case text
 		case isDone
 		case iconName
-		case value
+		case count
 		case options
 	}
 
@@ -43,9 +43,16 @@ extension ItemContent: Decodable {
 		let text = try container.decode(String.self, forKey: .text)
 		let isDone = try container.decode(Bool.self, forKey: .isDone)
 		let iconName = try container.decodeIfPresent(String.self, forKey: .iconName)
-		let value = try container.decodeIfPresent(Int.self, forKey: .value) ?? 0
+		let count = try container.decodeIfPresent(Int.self, forKey: .count) ?? 0
 		let options = try container.decode(EntityOptions.self, forKey: .options)
-		self.init(uuid: uuid, text: text, isDone: isDone, iconName: iconName, value: value, options: options)
+		self.init(
+			uuid: uuid,
+			text: text,
+			isDone: isDone,
+			iconName: iconName,
+			count: count,
+			options: options
+		)
 	}
 }
 
@@ -58,7 +65,7 @@ extension ItemContent: Encodable {
 		try container.encode(text, forKey: .text)
 		try container.encode(isDone, forKey: .isDone)
 		try container.encode(iconName, forKey: .iconName)
-		try container.encode(value, forKey: .value)
+		try container.encode(count, forKey: .count)
 		try container.encode(options, forKey: .options)
 	}
 }

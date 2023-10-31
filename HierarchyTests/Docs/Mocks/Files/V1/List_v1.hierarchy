@@ -15,7 +15,7 @@
 							"iconName" : "doc",
 							"isDone" : true,
 							"text" : "item 00",
-							"value" : 7,
+							"count" : 7,
 							"options" : 1,
 							"uuid" : "BAF077D9-BDD8-40A8-8348-B3BA50145992"
 						}

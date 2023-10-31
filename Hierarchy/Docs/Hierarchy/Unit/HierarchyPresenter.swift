@@ -47,7 +47,7 @@ extension HierarchyPresenter: HierarchyViewOutput {
 	func createNew(with selection: [UUID]) {
 		let first = selection.first
 		let id = UUID()
-		let itemContent = ItemContent(uuid: id, text: "New item", isDone: false, iconName: nil, options: [])
+		let itemContent = ItemContent(uuid: id, text: "New item", isDone: false, iconName: nil, count: 0, options: [])
 		let destination: HierarchyDestination = if let first {
 			.onItem(with: first)
 		} else {
@@ -149,7 +149,7 @@ extension HierarchyPresenter {
 				text: entity.value.text,
 				style: style,
 				isFavorite: entity.value.options.contains(.favorite),
-				number: entity.reduce(\.value),
+				number: entity.reduce(\.count),
 				menu: menu,
 				animateIcon: false) { [weak self] newText in
 					guard let self else {

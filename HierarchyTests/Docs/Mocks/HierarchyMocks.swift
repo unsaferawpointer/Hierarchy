@@ -13,7 +13,7 @@ struct HierarchyMocks {
 	static let containers: [Node<ItemContent>] =
 	[
 		.init(
-			value: .init(uuid: .uuid1, text: "item 0", isDone: false, iconName: "doc", value: 0, options: .favorite),
+			value: .init(uuid: .uuid1, text: "item 0", isDone: false, iconName: "doc", count: 0, options: .favorite),
 			children:
 				[
 					.init(
@@ -22,7 +22,7 @@ struct HierarchyMocks {
 							text: "item 00",
 							isDone: true, 
 							iconName: "doc",
-							value: 7,
+							count: 7,
 							options: .empty
 						),
 						children: []
@@ -35,7 +35,7 @@ struct HierarchyMocks {
 				text: "item 1",
 				isDone: false,
 				iconName: "doc",
-				value: 0,
+				count: 0,
 				options: .favorite
 			)
 		)

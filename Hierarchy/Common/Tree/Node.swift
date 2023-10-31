@@ -132,12 +132,16 @@ extension Node {
 extension Node: Equatable where Value: Equatable {
 
 	static func == (lhs: Node<Value>, rhs: Node<Value>) -> Bool {
-		return lhs.value == rhs.value
+		return lhs.value == rhs.value && lhs.children == rhs.children
 	}
 }
 
 // MARK: - Hashable
 extension Node: Hashable where Value: Hashable {
+
+	static func == (lhs: Node<Value>, rhs: Node<Value>) -> Bool {
+		return lhs.value == rhs.value
+	}
 
 	func hash(into hasher: inout Hasher) {
 		hasher.combine(id)

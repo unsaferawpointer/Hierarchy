@@ -9,17 +9,16 @@ import Cocoa
 
 class HierarchyDocument: NSDocument {
 
-	var storage: DocumentStorage<HierarchyContent>
+	lazy var storage: DocumentStorage<HierarchyContent> = {
+		return DocumentStorage<HierarchyContent>(
+			initialState: .empty,
+			provider: HierarchyDataProvider(), 
+			undoManager: undoManager
+		)
+	}()
 
 	override init() {
-		self.storage = DocumentStorage<HierarchyContent>(
-			initialState: .init(uuid: .init(), hierarchy: .init([])),
-			provider: HierarchyDataProvider()
-		)
 		super.init()
-		storage.addObservation(for: self) { [weak self] _, content in
-			self?.updateChangeCount(.changeDone)
-		}
 	}
 
 	override class var autosavesInPlace: Bool {

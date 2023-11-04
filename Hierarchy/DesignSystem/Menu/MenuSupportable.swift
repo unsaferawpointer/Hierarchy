@@ -28,4 +28,10 @@ protocol MenuSupportable {
 	@objc
 	optional func setIcon(_ sender: NSMenuItem)
 
+	@objc
+	optional func undo(_ sender: NSMenuItem)
+
+	@objc
+	optional func redo(_ sender: NSMenuItem)
+
 }

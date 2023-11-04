@@ -17,4 +17,8 @@ protocol ContentProvider<Content> {
 
 	/// - Returns content from data
 	func read(from data: Data, ofType typeName: String) throws -> Content
+
+	func data(of content: Content) throws -> Data
+
+	func read(from data: Data) throws -> Content
 }

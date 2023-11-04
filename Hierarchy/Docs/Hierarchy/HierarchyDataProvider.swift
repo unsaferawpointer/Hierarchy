@@ -40,6 +40,20 @@ extension HierarchyDataProvider: ContentProvider {
 			throw DocumentError.unexpectedFormat
 		}
 	}
+
+	func data(of content: HierarchyContent) throws -> Data {
+		let encoder = JSONEncoder()
+		return try encoder.encode(content)
+	}
+
+	func read(from data: Data) throws -> HierarchyContent {
+		let decoder = JSONDecoder()
+
+		guard let content = try? decoder.decode(Content.self, from: data) else {
+			throw DocumentError.unexpectedFormat
+		}
+		return content
+	}
 }
 
 // MARK: - Helpers

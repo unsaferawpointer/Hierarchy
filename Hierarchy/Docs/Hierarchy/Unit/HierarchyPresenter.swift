@@ -89,6 +89,22 @@ extension HierarchyPresenter: HierarchyViewOutput {
 		}
 	}
 
+	func canUndo() -> Bool {
+		storage.canUndo()
+	}
+
+	func canRedo() -> Bool {
+		storage.canRedo()
+	}
+
+	func redo() {
+		storage.redo()
+	}
+
+	func undo() {
+		storage.undo()
+	}
+
 }
 
 extension HierarchyPresenter {

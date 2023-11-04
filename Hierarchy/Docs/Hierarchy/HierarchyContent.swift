@@ -15,7 +15,7 @@ final class HierarchyContent {
 
 	// MARK: - Initialization
 
-	init(uuid: UUID, hierarchy: [Node<ItemContent>]) {
+	init(uuid: UUID, hierarchy: [Node<ItemContent>] = []) {
 		self.uuid = uuid
 		self.hierarchy = Root(hierarchy: hierarchy)
 	}
@@ -92,5 +92,13 @@ extension HierarchyContent {
 
 	func validateMoving(_ ids: [UUID], to destination: HierarchyDestination<UUID>) -> Bool {
 		return hierarchy.validateMoving(ids, to: destination)
+	}
+}
+
+// MARK: Values by-default
+extension HierarchyContent {
+
+	static var empty: HierarchyContent {
+		return HierarchyContent(uuid: .init())
 	}
 }

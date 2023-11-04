@@ -22,6 +22,14 @@ protocol HierarchyViewOutput {
 	func setEstimation(_ value: Int, withSelection selection: [UUID])
 
 	func setIcon(_ value: String?, withSelection selection: [UUID])
+
+	func canUndo() -> Bool
+
+	func canRedo() -> Bool
+
+	func redo()
+
+	func undo()
 }
 
 protocol HierarchyView: AnyObject {
@@ -186,6 +194,10 @@ extension HierarchyViewController: NSMenuItemValidation {
 		}
 
 		switch identifier {
+		case "redo":
+			return output?.canRedo() ?? false
+		case "undo":
+			return output?.canUndo() ?? false
 		case "new",
 			 "estimation_number",
 			 "icon_name",
@@ -242,5 +254,15 @@ extension HierarchyViewController: MenuSupportable {
 		let iconName = sender.representedObject as? String
 		let selection = table.selectedIdentifiers()
 		output?.setIcon(iconName, withSelection: selection)
+	}
+
+	@IBAction
+	func undo(_ sender: NSMenuItem) {
+		output?.undo()
+	}
+
+	@IBAction
+	func redo(_ sender: NSMenuItem) {
+		output?.redo()
 	}
 }

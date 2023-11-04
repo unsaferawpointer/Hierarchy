@@ -15,6 +15,10 @@ final class DocumentStorage<State: AnyObject> {
 
 	private (set) var state: State
 
+	// MARK: - Undo Manager
+
+	private (set) var undoManager: UndoManager?
+
 	// MARK: - Initialization
 
 	/// Basic initialization
@@ -22,9 +26,11 @@ final class DocumentStorage<State: AnyObject> {
 	/// - Parameters:
 	///    - initialState: Initial state
 	///    - provider: Document file data provider
-	init(initialState: State, provider: any ContentProvider<State>) {
+	///    - undoManager: Document undo manager
+	init(initialState: State, provider: any ContentProvider<State>, undoManager: UndoManager?) {
 		self.state = initialState
 		self.provider = provider
+		self.undoManager = undoManager
 	}
 }
 
@@ -32,8 +38,7 @@ final class DocumentStorage<State: AnyObject> {
 extension DocumentStorage: DocumentDataPublisher {
 
 	func modificate(_ block: (State) -> Void) {
-		block(state)
-		observations = observations.filter { $0(state) }
+		performOperation(block)
 	}
 
 	func addObservation<O: AnyObject>(
@@ -67,5 +72,53 @@ extension DocumentStorage: DocumentDataRepresentation {
 	func read(from data: Data, ofType typeName: String) throws {
 		self.state = try provider.read(from: data, ofType: typeName)
 		observations = observations.filter { $0(state) }
+		undoManager?.removeAllActions()
+	}
+}
+
+// MARK: - Undo manager support
+extension DocumentStorage {
+
+	func canRedo() -> Bool {
+		return undoManager?.canRedo ?? true
+	}
+
+	func redo() {
+		undoManager?.redo()
+	}
+
+	func canUndo() -> Bool {
+		return undoManager?.canUndo ?? false
+	}
+
+	func undo() {
+		undoManager?.undo()
+	}
+}
+
+// MARK: - Helpers
+private extension DocumentStorage {
+
+	func performOperation(with newData: Data, oldData: Data, oppositeOperation: Bool) {
+		undoManager?.registerUndo(withTarget: self) { [weak self] target in
+			self?.performOperation(with: oldData, oldData: newData, oppositeOperation: true)
+		}
+		if oppositeOperation {
+			guard let content = try? provider.read(from: newData) else {
+				return
+			}
+			self.state = content
+		}
+		observations = observations.filter { $0(state) }
+	}
+
+	func performOperation(_ block: (State) -> Void) {
+		let oldData = try? provider.data(of: state)
+		block(state)
+		let newData = try? provider.data(of: state)
+		guard let oldData, let newData else {
+			return
+		}
+		performOperation(with: newData, oldData: oldData, oppositeOperation: false)
 	}
 }

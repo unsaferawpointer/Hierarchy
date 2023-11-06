@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Root<Value: Identifiable> where Value: Hashable {
+final class Root<Value: NodeValue> {
 
 	typealias ID = Value.ID
 
@@ -21,11 +21,7 @@ final class Root<Value: Identifiable> where Value: Hashable {
 
 	init(hierarchy: [Node<Value>]) {
 		self.nodes = hierarchy
-		hierarchy.forEach { item in
-			item.enumerate {
-				cache[$0.id] = $0
-			}
-		}
+		storeInCache(hierarchy)
 	}
 }
 
@@ -41,11 +37,27 @@ extension Root {
 	}
 }
 
+// MARK: - Helpers
+private extension Root {
+
+	func storeInCache(_ items: [Node<Value>]) {
+		for item in items {
+			item.enumerate {
+				if cache[$0.id] != nil {
+					$0.generateIdentifier()
+				}
+				cache[$0.id] = $0
+			}
+		}
+	}
+}
+
 // MARK: - Insertion
 extension Root {
 
 	func insertItems(with contents: [Value], to destination: HierarchyDestination<ID>) {
 		let items = contents.map { Node(value: $0) }
+		storeInCache(items)
 		switch destination {
 		case .toRoot:
 			nodes.append(contentsOf: items)
@@ -61,9 +73,6 @@ extension Root {
 				return
 			}
 			item.insertItems(with: items, to: index)
-		}
-		items.forEach { item in
-			cache[item.id] = item
 		}
 	}
 }

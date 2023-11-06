@@ -58,6 +58,7 @@
 		4CAEF2962AE855A2009BF659 /* NSImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF2952AE855A2009BF659 /* NSImage+Extension.swift */; };
 		4CAEF29C2AED1390009BF659 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF29B2AED1390009BF659 /* Node.swift */; };
 		4CAEF29E2AEE77B5009BF659 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF29D2AEE77B5009BF659 /* Root.swift */; };
+		4CEEBD3D2AF921F800A6FB07 /* NodeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEEBD3C2AF921F800A6FB07 /* NodeValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,7 @@
 		4CAEF2952AE855A2009BF659 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
 		4CAEF29B2AED1390009BF659 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		4CAEF29D2AEE77B5009BF659 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
+		4CEEBD3C2AF921F800A6FB07 /* NodeValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,6 +421,7 @@
 			children = (
 				4CAEF29B2AED1390009BF659 /* Node.swift */,
 				4CAEF29D2AEE77B5009BF659 /* Root.swift */,
+				4CEEBD3C2AF921F800A6FB07 /* NodeValue.swift */,
 			);
 			path = Tree;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				4CAD278F2AD1BC3E00C03A91 /* HierarchyDestination.swift in Sources */,
 				4CAD278A2AD0008500C03A91 /* Sequence+Extension.swift in Sources */,
 				4CAD27782ACC35B100C03A91 /* Dictionary+Extension.swift in Sources */,
+				4CEEBD3D2AF921F800A6FB07 /* NodeValue.swift in Sources */,
 				4CAEF2942AE853D3009BF659 /* NSTextField+Extension.swift in Sources */,
 				4C3A36262AC4ABD800B00058 /* ContentProvider.swift in Sources */,
 				4CAD27752ACAA0B600C03A91 /* HierarchyPresenter.swift in Sources */,

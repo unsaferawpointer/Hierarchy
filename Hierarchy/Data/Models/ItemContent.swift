@@ -70,11 +70,15 @@ extension ItemContent: Encodable {
 	}
 }
 
-// MARK: - Identifiable
-extension ItemContent: Identifiable {
+// MARK: - NodeValue
+extension ItemContent: NodeValue {
 
 	var id: UUID {
 		return uuid
+	}
+
+	mutating func generateIdentifier() {
+		self.uuid = UUID()
 	}
 }
 

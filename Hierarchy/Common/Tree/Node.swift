@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Node<Value: Identifiable> {
+final class Node<Value: NodeValue> {
 
 	typealias ID = Value.ID
 
@@ -43,14 +43,19 @@ private extension Node {
 }
 
 // MARK: - Identifiable
-extension Node: Identifiable where Value: Identifiable {
+extension Node: Identifiable {
 
 	var id: Value.ID {
 		return value.id
 	}
 }
 
+// MARK: - Public interface
 extension Node {
+
+	func generateIdentifier() {
+		value.generateIdentifier()
+	}
 
 	func enumerateBackwards(_ block: (Node) -> Void) {
 		block(self)
@@ -128,19 +133,11 @@ extension Node {
 	}
 }
 
-// MARK: - Equatable
-extension Node: Equatable where Value: Equatable {
-
-	static func == (lhs: Node<Value>, rhs: Node<Value>) -> Bool {
-		return lhs.value == rhs.value && lhs.children == rhs.children
-	}
-}
-
 // MARK: - Hashable
-extension Node: Hashable where Value: Hashable {
+extension Node: Hashable {
 
 	static func == (lhs: Node<Value>, rhs: Node<Value>) -> Bool {
-		return lhs.value == rhs.value
+		return lhs.id == rhs.id
 	}
 
 	func hash(into hasher: inout Hasher) {

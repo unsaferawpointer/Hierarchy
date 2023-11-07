@@ -135,15 +135,15 @@ extension HierarchyPresenter {
 			let menu = MenuItem(
 				state:
 					[
-						"completed" : entity.reduce(\.isDone) ? .on : .off,
-						"favorite" : entity.value.isFavorite ? .on : .off
+						"set_status_menu_item" : entity.reduce(\.isDone) ? .on : .off,
+						"bookmark_menu_item" : entity.value.isFavorite ? .on : .off
 					],
 				validation:
 					[
-						"completed" : true,
-						"favorite": true,
-						"delete": true,
-						"estimation": entity.children.count == 0
+						"set_status_menu_item" : true,
+						"bookmark_menu_item": true,
+						"delete_menu_item": true,
+						"set_estimation_menu_item": entity.children.count == 0
 					]
 			)
 

@@ -123,12 +123,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Edit" id="W48-6f-4Dl">
                                     <items>
-                                        <menuItem title="Undo" keyEquivalent="z" identifier="undo" id="dRJ-4n-Yzg">
+                                        <menuItem title="Undo" keyEquivalent="z" identifier="undo_menu_item" id="dRJ-4n-Yzg">
                                             <connections>
                                                 <action selector="undo:" target="Ady-hI-5gd" id="tpZ-lI-Aio"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Redo" keyEquivalent="Z" identifier="redo" id="6dh-zS-Vam">
+                                        <menuItem title="Redo" keyEquivalent="Z" identifier="redo_menu_item" id="6dh-zS-Vam">
                                             <connections>
                                                 <action selector="redo:" target="Ady-hI-5gd" id="Xmd-Ox-jHQ"/>
                                             </connections>
@@ -194,29 +194,31 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Editor" id="JPs-hL-Ql4">
                                     <items>
-                                        <menuItem title="New item" keyEquivalent="t" identifier="new" id="eX0-Dy-YjN">
+                                        <menuItem title="New item" keyEquivalent="t" identifier="new_menu_item" id="eX0-Dy-YjN">
                                             <connections>
                                                 <action selector="createNew:" target="Ady-hI-5gd" id="iTi-VP-Rp1"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="zy7-OT-5At"/>
                                         <menuItem title="Fold" keyEquivalent="" id="UrB-X3-k21" userLabel="Fold">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="fold:" target="Ady-hI-5gd" id="ohU-4s-bUq"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Unfold" keyEquivalent="" id="pm0-a3-KIs" userLabel="Unfold">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="unfold:" target="Ady-hI-5gd" id="Aw5-oY-SOZ"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wxk-0q-rwu"/>
-                                        <menuItem title="Favorite" keyEquivalent="b" identifier="favorite" id="ive-Jm-628">
+                                        <menuItem title="Bookmark" keyEquivalent="b" identifier="bookmark_menu_item" id="ive-Jm-628">
                                             <connections>
                                                 <action selector="toggleBookmark:" target="Ady-hI-5gd" id="Uf1-Bw-NfH"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Completed" identifier="completed" id="J55-CG-wEW">
+                                        <menuItem title="Completed" identifier="set_status_menu_item" id="J55-CG-wEW">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 DQ
 </string>
@@ -229,53 +231,53 @@ DQ
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" id="x2W-gf-wTn">
                                                 <items>
-                                                    <menuItem title="None" keyEquivalent="0" identifier="estimation_number" id="6U2-HD-Q2d" userLabel="None">
+                                                    <menuItem title="None" keyEquivalent="0" identifier="set_estimation_menu_item" id="6U2-HD-Q2d" userLabel="None">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="B6x-rq-BfX"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="0Ej-hD-O9k"/>
-                                                    <menuItem title="1" tag="1" keyEquivalent="1" identifier="estimation_number" id="dCB-JB-MKe" userLabel="1">
+                                                    <menuItem title="1" tag="1" keyEquivalent="1" identifier="set_estimation_menu_item" id="dCB-JB-MKe" userLabel="1">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="yjY-zx-KSO"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="2" tag="2" keyEquivalent="2" identifier="estimation_number" id="nOQ-X2-fql" userLabel="2">
+                                                    <menuItem title="2" tag="2" keyEquivalent="2" identifier="set_estimation_menu_item" id="nOQ-X2-fql" userLabel="2">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="dUA-Wc-Iau"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="3" tag="3" keyEquivalent="3" identifier="estimation_number" id="s0C-pK-fAq">
+                                                    <menuItem title="3" tag="3" keyEquivalent="3" identifier="set_estimation_menu_item" id="s0C-pK-fAq">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="JmJ-OH-f7b"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="5" tag="5" keyEquivalent="4" identifier="estimation_number" id="n7M-k8-uVM">
+                                                    <menuItem title="5" tag="5" keyEquivalent="4" identifier="set_estimation_menu_item" id="n7M-k8-uVM">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="No8-xH-cN0"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="8" tag="8" keyEquivalent="5" identifier="estimation_number" id="ZYy-qp-4I3">
+                                                    <menuItem title="8" tag="8" keyEquivalent="5" identifier="set_estimation_menu_item" id="ZYy-qp-4I3">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="I8a-cB-otk"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="13" tag="13" keyEquivalent="6" identifier="estimation_number" id="jnA-id-ZNG">
+                                                    <menuItem title="13" tag="13" keyEquivalent="6" identifier="set_estimation_menu_item" id="jnA-id-ZNG">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="1IS-kA-1PF"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="21" tag="21" keyEquivalent="7" identifier="estimation_number" id="0nE-yV-cma">
+                                                    <menuItem title="21" tag="21" keyEquivalent="7" identifier="set_estimation_menu_item" id="0nE-yV-cma">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="tS2-Og-SWH"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="34" tag="34" keyEquivalent="8" identifier="estimation_number" id="dMu-1h-hkS" userLabel="34">
+                                                    <menuItem title="34" tag="34" keyEquivalent="8" identifier="set_estimation_menu_item" id="dMu-1h-hkS" userLabel="34">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="STB-bN-c6C"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="55" tag="55" keyEquivalent="9" identifier="estimation_number" id="xwi-2H-H0F">
+                                                    <menuItem title="55" tag="55" keyEquivalent="9" identifier="set_estimation_menu_item" id="xwi-2H-H0F">
                                                         <connections>
                                                             <action selector="setEstimation:" target="Ady-hI-5gd" id="YnC-0O-NjX"/>
                                                         </connections>
@@ -284,7 +286,7 @@ DQ
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="juN-NP-3eG"/>
-                                        <menuItem title="Delete" identifier="delete" id="0YN-F1-qZV">
+                                        <menuItem title="Delete" identifier="delete_menu_item" id="0YN-F1-qZV">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 CA
 </string>

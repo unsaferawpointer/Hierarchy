@@ -35,7 +35,7 @@ extension MenuBuilder.Item {
 				action: #selector(MenuSupportable.createNew),
 				keyEquivalent: "n"
 			)
-			item.identifier = .init("new")
+			item.identifier = .newMenuItem
 			return item
 		case .delete:
 			let item = NSMenuItem(
@@ -43,17 +43,17 @@ extension MenuBuilder.Item {
 				action: #selector(MenuSupportable.delete),
 				keyEquivalent: "\u{0008}"
 			)
-			item.identifier = .init("delete")
+			item.identifier = .deleteMenuItem
 			return item
 		case .separator:
 			return .separator()
 		case .favorite:
 			let item = NSMenuItem(
-				title: "Favorite",
+				title: "Bookmark",
 				action: #selector(MenuSupportable.toggleBookmark(_:)),
 				keyEquivalent: "b"
 			)
-			item.identifier = .init("favorite")
+			item.identifier = .bookmarkMenuItem
 			return item
 		case .completed:
 			let item = NSMenuItem(
@@ -61,15 +61,14 @@ extension MenuBuilder.Item {
 				action: #selector(MenuSupportable.toggleCompleted(_:)),
 				keyEquivalent: "\r"
 			)
-			item.identifier = .init("completed")
+			item.identifier = .setStatusMenuItem
 			return item
 		case .setEstimation:
 			let main = NSMenuItem(
 				title: "Set estimation",
-				action: #selector(MenuSupportable.toggleCompleted(_:)),
+				action: nil,
 				keyEquivalent: ""
 			)
-			main.identifier = .init("estimation")
 			main.submenu = NSMenu()
 
 			let none = NSMenuItem(
@@ -77,7 +76,7 @@ extension MenuBuilder.Item {
 				action: #selector(MenuSupportable.setEstimation(_:)),
 				keyEquivalent: "0"
 			)
-			none.identifier = .init("estimation_number")
+			none.identifier = .setEstimationMenuItem
 			none.tag = 0
 			main.submenu?.addItem(none)
 
@@ -89,7 +88,7 @@ extension MenuBuilder.Item {
 					action: #selector(MenuSupportable.setEstimation(_:)),
 					keyEquivalent: "\(index + 1)"
 				)
-				item.identifier = .init("estimation_number")
+				item.identifier = .setEstimationMenuItem
 				item.tag = number
 				main.submenu?.addItem(item)
 			}
@@ -97,10 +96,9 @@ extension MenuBuilder.Item {
 		case .setIcon:
 			let main = NSMenuItem(
 				title: "Set icon",
-				action: #selector(MenuSupportable.toggleCompleted(_:)),
+				action: nil,
 				keyEquivalent: ""
 			)
-			main.identifier = .init("set_icon")
 			main.submenu = NSMenu()
 
 			let none = NSMenuItem(
@@ -108,7 +106,7 @@ extension MenuBuilder.Item {
 				action: #selector(MenuSupportable.setIcon(_:)),
 				keyEquivalent: ""
 			)
-			none.identifier = .init("icon_name")
+			none.identifier = .setIconMenuItem
 			main.submenu?.addItem(none)
 
 			main.submenu?.addItem(.separator())
@@ -118,12 +116,12 @@ extension MenuBuilder.Item {
 				let item = NSMenuItem()
 				item.submenu = NSMenu()
 				item.title = category.title
-				item.identifier = .init("icon_category")
+				item.identifier = .iconsGroupMenuItem
 
 				for icon in category.icons {
 
 					let iconItem = NSMenuItem()
-					iconItem.identifier = .init("icon_name")
+					iconItem.identifier = .setIconMenuItem
 					iconItem.title = icon
 					iconItem.representedObject = icon
 					iconItem.action = #selector(MenuSupportable.setIcon(_:))

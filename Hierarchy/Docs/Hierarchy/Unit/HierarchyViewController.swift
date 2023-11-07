@@ -49,9 +49,17 @@ protocol HierarchyView: AnyObject {
 
 class HierarchyViewController: NSViewController {
 
+	// MARK: - DI
+
 	var adapter: HierarchyTableAdapter?
 
 	var output: HierarchyViewOutput?
+
+	// MARK: - Computed properties
+
+	var selection: [UUID] {
+		return table.selectedIdentifiers()
+	}
 
 	// MARK: - UI-Properties
 
@@ -189,27 +197,27 @@ private extension HierarchyViewController {
 extension HierarchyViewController: NSMenuItemValidation {
 
 	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-		guard let identifier = menuItem.identifier?.rawValue, let adapter else {
+		guard let identifier = menuItem.identifier, let adapter else {
 			return false
 		}
 
 		switch identifier {
-		case "redo":
+		case .redoMenuItem:
 			return output?.canRedo() ?? false
-		case "undo":
+		case .undoMenuItem:
 			return output?.canUndo() ?? false
-		case "new",
-			 "estimation_number",
-			 "icon_name",
-			 "set_icon":
+		case .newMenuItem,
+			 .setEstimationMenuItem,
+			 .setIconMenuItem,
+			 .iconsGroupMenuItem:
 			return true
 		default:
 			break
 		}
-		let state = adapter.menuItemState(for: identifier)
+		let state = adapter.menuItemState(for: identifier.rawValue)
 		menuItem.state = state
 
-		return adapter.validateMenuItem(identifier)
+		return adapter.validateMenuItem(identifier.rawValue)
 	}
 }
 
@@ -218,41 +226,35 @@ extension HierarchyViewController: MenuSupportable {
 
 	@IBAction
 	func createNew(_ sender: NSMenuItem) {
-		let selection = table.selectedIdentifiers()
 		output?.createNew(with: selection)
 	}
 
 	@IBAction
 	func delete(_ sender: NSMenuItem) {
-		let selection = table.selectedIdentifiers()
 		output?.deleteItems(selection)
 	}
 
 	@IBAction
 	func toggleBookmark(_ sender: NSMenuItem) {
 		let enabled = sender.state == .on
-		let selection = table.selectedIdentifiers()
 		output?.setBookmark(!enabled, withSelection: selection)
 	}
 
 	@IBAction
 	func toggleCompleted(_ sender: NSMenuItem) {
 		let enabled = sender.state == .on
-		let selection = table.selectedIdentifiers()
 		output?.setState(!enabled, withSelection: selection)
 	}
 
 	@IBAction
 	func setEstimation(_ sender: NSMenuItem) {
 		let number = sender.tag
-		let selection = table.selectedIdentifiers()
 		output?.setEstimation(number, withSelection: selection)
 	}
 
 	@IBAction
 	func setIcon(_ sender: NSMenuItem) {
 		let iconName = sender.representedObject as? String
-		let selection = table.selectedIdentifiers()
 		output?.setIcon(iconName, withSelection: selection)
 	}
 

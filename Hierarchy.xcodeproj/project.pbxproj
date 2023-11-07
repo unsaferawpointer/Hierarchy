@@ -59,6 +59,7 @@
 		4CAEF29C2AED1390009BF659 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF29B2AED1390009BF659 /* Node.swift */; };
 		4CAEF29E2AEE77B5009BF659 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF29D2AEE77B5009BF659 /* Root.swift */; };
 		4CEEBD3D2AF921F800A6FB07 /* NodeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEEBD3C2AF921F800A6FB07 /* NodeValue.swift */; };
+		4CEEBD412AFABDCF00A6FB07 /* NSUserInterfaceItemIdentifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEEBD402AFABDCF00A6FB07 /* NSUserInterfaceItemIdentifier+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,7 @@
 		4CAEF29B2AED1390009BF659 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		4CAEF29D2AEE77B5009BF659 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		4CEEBD3C2AF921F800A6FB07 /* NodeValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeValue.swift; sourceTree = "<group>"; };
+		4CEEBD402AFABDCF00A6FB07 /* NSUserInterfaceItemIdentifier+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserInterfaceItemIdentifier+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,6 +384,7 @@
 				4CAA30512AC9D0240007EBA2 /* MenuBuilder.swift */,
 				4CAA30532AC9D0450007EBA2 /* MenuBuilder+Item.swift */,
 				4CAA304F2AC9CED90007EBA2 /* MenuSupportable.swift */,
+				4CEEBD402AFABDCF00A6FB07 /* NSUserInterfaceItemIdentifier+Extension.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				4CAA30562AC9D25C0007EBA2 /* NSTableView+Extension.swift in Sources */,
 				4C3A362E2AC4AC8200B00058 /* DocumentDataRepresentation.swift in Sources */,
 				4CAD277A2ACC71CB00C03A91 /* HierarchyTableAnimator.swift in Sources */,
+				4CEEBD412AFABDCF00A6FB07 /* NSUserInterfaceItemIdentifier+Extension.swift in Sources */,
 				4CAEF2962AE855A2009BF659 /* NSImage+Extension.swift in Sources */,
 				4C3A366C2AC7215700B00058 /* HierarchySnapshot.swift in Sources */,
 				4C3A36242AC4AB6D00B00058 /* HierarchyDataProvider.swift in Sources */,

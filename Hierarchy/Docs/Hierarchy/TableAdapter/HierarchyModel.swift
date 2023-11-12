@@ -5,7 +5,7 @@
 //  Created by Anton Cherkasov on 29.09.2023.
 //
 
-import Foundation
+import AppKit
 
 struct HierarchyModel {
 
@@ -25,6 +25,8 @@ struct HierarchyModel {
 
 	var animateIcon: Bool
 
+	var provider: ((UUID, Set<UUID>) -> Data)?
+
 	var textDidChange: (String) -> ()
 
 	var statusDidChange: (Bool) -> ()
@@ -40,6 +42,7 @@ struct HierarchyModel {
 		number: Int,
 		menu: MenuItem,
 		animateIcon: Bool,
+		provider: ((UUID, Set<UUID>) -> Data)?,
 		textDidChange: @escaping (String) -> (),
 		statusDidChange: @escaping (Bool) -> ()
 	) {
@@ -51,6 +54,7 @@ struct HierarchyModel {
 		self.number = number
 		self.menu = menu
 		self.animateIcon = animateIcon
+		self.provider = provider
 		self.textDidChange = textDidChange
 		self.statusDidChange = statusDidChange
 	}

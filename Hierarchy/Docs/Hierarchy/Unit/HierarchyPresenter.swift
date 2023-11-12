@@ -109,10 +109,22 @@ extension HierarchyPresenter: HierarchyViewOutput {
 
 extension HierarchyPresenter {
 
+	func makePasterboardData(_ entity: Node<ItemContent>, deleted: Set<UUID>) -> Data {
+		var node = makeNode(entity)
+		node.delete(deleted)
+		return try! JSONEncoder().encode(node)
+	}
+
+	func makeNode(_ entity: Node<ItemContent>) -> TransferNode {
+		return TransferNode(value: entity.value, children: entity.children.map({ node in
+			makeNode(node)
+		}))
+	}
+
 	func makeDropConfiguration() -> DropConfiguration {
 		var configuration = DropConfiguration()
-		configuration.types = [.id]
-		configuration.onDrop = { [weak self] ids, destination in
+		configuration.types = [.id, .item]
+		configuration.onMove = { [weak self] ids, destination in
 			guard let self else {
 				return
 			}
@@ -120,12 +132,22 @@ extension HierarchyPresenter {
 				content.moveItems(with: ids, to: destination)
 			}
 		}
-		configuration.invalidate = { [weak self] ids, destination in
+		configuration.invalidateMoving = { [weak self] ids, destination in
 			guard let self else {
 				return false
 			}
 			return self.storage.state.validateMoving(ids, to: destination)
 		}
+
+		configuration.onInsert = { [weak self] transferNodes, destination in
+			guard let self else {
+				return
+			}
+			self.storage.modificate { content in
+				content.insertItems(from: transferNodes, to: destination)
+			}
+		}
+
 		return configuration
 	}
 
@@ -159,6 +181,10 @@ extension HierarchyPresenter {
 				}
 			}()
 
+			let provider = { [weak self] (identifier: UUID, selection: Set<UUID>) -> Data in
+				return self?.makePasterboardData(entity, deleted: selection) ?? Data()
+			}
+
 			return HierarchyModel(
 				uuid: entity.value.uuid,
 				status: entity.reduce(\.isDone),
@@ -167,7 +193,8 @@ extension HierarchyPresenter {
 				isFavorite: entity.value.options.contains(.favorite),
 				number: entity.reduce(\.count),
 				menu: menu,
-				animateIcon: false) { [weak self] newText in
+				animateIcon: false,
+				provider: provider) { [weak self] newText in
 					guard let self else {
 						return
 					}

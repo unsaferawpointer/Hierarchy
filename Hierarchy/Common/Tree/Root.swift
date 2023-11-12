@@ -75,6 +75,37 @@ extension Root {
 			item.insertItems(with: items, to: index)
 		}
 	}
+
+	func insertItems<T: TreeNode>(from data: [T], to destination: HierarchyDestination<Value.ID>) where T.Value == Value {
+		let items = data.map { node in
+			makeNode(from: node)
+		}
+
+		switch destination {
+		case .toRoot:
+			nodes.append(contentsOf: items)
+		case let .inRoot(index):
+			nodes.insert(contentsOf: items, at: index)
+		case let .onItem(id):
+			guard let item = cache[id] else {
+				return
+			}
+			item.appendItems(with: items)
+		case let .inItem(id, index):
+			guard let item = cache[id] else {
+				return
+			}
+			item.insertItems(with: items, to: index)
+		}
+	}
+
+	func makeNode<T: TreeNode>(from other: T) -> Node<T.Value> where T.Value == Value {
+		let node = Node<Value>(value: other.value, children: other.children.map({ node in
+			makeNode(from: node)
+		}))
+		storeInCache([node])
+		return node
+	}
 }
 
 // MARK: - Deletion

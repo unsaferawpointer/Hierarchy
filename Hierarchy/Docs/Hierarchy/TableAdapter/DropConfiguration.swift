@@ -11,7 +11,9 @@ struct DropConfiguration {
 
 	var types: [NSPasteboard.PasteboardType] = []
 
-	var onDrop: (([UUID], HierarchyDestination<UUID>) -> Void)?
+	var onMove: (([UUID], HierarchyDestination<UUID>) -> Void)?
 
-	var invalidate: (([UUID], HierarchyDestination<UUID>) -> Bool)?
+	var invalidateMoving: (([UUID], HierarchyDestination<UUID>) -> Bool)?
+
+	var onInsert: (([TransferNode], HierarchyDestination<UUID>) -> Void)?
 }

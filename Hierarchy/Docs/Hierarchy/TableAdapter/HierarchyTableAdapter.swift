@@ -297,6 +297,14 @@ extension HierarchyTableAdapter {
 		}
 		let pasteboardItem = NSPasteboardItem()
 		pasteboardItem.setString(item.uuid.uuidString, forType: .id)
+
+		if let provider = snapshot.model(with: item.uuid).provider {
+			let data = provider(item.uuid, Set(table?.selectedIdentifiers() ?? [UUID]()))
+			pasteboardItem.setData(data, forType: .item)
+		}
+
+		print("selection = \(table?.selectedIdentifiers())")
+
 		return pasteboardItem
 	}
 
@@ -311,18 +319,46 @@ extension HierarchyTableAdapter {
 		}
 		let destination = getDestination(proposedItem: item, proposedChildIndex: index)
 		let identifiers = getIdentifiers(from: info)
-		return dropConfiguration.invalidate?(identifiers, destination) ?? true ? .move : []
+
+		if isLocal(from: info) {
+			return dropConfiguration.invalidateMoving?(identifiers, destination) ?? true ? .private : []
+		}
+
+		return .copy
 	}
 
 	func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
-		let destination = getDestination(proposedItem: item, proposedChildIndex: index)
-		let identifiers = getIdentifiers(from: info)
-		dropConfiguration?.onDrop?(identifiers, destination)
 
-		NSAnimationContext.runAnimationGroup { context in
-			table?.animator().expandItem(item)
+		let destination = getDestination(proposedItem: item, proposedChildIndex: index)
+
+		if isLocal(from: info) {
+			let identifiers = getIdentifiers(from: info)
+			dropConfiguration?.onMove?(identifiers, destination)
+
+			NSAnimationContext.runAnimationGroup { context in
+				table?.animator().expandItem(item)
+			}
+			return true
+		} else {
+			let pasteboardItems = info.draggingPasteboard.pasteboardItems
+
+			var nodes = [TransferNode]()
+
+			for pasteboardItem in pasteboardItems ?? [] {
+				guard let data = pasteboardItem.data(forType: .item) else {
+					continue
+				}
+				let decoder = JSONDecoder()
+				guard let node = try? decoder.decode(TransferNode.self, from: data) else {
+					continue
+				}
+				nodes.append(node)
+			}
+
+			dropConfiguration?.onInsert?(nodes, destination)
+
+			return true
 		}
-		return true
 	}
 }
 
@@ -342,6 +378,15 @@ extension HierarchyTableAdapter {
 		default:
 			fatalError()
 		}
+	}
+
+	func isLocal(from info: NSDraggingInfo) -> Bool {
+
+		guard let source = info.draggingSource as? NSOutlineView else {
+			return false
+		}
+
+		return source === table
 	}
 
 	func getIdentifiers(from info: NSDraggingInfo) -> [UUID] {
@@ -364,4 +409,6 @@ extension HierarchyTableAdapter {
 extension NSPasteboard.PasteboardType {
 
 	static let id = NSPasteboard.PasteboardType("com.paperwave.hierarchy.item-id")
+
+	static let item = NSPasteboard.PasteboardType("com.paperwave.hierarchy.item")
 }

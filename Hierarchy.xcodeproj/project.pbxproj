@@ -60,6 +60,9 @@
 		4CAEF29E2AEE77B5009BF659 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAEF29D2AEE77B5009BF659 /* Root.swift */; };
 		4CEEBD3D2AF921F800A6FB07 /* NodeValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEEBD3C2AF921F800A6FB07 /* NodeValue.swift */; };
 		4CEEBD412AFABDCF00A6FB07 /* NSUserInterfaceItemIdentifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEEBD402AFABDCF00A6FB07 /* NSUserInterfaceItemIdentifier+Extension.swift */; };
+		4CEEBD442AFFDD0100A6FB07 /* TransferNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEEBD432AFFDD0100A6FB07 /* TransferNode.swift */; };
+		4CEEBD462B01007700A6FB07 /* ItemDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEEBD452B01007700A6FB07 /* ItemDataProvider.swift */; };
+		4CEEBD482B02A24200A6FB07 /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEEBD472B02A24200A6FB07 /* TreeNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +141,9 @@
 		4CAEF29D2AEE77B5009BF659 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		4CEEBD3C2AF921F800A6FB07 /* NodeValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeValue.swift; sourceTree = "<group>"; };
 		4CEEBD402AFABDCF00A6FB07 /* NSUserInterfaceItemIdentifier+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserInterfaceItemIdentifier+Extension.swift"; sourceTree = "<group>"; };
+		4CEEBD432AFFDD0100A6FB07 /* TransferNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferNode.swift; sourceTree = "<group>"; };
+		4CEEBD452B01007700A6FB07 /* ItemDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDataProvider.swift; sourceTree = "<group>"; };
+		4CEEBD472B02A24200A6FB07 /* TreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +242,7 @@
 				4C3A36232AC4AB6D00B00058 /* HierarchyDataProvider.swift */,
 				4CAD277D2ACC954800C03A91 /* TableAdapter */,
 				4C3A36312AC4B3C500B00058 /* Unit */,
+				4CEEBD422AFFDCCD00A6FB07 /* Models */,
 			);
 			path = Hierarchy;
 			sourceTree = "<group>";
@@ -425,8 +432,18 @@
 				4CAEF29B2AED1390009BF659 /* Node.swift */,
 				4CAEF29D2AEE77B5009BF659 /* Root.swift */,
 				4CEEBD3C2AF921F800A6FB07 /* NodeValue.swift */,
+				4CEEBD472B02A24200A6FB07 /* TreeNode.swift */,
 			);
 			path = Tree;
+			sourceTree = "<group>";
+		};
+		4CEEBD422AFFDCCD00A6FB07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4CEEBD432AFFDD0100A6FB07 /* TransferNode.swift */,
+				4CEEBD452B01007700A6FB07 /* ItemDataProvider.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -578,8 +595,10 @@
 				4CAEF29E2AEE77B5009BF659 /* Root.swift in Sources */,
 				4CAA30502AC9CED90007EBA2 /* MenuSupportable.swift in Sources */,
 				4C3A36332AC4B5CC00B00058 /* Versioned.swift in Sources */,
+				4CEEBD462B01007700A6FB07 /* ItemDataProvider.swift in Sources */,
 				4C3A367A2AC7355F00B00058 /* HierarchyViewController.swift in Sources */,
 				4CAA30522AC9D0240007EBA2 /* MenuBuilder.swift in Sources */,
+				4CEEBD442AFFDD0100A6FB07 /* TransferNode.swift in Sources */,
 				4C3A367E2AC735C800B00058 /* NSOutlineView+Extension.swift in Sources */,
 				4CAA303A2AC861440007EBA2 /* EntityOptions.swift in Sources */,
 				4C3A35E12AC48EB500B00058 /* AppDelegate.swift in Sources */,
@@ -602,6 +621,7 @@
 				4CAD279A2AE5799500C03A91 /* IconCagetory.swift in Sources */,
 				4C3A362A2AC4AC3C00B00058 /* DocumentStorage.swift in Sources */,
 				4C3A361F2AC497F800B00058 /* DocumentFile.swift in Sources */,
+				4CEEBD482B02A24200A6FB07 /* TreeNode.swift in Sources */,
 				4C3A36122AC4956500B00058 /* HierarchyContent.swift in Sources */,
 				4C3A36802AC735DF00B00058 /* NSScrollView+Extension.swift in Sources */,
 				4CAD27962ADF113B00C03A91 /* PlaceholderView.swift in Sources */,

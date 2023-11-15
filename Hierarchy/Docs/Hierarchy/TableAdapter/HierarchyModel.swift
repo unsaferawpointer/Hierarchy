@@ -25,7 +25,7 @@ struct HierarchyModel {
 
 	var animateIcon: Bool
 
-	var provider: ((UUID, Set<UUID>) -> Data)?
+	var provider: ((UUID) -> TransferNode?)?
 
 	var textDidChange: (String) -> ()
 
@@ -42,7 +42,7 @@ struct HierarchyModel {
 		number: Int,
 		menu: MenuItem,
 		animateIcon: Bool,
-		provider: ((UUID, Set<UUID>) -> Data)?,
+		provider: ((UUID) -> TransferNode?)?,
 		textDidChange: @escaping (String) -> (),
 		statusDidChange: @escaping (Bool) -> ()
 	) {

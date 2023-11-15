@@ -298,14 +298,38 @@ extension HierarchyTableAdapter {
 		let pasteboardItem = NSPasteboardItem()
 		pasteboardItem.setString(item.uuid.uuidString, forType: .id)
 
-		if let provider = snapshot.model(with: item.uuid).provider {
-			let data = provider(item.uuid, Set(table?.selectedIdentifiers() ?? [UUID]()))
+		if let node = snapshot.model(with: item.uuid).provider?(item.uuid), let data = try? JSONEncoder().encode(node) {
 			pasteboardItem.setData(data, forType: .item)
 		}
-
-		print("selection = \(table?.selectedIdentifiers())")
-
 		return pasteboardItem
+	}
+
+	func outlineView(
+		_ outlineView: NSOutlineView,
+		draggingSession session: NSDraggingSession,
+		willBeginAt screenPoint: NSPoint,
+		forItems draggedItems: [Any]
+	) {
+		let identifiers = draggedItems.compactMap { item in
+			item as? ListItem
+		}.map { item in
+			return item.uuid
+		}
+
+		for pasterboardItem in session.draggingPasteboard.pasteboardItems ?? [] {
+			guard
+				let data = pasterboardItem.data(forType: .item),
+				var transferItem = try? JSONDecoder().decode(TransferNode.self, from: data)
+			else {
+				continue
+			}
+			transferItem.delete(.init(identifiers))
+
+			guard let modificatedData = try? JSONEncoder().encode(transferItem) else {
+				continue
+			}
+			pasterboardItem.setData(modificatedData, forType: .item)
+		}
 	}
 
 	func outlineView(

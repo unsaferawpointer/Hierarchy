@@ -109,12 +109,6 @@ extension HierarchyPresenter: HierarchyViewOutput {
 
 extension HierarchyPresenter {
 
-	func makePasterboardData(_ entity: Node<ItemContent>, deleted: Set<UUID>) -> Data {
-		var node = makeNode(entity)
-		node.delete(deleted)
-		return try! JSONEncoder().encode(node)
-	}
-
 	func makeNode(_ entity: Node<ItemContent>) -> TransferNode {
 		return TransferNode(value: entity.value, children: entity.children.map({ node in
 			makeNode(node)
@@ -181,8 +175,8 @@ extension HierarchyPresenter {
 				}
 			}()
 
-			let provider = { [weak self] (identifier: UUID, selection: Set<UUID>) -> Data in
-				return self?.makePasterboardData(entity, deleted: selection) ?? Data()
+			let provider = { [weak self] (identifier: UUID) -> TransferNode? in
+				return self?.makeNode(entity)
 			}
 
 			return HierarchyModel(
